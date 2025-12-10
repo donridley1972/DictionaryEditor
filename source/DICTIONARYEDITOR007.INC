@@ -1,0 +1,3 @@
+  MODULE('DICTIONARYEDITOR007.CLW')
+Main                   PROCEDURE
+  END
