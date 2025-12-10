@@ -1,0 +1,231 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{79C155D8-EE9A-4264-BFDF-52FAD1DD7CC5}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Win32</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DictionaryEditor</RootNamespace>
+    <AssemblyName>DictionaryEditor</AssemblyName>
+    <OutputName>DictionaryEditor</OutputName>
+    <CWOutputType>Exe</CWOutputType>
+    <DefineConstants>wdnu=&gt;0%3b_CFCDllMode_=&gt;0%3b_CFCLinkMode_=&gt;1%3b_SVDllMode_=&gt;0%3b_SVLinkMode_=&gt;1%3b_ecgOleAutLinkMode_=&gt;0%3bjFilesLinkMode=&gt;1%3bjFilesDllMode=&gt;0%3b_JFILES_=&gt;1%3bxFilesLinkMode=&gt;1%3bxFilesDllMode=&gt;0%3b_XFILES_=&gt;1%3b_XFILES4_=&gt;1%3bStringTheoryLinkMode=&gt;1%3bStringTheoryDllMode=&gt;0%3bMD5=&gt;1%3bWinEventLinkMode=&gt;1%3bWinEventDLLMode=&gt;0%3bNYSTplHlprLM=&gt;1%3bNYSTplHlprDM=&gt;0%3bReflectionLM=&gt;1%3bReflectionDM=&gt;0%3bMyTableLinkMode=&gt;1%3bMyTableDllMode=&gt;0%3bGPFReporterLinkMode=&gt;1%3bGPFReporterDllMode=&gt;0%3bHyperLM=&gt;1%3bHyperDM=&gt;0%3b_NoCSMesBox_=&gt;0%3b_MSGThreadSafe_=&gt;1%3b_RASLinkMode_=&gt;1%3b_RASDllMode_=&gt;0%3bCryptoniteLinkMode=&gt;1%3bCryptoniteDllMode=&gt;0%3b_CRYPTONITE_=&gt;1%3b_CRYPTOINI_=&gt;1%3bDrawLinkMode=&gt;1%3bDrawDllMode=&gt;0%3b_DRAW_=&gt;1%3bDrawImage=&gt;0%3b_ABCDllMode_=&gt;0%3b_ABCLinkMode_=&gt;1%3b_STCLKDllMode_=&gt;0%3b_STCLKLinkMode_=&gt;1%3b_STCLSDllMode_=&gt;0%3b_STCLSLinkMode_=&gt;1%3b_STSYNDllMode_=&gt;0%3b_STSYNLinkMode_=&gt;1%3b_STTAGDllMode_=&gt;0%3b_STTAGLinkMode_=&gt;1%3b_SUPERDDDllMode_=&gt;0%3b_SUPERDDLinkMode_=&gt;1%3b_SUPERSTUFFDllMode_=&gt;0%3b_SUPERSTUFFLinkMode_=&gt;1</DefineConstants>
+    <stack_size>16384</stack_size>
+    <CopyCore>True</CopyCore>
+    <Model>Dll</Model>
+    <ApplicationIcon>Dictionary.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <vid>full</vid>
+    <check_stack>True</check_stack>
+    <check_index>True</check_index>
+    <warnings>on</warnings>
+    <GenerateMap>True</GenerateMap>
+    <line_numbers>True</line_numbers>
+    <dynamic_base>True</dynamic_base>
+    <dep>True</dep>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <vid>off</vid>
+    <check_stack>False</check_stack>
+    <check_index>False</check_index>
+  </PropertyGroup>
+  <ItemGroup>
+    <FileDriver Include="ASCII" />
+    <FileDriver Include="DOS" />
+    <FileDriver Include="MEMORY" />
+    <FileDriver Include="MSSQL" />
+    <FileDriver Include="ODBC" />
+    <FileDriver Include="TOPSPEED" />
+    <Compile Include="DICT%24TAG.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor001.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor002.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor003.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor004.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor005.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor006.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor007.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor009.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor010.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor011.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor012.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor013.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor014.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor015.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor016.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor017.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor018.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor019.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor020.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor021.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor022.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor023.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor024.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor025.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor026.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor027.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor028.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor029.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor030.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor031.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor032.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor033.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DICTIONARYEDITOR_BC.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor_BC0.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="DictionaryEditor_BC1.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="NYSCommon.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="NYSDockingPane.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="NYSPropertyGrid.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="NYSSkinFramework.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="NYSSuiteControls.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="NYSSyntaxEdit.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="NYSTemplateHelper.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="ojmd5.c">
+      <Generated>true</Generated>
+    </Compile>
+    <Library Include="Contains.ico" />
+    <Library Include="Crypt32.lib">
+      <CopyDllToOutputDirectory>Never</CopyDllToOutputDirectory>
+      <Generated>True</Generated>
+      <ProjectGenerated>True</ProjectGenerated>
+    </Library>
+    <Library Include="DictionaryEditor.EXE.manifest" />
+    <Library Include="hand2.cur" />
+    <Library Include="PathGetDriveNumber.lib" />
+    <Library Include="Search1.ico" />
+    <Library Include="StartsWith.ico" />
+    <None Include="barcode.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generated>True</Generated>
+      <ProjectGenerated>True</ProjectGenerated>
+    </None>
+    <None Include="cs_libpng.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generated>True</Generated>
+      <ProjectGenerated>True</ProjectGenerated>
+    </None>
+    <None Include="ezjson.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generated>True</Generated>
+      <ProjectGenerated>True</ProjectGenerated>
+    </None>
+    <None Include="FreeImage.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generated>True</Generated>
+      <ProjectGenerated>True</ProjectGenerated>
+    </None>
+    <None Include="Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generated>True</Generated>
+      <ProjectGenerated>True</ProjectGenerated>
+    </None>
+    <None Include="QRCodeGen.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generated>True</Generated>
+      <ProjectGenerated>True</ProjectGenerated>
+    </None>
+    <None Include="zlib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generated>True</Generated>
+      <ProjectGenerated>True</ProjectGenerated>
+    </None>
+    <None Include="zlibwapi.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generated>True</Generated>
+      <ProjectGenerated>True</ProjectGenerated>
+    </None>
+  </ItemGroup>
+  <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />
+</Project>
