@@ -1,0 +1,1582 @@
+[MODULE]
+NAME 'DuplicateKeysWindow_DictionaryEditor.clw'
+[COMMON]
+FROM ABC GENERATED
+[PROCEDURE]
+NAME DuplicateKeysWindow
+PROTOTYPE '(string pParams,string pThread)'
+PARAMETERS '(string pParams,string pThread)'
+[COMMON]
+FROM ABC Window
+[DATA]
+[SCREENCONTROLS]
+! PROMPT('Notify Param:'),USE(?NotifyParam:Prompt)
+! ENTRY(@s255),USE(NotifyParam),LEFT(2)
+[REPORTCONTROLS]
+! STRING(@s255),USE(NotifyParam),LEFT(2)
+NotifyParam              STRING(1500)
+!!> GUID('ff4fd83d-cbce-4db0-96fc-ae3517b18bf6'),PROMPT('Notify Param:'),HEADER('Notify Param'),PICTURE(@s255),TYPEMODE(INS),JUSTIFY(LEFT,2)
+[FILES]
+[PRIMARY]
+DuplicateKeys
+[INSTANCE]
+6
+[SECONDARY]
+Tables DuplicateKeys INNER
+[PROMPTS]
+%ClassItem UNIQUE DEFAULT  ('Default', 'WindowToolbar')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('WindowManager')
+WHEN  ('WindowToolbar') ('ToolbarClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('')
+WHEN  ('WindowToolbar') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 1
+WHEN  ('Default') ('Init {19}PROCEDURE(),BYTE,PROC,DERIVED', 'Kill {19}PROCEDURE(),BYTE,PROC,DERIVED', |
+  'TakeAccepted {11}PROCEDURE(),BYTE,PROC,DERIVED', 'TakeEvent {14}PROCEDURE(),BYTE,PROC,DERIVED', |
+  'TakeWindowEvent        PROCEDURE(),BYTE,PROC,DERIVED')
+
+%ReturnValue FIELD  ()
+%ProcedureOneInstance LONG  (0)
+%WindowOperationMode DEFAULT  ('Use WINDOW setting')
+%INISaveWindow LONG  (1)
+%ProcedureDisableEnhanceFocus LONG  (0)
+%ProcedureUseEnterInsteadTabOverride LONG  (0)
+%WindowUseEnterInsteadTab LONG  (1)
+%ProcedureUseEnterInsteadTabExcludeListCombo LONG  (0)
+%ProcedureUseEnterInsteadTabEnableNextTabStop LONG  (0)
+%ProcedureUseEnterInsteadTabExcludeG LONG  (1)
+%WindowUseEnterInsteadTabExclude MULTI DEFAULT  ()
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('NO')
+WHEN  ('WindowToolbar') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('ThisWindow')
+WHEN  ('WindowToolbar') ('Toolbar')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (1)
+WHEN  ('WindowToolbar') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (1)
+WHEN  ('WindowToolbar') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('')
+WHEN  ('WindowToolbar') ('')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (0)
+WHEN  ('WindowToolbar') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('WindowToolbar')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('WindowToolbar')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%WindowStyles MULTI LONG  ()
+%WindowStyleFontName DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontNameVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontNameIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontSize DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontSizeVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontSizeIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontStyle DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontStyleVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontStyleIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontColor DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontCharSet DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundNormal DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundNormalVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundNormalIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundNormal DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundNormalVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleBackgroundNormalIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundSelected DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundSelectedVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundSelectedIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundSelected DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundSelectedVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleBackgroundSelectedIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStylePicture DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStylePictureVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStylePictureIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleOtherListboxes MULTI DEFAULT  ()
+%ProcedureAutoBindFields MULTI LONG  (1, 2)
+%ProcedureAutoBindField DEPEND %ProcedureAutoBindFields DEFAULT TIMES 2
+WHEN  (1) ('Tab:TableName')
+WHEN  (2) ('DupK:PKGuid')
+
+%ProcedureAutoBindFieldTPL DEPEND %ProcedureAutoBindFields DEFAULT TIMES 2
+WHEN  (1) ('BrowseBox(ABC)')
+WHEN  (2) ('BrowseBox(ABC)')
+
+%ProcedureAutoBindProcedures MULTI LONG  ()
+%ProcedureAutoBindProcedure DEPEND %ProcedureAutoBindProcedures DEFAULT TIMES 0
+
+%ProcedureAutoBindProcedureTPL DEPEND %ProcedureAutoBindProcedures DEFAULT TIMES 0
+
+%ProcedureAutoBindFieldsIgnored MULTI LONG  ()
+%ProcedureAutoBindFieldIgnored DEPEND %ProcedureAutoBindFieldsIgnored DEFAULT TIMES 0
+
+%ProcedureAutoBindProceduresIgnored MULTI LONG  ()
+%ProcedureAutoBindProcedureIgnored DEPEND %ProcedureAutoBindProceduresIgnored DEFAULT TIMES 0
+
+%ProcedureAutoBindValidToAddField LONG  (0)
+%ProcedureUserBindFields MULTI LONG  ()
+%ProcedureUserBindField DEPEND %ProcedureUserBindFields FIELD TIMES 0
+
+%ProcedureAutoBindFieldIgnore DEPEND %ProcedureAutoBindFields LONG TIMES 0
+
+%ProcedureUserBindProcedures MULTI LONG  ()
+%ProcedureUserBindProcedure DEPEND %ProcedureUserBindProcedures PROCEDURE TIMES 0
+
+%ProcedureAutoBindProcedureIgnore DEPEND %ProcedureAutoBindProcedures LONG TIMES 0
+
+%ProcedureUserBindExpressions MULTI LONG  ()
+%ProcedureUserBindExpressionName DEPEND %ProcedureUserBindExpressions DEFAULT TIMES 0
+
+%ProcedureUserBindExpression DEPEND %ProcedureUserBindExpressions DEFAULT TIMES 0
+
+%PreserveVarsLoc MULTI LONG  ()
+%PreserveVarLoc DEPEND %PreserveVarsLoc DEFAULT TIMES 0
+
+%ExtUITabIcon DEPEND %Control DEFAULT TIMES 0
+
+%ExtUITabStyleOverrideGlobal DEPEND %Control LONG TIMES 0
+
+%ExtUITabStyle DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('Default')
+WHEN  ('?AddTablePrefixBtn') ('Default')
+WHEN  ('?List') ('Default')
+WHEN  ('?RecheckForDuplicatesBtn') ('Default')
+
+%FieldGradientColorType DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('Off')
+WHEN  ('?AddTablePrefixBtn') ('Off')
+WHEN  ('?List') ('Off')
+WHEN  ('?RecheckForDuplicatesBtn') ('Off')
+
+%FieldGradientColorTypeVariable DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('')
+WHEN  ('?AddTablePrefixBtn') ('')
+WHEN  ('?List') ('')
+WHEN  ('?RecheckForDuplicatesBtn') ('')
+
+%FieldGradientColorTypeIsVariable DEPEND %Control LONG TIMES 4
+WHEN  ('') (0)
+WHEN  ('?AddTablePrefixBtn') (0)
+WHEN  ('?List') (0)
+WHEN  ('?RecheckForDuplicatesBtn') (0)
+
+%FieldGradientColorFrom DEPEND %Control LONG TIMES 4
+WHEN  ('') (-1)
+WHEN  ('?AddTablePrefixBtn') (-1)
+WHEN  ('?List') (-1)
+WHEN  ('?RecheckForDuplicatesBtn') (-1)
+
+%FieldGradientColorFromVariable DEPEND %Control DEFAULT TIMES 0
+
+%FieldGradientColorFromIsVariable DEPEND %Control LONG TIMES 4
+WHEN  ('') (0)
+WHEN  ('?AddTablePrefixBtn') (0)
+WHEN  ('?List') (0)
+WHEN  ('?RecheckForDuplicatesBtn') (0)
+
+%FieldGradientColorTo DEPEND %Control LONG TIMES 4
+WHEN  ('') (-1)
+WHEN  ('?AddTablePrefixBtn') (-1)
+WHEN  ('?List') (-1)
+WHEN  ('?RecheckForDuplicatesBtn') (-1)
+
+%FieldGradientColorToVariable DEPEND %Control DEFAULT TIMES 0
+
+%FieldGradientColorToIsVariable DEPEND %Control LONG TIMES 4
+WHEN  ('') (0)
+WHEN  ('?AddTablePrefixBtn') (0)
+WHEN  ('?List') (0)
+WHEN  ('?RecheckForDuplicatesBtn') (0)
+
+%ButtonAction DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('No Special Action')
+WHEN  ('?AddTablePrefixBtn') ('No Special Action')
+WHEN  ('?List') ('No Special Action')
+WHEN  ('?RecheckForDuplicatesBtn') ('No Special Action')
+
+%ButtonRunName DEPEND %Control DEFAULT TIMES 2
+WHEN  ('?AddTablePrefixBtn') ('')
+WHEN  ('?RecheckForDuplicatesBtn') ('')
+
+%ButtonRunParameters DEPEND %Control DEFAULT TIMES 2
+WHEN  ('?AddTablePrefixBtn') ('')
+WHEN  ('?RecheckForDuplicatesBtn') ('')
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 2
+WHEN  ('?AddTablePrefixBtn') ()
+WHEN  ('?RecheckForDuplicatesBtn') ()
+
+%ButtonThread DEPEND %Control LONG TIMES 2
+WHEN  ('?AddTablePrefixBtn') (0)
+WHEN  ('?RecheckForDuplicatesBtn') (0)
+
+%ButtonThreadStack DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('25000')
+WHEN  ('?AddTablePrefixBtn') ('25000')
+WHEN  ('?List') ('25000')
+WHEN  ('?RecheckForDuplicatesBtn') ('25000')
+
+%ButtonParameters DEPEND %Control DEFAULT TIMES 2
+WHEN  ('?AddTablePrefixBtn') ('')
+WHEN  ('?RecheckForDuplicatesBtn') ('')
+
+%ButtonReturnValueAssignment DEPEND %Control FIELD TIMES 2
+WHEN  ('?AddTablePrefixBtn') ()
+WHEN  ('?RecheckForDuplicatesBtn') ()
+
+%ButtonReturnValueReferenceAssign DEPEND %Control LONG TIMES 2
+WHEN  ('?AddTablePrefixBtn') (0)
+WHEN  ('?RecheckForDuplicatesBtn') (0)
+
+%ButtonRequest DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('None')
+WHEN  ('?AddTablePrefixBtn') ('None')
+WHEN  ('?List') ('None')
+WHEN  ('?RecheckForDuplicatesBtn') ('None')
+
+%ButtonThreadParameters DEPEND %Control DEFAULT TIMES 2
+WHEN  ('?AddTablePrefixBtn') ('')
+WHEN  ('?RecheckForDuplicatesBtn') ('')
+
+%ButtonThreadReturnValueAssignment DEPEND %Control FIELD TIMES 2
+WHEN  ('?AddTablePrefixBtn') ()
+WHEN  ('?RecheckForDuplicatesBtn') ()
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PreLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
+
+%PostLookupDuringValidate DEPEND %Control LONG TIMES 4
+WHEN  ('') (1)
+WHEN  ('?AddTablePrefixBtn') (1)
+WHEN  ('?List') (1)
+WHEN  ('?RecheckForDuplicatesBtn') (1)
+
+%LookupAssign DEPEND %Control MULTI LONG TIMES 0
+
+%MoreTarget DEPEND %LookupAssign FIELD TIMES 0
+
+%MoreField DEPEND %LookupAssign DEFAULT TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+
+%CheckedAssigns DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedAssignVariable DEPEND %CheckedAssigns FIELD TIMES 0
+
+%CheckedAssignValue DEPEND %CheckedAssigns DEFAULT TIMES 0
+
+%CheckedHides DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedControl DEPEND %CheckedHides DEFAULT TIMES 0
+
+%CheckedControlAction DEPEND %CheckedHides DEFAULT TIMES 4
+WHEN  ('')TIMES 0
+WHEN  ('?AddTablePrefixBtn')TIMES 0
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 0
+
+%CheckedEnables DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedControl1 DEPEND %CheckedEnables DEFAULT TIMES 0
+
+%CheckedControl1Action DEPEND %CheckedEnables DEFAULT TIMES 4
+WHEN  ('')TIMES 0
+WHEN  ('?AddTablePrefixBtn')TIMES 0
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 0
+
+%UncheckedAssigns DEPEND %Control MULTI LONG TIMES 0
+
+%UncheckedAssignVariable DEPEND %UncheckedAssigns FIELD TIMES 0
+
+%UncheckedAssignValue DEPEND %UncheckedAssigns DEFAULT TIMES 0
+
+%UnCheckedHides DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedControl DEPEND %UnCheckedHides DEFAULT TIMES 0
+
+%UnCheckedControlAction DEPEND %UnCheckedHides DEFAULT TIMES 4
+WHEN  ('')TIMES 0
+WHEN  ('?AddTablePrefixBtn')TIMES 0
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 0
+
+%UnCheckedEnables DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedControl1 DEPEND %UnCheckedEnables DEFAULT TIMES 0
+
+%UnCheckedControl1Action DEPEND %UnCheckedEnables DEFAULT TIMES 4
+WHEN  ('')TIMES 0
+WHEN  ('?AddTablePrefixBtn')TIMES 0
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 0
+
+%CheckedDisables DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedDisableControl DEPEND %CheckedDisables DEFAULT TIMES 0
+
+%CheckedDisableControlAction DEPEND %CheckedDisables DEFAULT TIMES 4
+WHEN  ('')TIMES 0
+WHEN  ('?AddTablePrefixBtn')TIMES 0
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 0
+
+%UnCheckedDisables DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedDisableControl DEPEND %UnCheckedDisables DEFAULT TIMES 0
+
+%UnCheckedDisableControlAction DEPEND %UnCheckedDisables DEFAULT TIMES 4
+WHEN  ('')TIMES 0
+WHEN  ('?AddTablePrefixBtn')TIMES 0
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 0
+
+%ActiveImageEnable DEPEND %Control LONG TIMES 0
+
+%AIObjectName DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('AIBtn0')
+WHEN  ('?AddTablePrefixBtn') ('AIBtn2')
+WHEN  ('?List') ('AIBtn1')
+WHEN  ('?RecheckForDuplicatesBtn') ('AIBtn3')
+
+%AIEnableMimicControl DEPEND %Control LONG TIMES 4
+WHEN  ('') (1)
+WHEN  ('?AddTablePrefixBtn') (1)
+WHEN  ('?List') (1)
+WHEN  ('?RecheckForDuplicatesBtn') (1)
+
+%AIMimicControl DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('?List')
+WHEN  ('?AddTablePrefixBtn') ('?List')
+WHEN  ('?List') ('?List')
+WHEN  ('?RecheckForDuplicatesBtn') ('?List')
+
+%AIImgRound DEPEND %Control LONG TIMES 0
+
+%AIOverrideImg DEPEND %Control DEFAULT TIMES 0
+
+%AIOverrideImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIOverrideImgIsVariable DEPEND %Control LONG TIMES 4
+WHEN  ('') (0)
+WHEN  ('?AddTablePrefixBtn') (0)
+WHEN  ('?List') (0)
+WHEN  ('?RecheckForDuplicatesBtn') (0)
+
+%AIDisableImg DEPEND %Control DEFAULT TIMES 0
+
+%AIDisableImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIDisableImgIsVariable DEPEND %Control LONG TIMES 4
+WHEN  ('') (0)
+WHEN  ('?AddTablePrefixBtn') (0)
+WHEN  ('?List') (0)
+WHEN  ('?RecheckForDuplicatesBtn') (0)
+
+%AIHotImg DEPEND %Control DEFAULT TIMES 0
+
+%AIHotImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIHotImgIsVariable DEPEND %Control LONG TIMES 4
+WHEN  ('') (0)
+WHEN  ('?AddTablePrefixBtn') (0)
+WHEN  ('?List') (0)
+WHEN  ('?RecheckForDuplicatesBtn') (0)
+
+%AIPressedImg DEPEND %Control DEFAULT TIMES 0
+
+%AIPressedImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIPressedImgIsVariable DEPEND %Control LONG TIMES 4
+WHEN  ('') (0)
+WHEN  ('?AddTablePrefixBtn') (0)
+WHEN  ('?List') (0)
+WHEN  ('?RecheckForDuplicatesBtn') (0)
+
+%ITHasDllTemplate DEFAULT  ('')
+[EMBED]
+EMBED %DataSection
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 1000
+PROPERTY:END
+ParamsGrp                   Group(ParamsGroupType).
+OverStr                     String(Size(ParamsGrp)),Over(ParamsGrp)
+MyDct                       dwrDctParser
+[END]
+EMBED %WindowManagerMethodCodeSection
+[INSTANCES]
+WHEN 'Init'
+[INSTANCES]
+WHEN '(),BYTE'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 300
+PROPERTY:END
+  OverStr = pParams
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 8700
+PROPERTY:END
+BRW6.SetFilter('(DupK:DictionaryGuid = ' & '''' & ParamsGrp.DictionaryGuid & '''' & ')')
+[END]
+[END]
+[END]
+EMBED %ControlEventHandling
+[INSTANCES]
+WHEN '?RecheckForDuplicatesBtn'
+[INSTANCES]
+WHEN 'Accepted'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 8500
+PROPERTY:END
+Resume(START(CheckForDuplicateKeys, 25000, OverStr,Thread()))
+ThisWindow.Reset
+[END]
+[END]
+WHEN '?AddTablePrefixBtn'
+[INSTANCES]
+WHEN 'Accepted'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 8500
+PROPERTY:END
+Resume(START(FixDuplicateKeys, 25000, OverStr,Thread()))
+ThisWindow.Reset
+[END]
+[END]
+[END]
+EMBED %NotifyHandlerDataEmbed
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 5000
+PROPERTY:END
+TempSt      StringTheory
+VersionVal  Long
+json        JSONClass
+[END]
+EMBED %NotifyHandlerCodeEmbed
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 5000
+PROPERTY:END
+	If Size(NotifyParam) > 0
+		TempSt.SetValue(NotifyParam)
+        MyDct.Trace('')
+        MyDct.Trace('DuplicateKeysWindow - NotifyHandler.HandleNotify')
+		MyDct.Trace(TempSt.GetValue())
+        MyDct.Trace('')
+		json.Start()
+		json.SetTagCase(jF:CaseAsIs)
+		json.Load(ParamsGrp,TempSt)
+        Case ParamsGrp.Action[1:Size(ParamsGrp.Action)]
+        Of 'DuplicatesChecked'
+            BRW6.ResetSort(True)
+        End
+    End
+[END]
+[END]
+[ADDITION]
+NAME DMTemporalID PceJSGBLocalExtension
+[INSTANCE]
+INSTANCE 8
+OWNER 33
+[PROMPTS]
+%PceJSGBLocalGenerateOpenClose LONG  (0)
+%EnableDebugTracingForThisWindow LONG  (0)
+%PceJSGBTraceMethodName DEFAULT  ('')
+%DisableSetFilePaths LONG  (0)
+%DisableSetPropPixels LONG  (0)
+%PceJSGBLocalDisableThreadTracking LONG  (0)
+%PceJSGBLocalThreadTrackingIsMainStartup LONG  (0)
+%PceJSGBLocalDisablePreserving LONG  (0)
+%PceJSGBIniFileName DEFAULT  ('')
+%PceJSGBPreserveVarsLoc MULTI LONG  ()
+%PceJSGBPreserveVarLoc DEPEND %PceJSGBPreserveVarsLoc DEFAULT TIMES 0
+
+[ADDITION]
+NAME MikeHansonABC mhResizeWindow
+[FIELDPROMPT]
+%mhRszMimic DEPEND %Control LONG TIMES 0
+
+%mhRszMimicControl DEPEND %Control DEFAULT TIMES 0
+
+%mhRszMoveXPos DEPEND %Control LONG TIMES 0
+
+%mhRszMoveXPosRatio DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('1')
+WHEN  ('?AddTablePrefixBtn') ('1')
+WHEN  ('?List') ('1')
+WHEN  ('?RecheckForDuplicatesBtn') ('1')
+
+%mhRszMoveYPos DEPEND %Control LONG TIMES 0
+
+%mhRszMoveYPosRatio DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('1')
+WHEN  ('?AddTablePrefixBtn') ('1')
+WHEN  ('?List') ('1')
+WHEN  ('?RecheckForDuplicatesBtn') ('1')
+
+%mhRszChangeWidth DEPEND %Control LONG TIMES 1
+WHEN  ('?List') (1)
+
+%mhRszChangeWidthRatio DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('1')
+WHEN  ('?AddTablePrefixBtn') ('1')
+WHEN  ('?List') ('1')
+WHEN  ('?RecheckForDuplicatesBtn') ('1')
+
+%mhRszChangeHeight DEPEND %Control LONG TIMES 1
+WHEN  ('?List') (1)
+
+%mhRszChangeHeightRatio DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('1')
+WHEN  ('?AddTablePrefixBtn') ('1')
+WHEN  ('?List') ('1')
+WHEN  ('?RecheckForDuplicatesBtn') ('1')
+
+[INSTANCE]
+INSTANCE 5
+[PROMPTS]
+%ProductName DEFAULT  ('Super Stuff - Resize')
+%ClassItem UNIQUE DEFAULT  ('Default')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('MH::ResizeWindowClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 1
+WHEN  ('Default') ('Init {19}PROCEDURE()')
+
+%stObjectID DEFAULT  ('Default')
+%stObjectDefaultName DEFAULT  ('mhResize')
+%stObjectDefaultClass DEFAULT  ('MH::ResizeWindowClass')
+%mhINISaveWindow LONG  (0)
+%ResizeWidth LONG  (1)
+%ResizeHeight LONG  (1)
+%Maximize LONG  (0)
+%HorzPos DEFAULT  ('Full')
+%HorzPosVar DEFAULT  ('')
+%VertPos DEFAULT  ('Full')
+%VertPosVar DEFAULT  ('')
+%HorzShift DEFAULT  ('')
+%VertShift DEFAULT  ('')
+%DontHideOnOpen LONG  (0)
+%ClearSheet LONG  (1)
+%ResizeSheet DEFAULT  ('')
+%ClearList LONG  (1)
+%ResizeList DEFAULT  ('')
+%ClearMoveRight LONG  (1)
+%MoveRightBoundary DEFAULT  ('')
+%MoveRightBoundaryIncluded LONG  (0)
+%ClearMoveDown LONG  (1)
+%MoveDownBoundary DEFAULT  ('')
+%MoveDownBoundaryIncluded LONG  (0)
+%Mimic DEPEND %Control LONG TIMES 0
+
+%MimicControl DEPEND %Control DEFAULT TIMES 0
+
+%MoveXPos DEPEND %Control LONG TIMES 0
+
+%MoveXPosRatio DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('1')
+WHEN  ('?AddTablePrefixBtn') ('1')
+WHEN  ('?List') ('1')
+WHEN  ('?RecheckForDuplicatesBtn') ('1')
+
+%MoveYPos DEPEND %Control LONG TIMES 0
+
+%MoveYPosRatio DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('1')
+WHEN  ('?AddTablePrefixBtn') ('1')
+WHEN  ('?List') ('1')
+WHEN  ('?RecheckForDuplicatesBtn') ('1')
+
+%ChangeWidth DEPEND %Control LONG TIMES 0
+
+%ChangeWidthRatio DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('1')
+WHEN  ('?AddTablePrefixBtn') ('1')
+WHEN  ('?List') ('1')
+WHEN  ('?RecheckForDuplicatesBtn') ('1')
+
+%ChangeHeight DEPEND %Control LONG TIMES 0
+
+%ChangeHeightRatio DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('1')
+WHEN  ('?AddTablePrefixBtn') ('1')
+WHEN  ('?List') ('1')
+WHEN  ('?RecheckForDuplicatesBtn') ('1')
+
+%OrigIsMinimum LONG  (0)
+%BorderBeyondMinimum LONG  (0)
+%AddMaxButton LONG  (0)
+%AddResizeBorder LONG  (0)
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('mhResize')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('ADOBlob')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 1
+WHEN  ('Default') (1)
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 1
+WHEN  ('Default')TIMES 1
+WHEN  (1) ('InitialResize')
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 1
+WHEN  ('Default')TIMES 1
+WHEN  (1) ('()')
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+[ADDITION]
+NAME NinjaDonutHoles NinjaDonutHoleWindow
+[INSTANCE]
+INSTANCE 4
+[PROMPTS]
+%AllowSolo LONG  (0)
+%TakeFocusUponWindowOpen LONG  (0)
+%LogPreamble DEFAULT  ('DuplicateKeysWindow')
+[ADDITION]
+NAME NYS_DockingPaneTpl NYS_DockingPaneWndHndl
+[INSTANCE]
+INSTANCE 3
+OWNER 15
+[PROMPTS]
+%ClassItem UNIQUE DEFAULT  ('Default')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('DockingPaneEventMgrClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
+
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NYS:DockingPane_EventMgr')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ObjectID DEFAULT  ('')
+%NYS006CtrlDisable LONG  (0)
+%NYS006DisableRuntime DEFAULT  ('FALSE')
+[ADDITION]
+NAME WinEvent WinEvent
+[INSTANCE]
+INSTANCE 2
+OWNER 10
+[PROMPTS]
+%DisableWinEvent LONG  (0)
+%CheckForCantCloseNowSetHere LONG  (1)
+%AutoDown LONG  (0)
+%NoAutoDown LONG  (0)
+%LocWindowsVisible DEFAULT  ('0')
+%WindowsVisibleAfterOpen LONG  (1)
+%AlertWinEventDebug LONG  (0)
+%DisplayCompileDate LONG  (0)
+%DisplayCompileDateFormat DEFAULT  ('@D10')
+%locNoHandleCloseDown LONG  (0)
+%locCloseDownWhenWindowCloses LONG  (0)
+%locCloseDownWhenWindowClosesCtrl DEFAULT  ('')
+%altWinFix DEFAULT  ('Default')
+%WinAlert MULTI LONG  ()
+%Mess DEPEND %WinAlert DEFAULT TIMES 0
+
+%Act1 DEPEND %WinAlert DEFAULT TIMES 0
+
+%act2 DEPEND %WinAlert DEFAULT TIMES 0
+
+%AlertControl DEPEND %WinAlert DEFAULT TIMES 0
+
+%AlertControlType DEPEND %WinAlert DEFAULT TIMES 0
+
+%locCloseDownWhenWindowClosesSet LONG  (0)
+[ADDITION]
+NAME UltimateNotify UltimateNotifyLocalExtension
+[INSTANCE]
+INSTANCE 1
+OWNER 9
+[PROMPTS]
+%ClassName DEFAULT  ('NotifyHandler')
+%StringClassName DEFAULT  ('us')
+%UseStringTheory LONG  (0)
+%EnableNotifyTracking LONG  (1)
+%NotifyProcedureType DEFAULT  ('Child')
+%ParentThreadVariable DEFAULT  ('pThread')
+%FieldToReceiveParameter FIELD  (NotifyParam)
+%NotifyIDToMonitor DEFAULT  ('1')
+%NotifyIDs MULTI LONG  ()
+%NotifyID DEPEND %NotifyIDs DEFAULT TIMES 0
+
+%NotifyGroupNames MULTI LONG  ()
+%NotifyGroupName DEPEND %NotifyGroupNames DEFAULT TIMES 0
+
+%DisableEventNotifyTemplate LONG  (0)
+[ADDITION]
+NAME ABC BrowseBox
+[INSTANCE]
+INSTANCE 6
+[PROMPTS]
+%ClassItem UNIQUE DEFAULT  ('Default', 'Locator', 'Locator0', 'Step', 'Step0')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('BrowseClass')
+WHEN  ('Locator0') ('StepLocatorClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('')
+WHEN  ('Locator0') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 1
+WHEN  ('Default') ('Q {22}&Queue:Browse {18}!Reference to browse queue')
+
+%SQLViewFields MULTI DEFAULT  ()
+%TableSchematicsDescription DEFAULT  ('')
+%EnableQuickScan LONG  (0)
+%LoadMethod DEFAULT  ('Page')
+%AcceptToolBarControl LONG  (1)
+%InterLine DEFAULT  ('0')
+%LocatorType DEFAULT  ('Step')
+%OverrideDefaultLocator LONG  (0)
+%OverrideLocator DEFAULT  ('')
+%FindDefaultAnywhere LONG  (0)
+%DefaultEnableOnEmpty LONG  (0)
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 3
+WHEN  ('Default') ('NO')
+WHEN  ('Locator0') ('NO')
+WHEN  ('Step0') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('BRW6')
+WHEN  ('Locator0') ('BRW6::Sort0:Locator')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 3
+WHEN  ('Default') (1)
+WHEN  ('Locator0') (1)
+WHEN  ('Step0') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 3
+WHEN  ('Default') (1)
+WHEN  ('Locator0') (1)
+WHEN  ('Step0') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 3
+WHEN  ('Default') ('ADOBlob')
+WHEN  ('Locator0') ('ADOBlob')
+WHEN  ('Step0') ('ADOBlob')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 3
+WHEN  ('Default') (0)
+WHEN  ('Locator0') (0)
+WHEN  ('Step0') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%RecordFilter DEFAULT  ('')
+%RangeField COMPONENT  ()
+%HigherKeys MULTI LONG  ()
+%HigherKey DEPEND %HigherKeys COMPONENT TIMES 0
+
+%RangeLimitType DEFAULT  ('Current Value')
+%HigherKeyField DEPEND %HigherKeys FIELD TIMES 0
+
+%HigherKeyValueType DEPEND %HigherKeys DEFAULT TIMES 0
+
+%HigherKeyValueVariable DEPEND %HigherKeys FIELD TIMES 0
+
+%HigherKeyValueFixed DEPEND %HigherKeys DEFAULT TIMES 0
+
+%RangeLimit FIELD  ()
+%RangeLow FIELD  ()
+%RangeHigh FIELD  ()
+%RangeFile FILE  ()
+%AdditionalSortType DEFAULT  ('Manual')
+%AddSortFields DEFAULT  ('')
+%AddSortFieldsAssisted MULTI LONG  ()
+%AddSortFieldAssisted DEPEND %AddSortFieldsAssisted FIELD TIMES 0
+
+%AddSortFieldAssistedOrder DEPEND %AddSortFieldsAssisted DEFAULT TIMES 0
+
+%AddSortFieldAssistedNoCase DEPEND %AddSortFieldsAssisted LONG TIMES 0
+
+%ResetFields MULTI LONG  ()
+%ResetField DEPEND %ResetFields FIELD TIMES 0
+
+%ScrollBehavior DEFAULT  ('Fixed Thumb')
+%ScrollKeyDistribution DEFAULT  ('Alpha')
+%CustomKeyDistribution MULTI LONG  ()
+%KeyDistributionValue DEPEND %CustomKeyDistribution DEFAULT TIMES 0
+
+%ScrollAlpha LONG  (1)
+%ScrollNumeric LONG  (0)
+%ScrollAlt LONG  (0)
+%SortOrder MULTI LONG  ()
+%SortCondition DEPEND %SortOrder DEFAULT TIMES 0
+
+%SortKey DEPEND %SortOrder KEY TIMES 0
+
+%SortLocatorType DEPEND %SortOrder DEFAULT TIMES 0
+
+%SortOverrideDefaultLocator DEPEND %SortOrder LONG TIMES 0
+
+%SortOverrideLocator DEPEND %SortOrder DEFAULT TIMES 0
+
+%SortFindAnywhere DEPEND %SortOrder LONG TIMES 0
+
+%SortEnableOnEmpty DEPEND %SortOrder LONG TIMES 0
+
+%SortRecordFilter DEPEND %SortOrder DEFAULT TIMES 0
+
+%SortRangeField DEPEND %SortOrder COMPONENT TIMES 0
+
+%SortRangeLimitType DEPEND %SortOrder DEFAULT TIMES 0
+
+%SortHigherKeys DEPEND %SortOrder MULTI LONG TIMES 0
+
+%SortHigherKey DEPEND %SortHigherKeys COMPONENT TIMES 0
+
+%SortHigherKeyField DEPEND %SortOrder DEPEND %SortHigherKeys FIELD TIMES 0
+
+%SortHigherKeyValueType DEPEND %SortOrder DEPEND %SortHigherKeys DEFAULT TIMES 0
+
+%SortHigherKeyValueVariable DEPEND %SortOrder DEPEND %SortHigherKeys FIELD TIMES 0
+
+%SortHigherKeyValueFixed DEPEND %SortOrder DEPEND %SortHigherKeys DEFAULT TIMES 0
+
+%SortRangeLimit DEPEND %SortOrder FIELD TIMES 0
+
+%SortRangeLow DEPEND %SortOrder FIELD TIMES 0
+
+%SortRangeHigh DEPEND %SortOrder FIELD TIMES 0
+
+%SortRangeFile DEPEND %SortOrder FILE TIMES 0
+
+%SortAdditionalSortType DEPEND %SortOrder DEFAULT TIMES 0
+
+%SortAddSortFields DEPEND %SortOrder DEFAULT TIMES 0
+
+%SortAddSortFieldsAssisted DEPEND %SortOrder MULTI LONG TIMES 0
+
+%SortAddSortFieldAssisted DEPEND %SortAddSortFieldsAssisted FIELD TIMES 0
+
+%SortAddSortFieldAssistedOrder DEPEND %SortAddSortFieldsAssisted DEFAULT TIMES 0
+
+%SortResetFields DEPEND %SortOrder MULTI LONG TIMES 0
+
+%SortResetField DEPEND %SortResetFields FIELD TIMES 0
+
+%SortScrollBehavior DEPEND %SortOrder DEFAULT TIMES 0
+
+%SortScrollKeyDistribution DEPEND %SortOrder DEFAULT TIMES 0
+
+%SortCustomKeyDistribution DEPEND %SortOrder MULTI LONG TIMES 0
+
+%SortKeyDistributionValue DEPEND %SortCustomKeyDistribution DEFAULT TIMES 0
+
+%SortScrollAlpha DEPEND %SortOrder LONG TIMES 0
+
+%SortScrollNumeric DEPEND %SortOrder LONG TIMES 0
+
+%SortScrollAlt DEPEND %SortOrder LONG TIMES 0
+
+%HotFields MULTI LONG  (1)
+%HotField DEPEND %HotFields FIELD TIMES 1
+WHEN  (1) (DupK:DictionaryGuid)
+
+%HotFieldBound DEPEND %HotFields LONG TIMES 1
+WHEN  (1) (1)
+
+%HotFieldBindOnly DEPEND %HotFields LONG TIMES 0
+
+%UseSameColorForAll LONG  (0)
+%ControlGreenBarColor DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (0)
+WHEN  ('Tab:TableName') (0)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (0)
+
+%ControlFieldForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%ControlFieldBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%ControlFieldForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%ControlFieldBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%ConditionalColors DEPEND %Control DEPEND %ControlField MULTI LONG TIMES 0
+
+%ColorCondition DEPEND %ConditionalColors DEFAULT TIMES 0
+
+%ConditionalControlFieldForegroundNormal DEPEND %ConditionalColors LONG TIMES 2
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('')TIMES 0
+
+%ConditionalControlFieldBackgroundNormal DEPEND %ConditionalColors LONG TIMES 2
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('')TIMES 0
+
+%ConditionalControlFieldForegroundSelected DEPEND %ConditionalColors LONG TIMES 2
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('')TIMES 0
+
+%ConditionalControlFieldBackgroundSelected DEPEND %ConditionalColors LONG TIMES 2
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('')TIMES 0
+
+%GreenBarOnForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%GreenBarOnBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%GreenBarOnForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%GreenBarOnBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%GreenBarOffForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%GreenBarOffBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%GreenBarOffForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%GreenBarOffBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (-1)
+WHEN  ('Tab:TableName') (-1)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (-1)
+
+%AllControlGreenBarColor LONG  (0)
+%AllControlGreenBarColorAlternate LONG  (0)
+%AllControlFieldForegroundNormal LONG  (-1)
+%AllControlFieldBackgroundNormal LONG  (-1)
+%AllControlFieldForegroundSelected LONG  (-1)
+%AllControlFieldBackgroundSelected LONG  (-1)
+%ConditionalColorsAll MULTI LONG  ()
+%ColorConditionAll DEPEND %ConditionalColorsAll DEFAULT TIMES 0
+
+%ConditionalAllControlFieldForegroundNormal DEPEND %ConditionalColorsAll LONG TIMES 0
+
+%ConditionalAllControlFieldBackgroundNormal DEPEND %ConditionalColorsAll LONG TIMES 0
+
+%ConditionalAllControlFieldForegroundSelected DEPEND %ConditionalColorsAll LONG TIMES 0
+
+%ConditionalAllControlFieldBackgroundSelected DEPEND %ConditionalColorsAll LONG TIMES 0
+
+%AllGreenBarOnForegroundNormal LONG  (-1)
+%AllGreenBarOnBackgroundNormal LONG  (-1)
+%AllGreenBarOnForegroundSelected LONG  (-1)
+%AllGreenBarOnBackgroundSelected LONG  (-1)
+%AllGreenBarOffForegroundNormal LONG  (-1)
+%AllGreenBarOffBackgroundNormal LONG  (-1)
+%AllGreenBarOffForegroundSelected LONG  (-1)
+%AllGreenBarOffBackgroundSelected LONG  (-1)
+%ControlFieldIcon DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
+
+%ControlFieldIconIsNumber DEPEND %Control DEPEND %ControlField LONG TIMES 0
+
+%ConditionalIcons DEPEND %Control DEPEND %ControlField MULTI LONG TIMES 0
+
+%IconCondition DEPEND %ConditionalIcons DEFAULT TIMES 0
+
+%ConditionalControlFieldIcon DEPEND %ConditionalIcons DEFAULT TIMES 0
+
+%ConditionalControlFieldIconIsNumber DEPEND %ConditionalIcons LONG TIMES 0
+
+%UseSameStyleForAll LONG  (0)
+%ControlGreenBarStyle DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (0)
+WHEN  ('Tab:TableName') (0)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (0)
+
+%GreenBarOnStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') ('Local List')
+WHEN  ('Tab:TableName') ('Local List')
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') ('Local List')
+
+%GreenBarOnStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') ('')
+WHEN  ('Tab:TableName') ('')
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') ('')
+
+%GreenBarOnStyle DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
+
+%GreenBarOffStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') ('Local List')
+WHEN  ('Tab:TableName') ('Local List')
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') ('Local List')
+
+%GreenBarOffStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') ('')
+WHEN  ('Tab:TableName') ('')
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') ('')
+
+%GreenBarOffStyle DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
+
+%ControlFieldStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') ('Local List')
+WHEN  ('Tab:TableName') ('Local List')
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') ('Local List')
+
+%ControlFieldStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') ('')
+WHEN  ('Tab:TableName') ('')
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') ('')
+
+%ControlFieldStyle DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
+
+%ConditionalStyles DEPEND %Control DEPEND %ControlField MULTI LONG TIMES 0
+
+%StyleCondition DEPEND %ConditionalStyles DEFAULT TIMES 0
+
+%ConditionalControlFieldStyleType DEPEND %ConditionalStyles DEFAULT TIMES 2
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('')TIMES 0
+
+%ConditionalControlFieldStyleLocalList DEPEND %ConditionalStyles DEFAULT TIMES 2
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('')TIMES 0
+
+%ConditionalControlFieldStyle DEPEND %ConditionalStyles DEFAULT TIMES 0
+
+%AllControlGreenBarStyle LONG  (0)
+%AllControlGreenBarStyleAlternate LONG  (0)
+%AllControlFieldStyleType DEFAULT  ('Local List')
+%AllControlFieldStyleLocalList DEFAULT  ('')
+%AllControlFieldStyle DEFAULT  ('')
+%ConditionalStylesAll MULTI LONG  ()
+%StyleConditionAll DEPEND %ConditionalStylesAll DEFAULT TIMES 0
+
+%ConditionalAllControlFieldStyleType DEPEND %ConditionalStylesAll DEFAULT TIMES 0
+
+%ConditionalAllControlFieldStyleLocalList DEPEND %ConditionalStylesAll DEFAULT TIMES 0
+
+%ConditionalAllControlFieldStyle DEPEND %ConditionalStylesAll DEFAULT TIMES 0
+
+%AllGreenBarOnStyleType DEFAULT  ('Local List')
+%AllGreenBarOnStyleLocalList DEFAULT  ('')
+%AllGreenBarOnStyle DEFAULT  ('')
+%AllGreenBarOffStyleType DEFAULT  ('Local List')
+%AllGreenBarOffStyleLocalList DEFAULT  ('')
+%AllGreenBarOffStyle DEFAULT  ('')
+%ControlFieldTipField DEPEND %Control DEPEND %ControlField FIELD TIMES 0
+
+%BrowseAllTotalOnOff LONG  (1)
+%BrowseAllTotalOnOffCondition DEFAULT  ('')
+%BrowseTotals MULTI LONG  ()
+%BrowseTotalTarget DEPEND %BrowseTotals FIELD TIMES 0
+
+%BrowseTotalType DEPEND %BrowseTotals DEFAULT TIMES 0
+
+%BrowseTotalField DEPEND %BrowseTotals DEFAULT TIMES 0
+
+%BrowseTotalBasedOn DEPEND %BrowseTotals DEFAULT TIMES 0
+
+%BrowseTotalCondition DEPEND %BrowseTotals DEFAULT TIMES 0
+
+%BrowseBoxDoNotIncludePrimaryKey LONG  (0)
+%DisableUsePopup LONG  (0)
+%EnableSortHeader LONG  (0)
+%ControlFieldSortHeaderSave LONG  (0)
+%ControlFieldSortHeaderMulti LONG  (1)
+%ControlFieldSortHeaderOnlyAsc DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (0)
+WHEN  ('Tab:TableName') (0)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (0)
+
+%ControlFieldSortHeaderOverride DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (0)
+WHEN  ('Tab:TableName') (0)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (0)
+
+%ControlFieldSortHeaderDisableColumn DEPEND %Control DEPEND %ControlField LONG TIMES 2
+WHEN  ('?List')TIMES 2
+WHEN  ('DupK:KeyName') (0)
+WHEN  ('Tab:TableName') (0)
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('') (0)
+
+%ControlFieldSortHeaderFields DEPEND %Control DEPEND %ControlField MULTI LONG TIMES 0
+
+%ControlFieldSortHeaderField DEPEND %ControlFieldSortHeaderFields FIELD TIMES 0
+
+%ControlFieldSortHeaderFieldOrder DEPEND %ControlFieldSortHeaderFields DEFAULT TIMES 2
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('')TIMES 0
+
+%ControlFieldSortHeaderFieldCase DEPEND %ControlFieldSortHeaderFields LONG TIMES 2
+WHEN  ('?List')TIMES 0
+WHEN  ('?RecheckForDuplicatesBtn')TIMES 1
+WHEN  ('')TIMES 0
+
+%SortHeaderColumnsUseColor LONG  (0)
+%SortHeaderColorBkHdrAsc LONG  (10526303)
+%SortHeaderColorBkColAsc LONG  (15128749)
+%SortHeaderColorBkHdrDec LONG  (10526303)
+%SortHeaderColorBkColDec LONG  (15128749)
+%DisableAutoSizeColumn LONG  (0)
+%DisableListFormatManager LONG  (0)
+%ListFormatManagerAllowPopupInEmptyList DEFAULT  ('Enable')
+%ListFormatManagerCheckType DEFAULT  ('Icon')
+%ListFormatManagerItemsSortBy DEFAULT  ('Alpha')
+%ListFormatManagerUseIdentificationTip DEFAULT  ('Enable')
+%ListFormatManagerSaveWindowPosition DEFAULT  ('Enable')
+%ListFormatManagerSortOrder LONG  (1)
+%ListFormatManagerMenuAppendSortOrder LONG  (1)
+%ListFormatManagerSave LONG  (1)
+%UseMRP LONG  (1)
+%AddPopUp MULTI LONG  ()
+%AddPopUpChoice DEPEND %AddPopUp DEFAULT TIMES 0
+
+%AddPopUpControl DEPEND %AddPopUp DEFAULT TIMES 0
+
+%AddPopUpAction DEPEND %AddPopUp DEFAULT TIMES 0
+
+%AddPopUpProcedure DEPEND %AddPopUp PROCEDURE TIMES 0
+
+%AddPopUpThreadProcedure DEPEND %AddPopUp LONG TIMES 0
+
+%AddPopUpThreadStack DEPEND %AddPopUp DEFAULT TIMES 0
+
+%AddPopUpText DEPEND %AddPopUp DEFAULT TIMES 0
+
+%AddPopUpIcon DEPEND %AddPopUp DEFAULT TIMES 0
+
+%TypeAddPopupIcon DEPEND %AddPopUp DEFAULT TIMES 0
+
+%OtherPopupIcon DEPEND %AddPopUp DEFAULT TIMES 0
+
+%AddPopUpDisable DEPEND %AddPopUp DEFAULT TIMES 0
+
+%AddPopUpSeparate DEPEND %AddPopUp LONG TIMES 0
+
+%SQLAssignments MULTI LONG  ()
+%SQLViewField DEPEND %SQLAssignments DEFAULT TIMES 0
+
+%SQLViewFieldAssignment DEPEND %SQLAssignments DEFAULT TIMES 0
+
+%SQLHasGroupBy LONG  (0)
+%SQLGrouping DEFAULT  ('')
+%SQLHasHaving LONG  (0)
+%SQLHas DEFAULT  ('')
+[ADDITION]
+NAME DonRidleyTemplate DwrClassExtension
+[INSTANCE]
+INSTANCE 7
+[PROMPTS]
+%NoMyObject LONG  (0)
+%DictionariesBrowseObjectName DEFAULT  ('')
+%DictionaryVersionsBrowseObjectName DEFAULT  ('')
+%CommentsBrowseObjectName DEFAULT  ('')
+%AuditsBrowseObjectName DEFAULT  ('')
+%MyObject DEFAULT  ('MyObject7')
+%MyClassName DEFAULT  ('dwrDctParser')
+%ixTables MULTI LONG  (1, 2, 3)
+%ixFile DEPEND %ixTables DEFAULT TIMES 3
+WHEN  (1) ('DuplicateKeys')
+WHEN  (2) ('Keys')
+WHEN  (3) ('Tables')
+
+%appTables UNIQUE DEFAULT  ('Aliases', 'ControlTypesLkUp', 'DataTypesLkUp', 'DctCode', |
+  'DctComments', 'DctVersions', 'Dictionaries', 'DriversLkUp', 'DuplicateKeys', |
+  'FieldDefaultsLkUp', 'Fields', 'ForeignMappings', 'Keys', 'KitchenSink', 'Lines', |
+  'MasterXml', 'Options', 'PrimaryMappings', 'Relations', 'TableTypes', 'Tables', |
+  'TagFilePos_', 'TagFile_', 'TagSet_', 'TreeMemTable', 'Triggers', 'Validities', |
+  'WindowControls')
+[CALLS]
+CheckForDuplicateKeys
+FixDuplicateKeys
+[WINDOW]
+Window  WINDOW('Caption'),AT(,,454,269),FONT('Segoe UI',10),RESIZE,AUTO,GRAY,SYSTEM,WALLPAPER('Background1.png')
+          LIST,AT(2,27,450,240),USE(?List),LEFT(2),VSCROLL,FORMAT('116L(2)M~Key Name~@s' & |
+            '100@400L(2)M~Table Name~@s100@'),FROM(Queue:Browse),IMM,#FIELDS(DupK:KeyName, |
+            Tab:TableName),#ORIG(?List),#SEQ(6),#ORDINAL(1)
+          BUTTON('Prepend With Table Prefix'),AT(2,1,77,23),USE(?AddTablePrefixBtn),LEFT,ICON('Prepend1.ico'), |
+            FLAT,#ORDINAL(2)
+          BUTTON('Recheck'),AT(83,1,77,23),USE(?RecheckForDuplicatesBtn),LEFT,ICON('DataRefresh.ico'), |
+            FLAT,#ORDINAL(3)
+        END
+
+[END]

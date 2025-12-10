@@ -1,0 +1,1071 @@
+[MODULE]
+NAME 'CreateSqlFields_DictionaryEditor.clw'
+[COMMON]
+FROM ABC GENERATED
+[PROCEDURE]
+NAME CreateSqlFields
+PROTOTYPE '(string pParams,string pThread)'
+PARAMETERS '(string pParams,string pThread)'
+[COMMON]
+FROM ABC Window
+[DATA]
+[SCREENCONTROLS]
+! PROMPT('ABC:'),USE(?ABC:Prompt)
+! ENTRY(@s20),USE(ABC),LEFT(2)
+[REPORTCONTROLS]
+! STRING(@s20),USE(ABC),LEFT(2)
+ABC                      STRING(20)
+!!> GUID('5d1324be-dd39-4d0e-9aa3-0fe2dc7d8b7a'),PROMPT('ABC:'),HEADER('ABC'),PICTURE(@s20),TYPEMODE(INS),JUSTIFY(LEFT,2)
+[SCREENCONTROLS]
+! PROMPT('SQL Database:'),USE(?SQLDatabase:Prompt)
+! ENTRY(@s50),USE(SQLDatabase),LEFT(2)
+[REPORTCONTROLS]
+! STRING(@s50),USE(SQLDatabase),LEFT(2)
+SQLDatabase              STRING(50)
+!!> GUID('08f6f653-2d54-497b-9fa0-1b8e2f026911'),PROMPT('SQL Database:'),HEADER('SQL Database'),PICTURE(@s50),TYPEMODE(INS),JUSTIFY(LEFT,2)
+[SCREENCONTROLS]
+! PROMPT('Import Table Path:'),USE(?ImportTablePath:Prompt)
+! ENTRY(@s255),USE(ImportTablePath),LEFT(2)
+[REPORTCONTROLS]
+! STRING(@s255),USE(ImportTablePath),LEFT(2)
+ImportTablePath          STRING(255)
+!!> GUID('aef6195a-fa8e-4bc0-b983-6f45a472f0d2'),PROMPT('Import Table Path:'),HEADER('Import Table Path'),PICTURE(@s255),TYPEMODE(INS),JUSTIFY(LEFT,2)
+[SCREENCONTROLS]
+! PROMPT('Columns Q:'),USE(?ColumnsQ:Prompt)
+! ENTRY(@s20),USE(ColumnsQ),LEFT(2)
+[REPORTCONTROLS]
+! STRING(@s20),USE(ColumnsQ),LEFT(2)
+ColumnsQ                 QUEUE,PRE(Col)
+!!> GUID('e13e01e7-71b4-4af1-9a37-ce0e7a7ee9ea'),PROMPT('Columns Q:'),HEADER('Columns Q'),PICTURE(@s20),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Row Num:'),USE(?Col:RowNum:Prompt)
+! ENTRY(@n-14),USE(Col:RowNum),RIGHT(1)
+[REPORTCONTROLS]
+! STRING(@n-14),USE(Col:RowNum),RIGHT(1)
+RowNum                     LONG
+!!> GUID('0a49b9d8-99d1-45c3-8405-f66999daccf5'),PROMPT('Row Num:'),HEADER('Row Num'),PICTURE(@n-14),TYPEMODE(INS),JUSTIFY(RIGHT,1)
+[SCREENCONTROLS]
+! PROMPT('Col Name:'),USE(?Col:ColName:Prompt)
+! ENTRY(@s40),USE(Col:ColName),LEFT(2)
+[REPORTCONTROLS]
+! STRING(@s40),USE(Col:ColName),LEFT(2)
+ColName                    STRING(40)
+!!> GUID('011c235d-a748-4291-9d88-afe8e453a8ee'),PROMPT('Col Name:'),HEADER('Col Name'),PICTURE(@s40),TYPEMODE(INS),JUSTIFY(LEFT,2)
+                         END
+!!> GUID('8e680660-46ea-4489-986c-fa7c24280e65')
+[FILES]
+[OTHERS]
+Fields
+[PROMPTS]
+%ClassItem UNIQUE DEFAULT  ('Default', 'WindowToolbar')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('WindowManager')
+WHEN  ('WindowToolbar') ('ToolbarClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('')
+WHEN  ('WindowToolbar') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 1
+WHEN  ('Default') ('Init {19}PROCEDURE(),BYTE,PROC,DERIVED', 'Kill {19}PROCEDURE(),BYTE,PROC,DERIVED', |
+  'TakeAccepted {11}PROCEDURE(),BYTE,PROC,DERIVED', 'TakeEvent {14}PROCEDURE(),BYTE,PROC,DERIVED', |
+  'TakeWindowEvent        PROCEDURE(),BYTE,PROC,DERIVED')
+
+%ReturnValue FIELD  ()
+%ProcedureOneInstance LONG  (0)
+%WindowOperationMode DEFAULT  ('Use WINDOW setting')
+%INISaveWindow LONG  (1)
+%ProcedureDisableEnhanceFocus LONG  (0)
+%ProcedureUseEnterInsteadTabOverride LONG  (0)
+%WindowUseEnterInsteadTab LONG  (1)
+%ProcedureUseEnterInsteadTabExcludeListCombo LONG  (0)
+%ProcedureUseEnterInsteadTabEnableNextTabStop LONG  (0)
+%ProcedureUseEnterInsteadTabExcludeG LONG  (1)
+%WindowUseEnterInsteadTabExclude MULTI DEFAULT  ()
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('NO')
+WHEN  ('WindowToolbar') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('ThisWindow')
+WHEN  ('WindowToolbar') ('Toolbar')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (1)
+WHEN  ('WindowToolbar') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (1)
+WHEN  ('WindowToolbar') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('')
+WHEN  ('WindowToolbar') ('')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (0)
+WHEN  ('WindowToolbar') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('WindowToolbar')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('WindowToolbar')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%WindowStyles MULTI LONG  ()
+%WindowStyleFontName DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontNameVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontNameIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontSize DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontSizeVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontSizeIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontStyle DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontStyleVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontStyleIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontColor DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontCharSet DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundNormal DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundNormalVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundNormalIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundNormal DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundNormalVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleBackgroundNormalIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundSelected DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundSelectedVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundSelectedIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundSelected DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundSelectedVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleBackgroundSelectedIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStylePicture DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStylePictureVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStylePictureIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleOtherListboxes MULTI DEFAULT  ()
+%ProcedureAutoBindFields MULTI LONG  ()
+%ProcedureAutoBindField DEPEND %ProcedureAutoBindFields DEFAULT TIMES 0
+
+%ProcedureAutoBindFieldTPL DEPEND %ProcedureAutoBindFields DEFAULT TIMES 0
+
+%ProcedureAutoBindProcedures MULTI LONG  ()
+%ProcedureAutoBindProcedure DEPEND %ProcedureAutoBindProcedures DEFAULT TIMES 0
+
+%ProcedureAutoBindProcedureTPL DEPEND %ProcedureAutoBindProcedures DEFAULT TIMES 0
+
+%ProcedureAutoBindFieldsIgnored MULTI LONG  ()
+%ProcedureAutoBindFieldIgnored DEPEND %ProcedureAutoBindFieldsIgnored DEFAULT TIMES 0
+
+%ProcedureAutoBindProceduresIgnored MULTI LONG  ()
+%ProcedureAutoBindProcedureIgnored DEPEND %ProcedureAutoBindProceduresIgnored DEFAULT TIMES 0
+
+%ProcedureAutoBindValidToAddField LONG  (0)
+%ProcedureUserBindFields MULTI LONG  ()
+%ProcedureUserBindField DEPEND %ProcedureUserBindFields FIELD TIMES 0
+
+%ProcedureAutoBindFieldIgnore DEPEND %ProcedureAutoBindFields LONG TIMES 0
+
+%ProcedureUserBindProcedures MULTI LONG  ()
+%ProcedureUserBindProcedure DEPEND %ProcedureUserBindProcedures PROCEDURE TIMES 0
+
+%ProcedureAutoBindProcedureIgnore DEPEND %ProcedureAutoBindProcedures LONG TIMES 0
+
+%ProcedureUserBindExpressions MULTI LONG  ()
+%ProcedureUserBindExpressionName DEPEND %ProcedureUserBindExpressions DEFAULT TIMES 0
+
+%ProcedureUserBindExpression DEPEND %ProcedureUserBindExpressions DEFAULT TIMES 0
+
+%PreserveVarsLoc MULTI LONG  (1)
+%PreserveVarLoc DEPEND %PreserveVarsLoc DEFAULT TIMES 1
+WHEN  (1) ('ImportTablePath')
+
+%ExtUITabIcon DEPEND %Control DEFAULT TIMES 0
+
+%ExtUITabStyleOverrideGlobal DEPEND %Control LONG TIMES 0
+
+%ExtUITabStyle DEPEND %Control DEFAULT TIMES 2
+WHEN  ('') ('Default')
+WHEN  ('?LookupFile') ('Default')
+
+%FieldGradientColorType DEPEND %Control DEFAULT TIMES 2
+WHEN  ('') ('Off')
+WHEN  ('?LookupFile') ('Off')
+
+%FieldGradientColorTypeVariable DEPEND %Control DEFAULT TIMES 2
+WHEN  ('') ('')
+WHEN  ('?LookupFile') ('')
+
+%FieldGradientColorTypeIsVariable DEPEND %Control LONG TIMES 2
+WHEN  ('') (0)
+WHEN  ('?LookupFile') (0)
+
+%FieldGradientColorFrom DEPEND %Control LONG TIMES 2
+WHEN  ('') (-1)
+WHEN  ('?LookupFile') (-1)
+
+%FieldGradientColorFromVariable DEPEND %Control DEFAULT TIMES 0
+
+%FieldGradientColorFromIsVariable DEPEND %Control LONG TIMES 2
+WHEN  ('') (0)
+WHEN  ('?LookupFile') (0)
+
+%FieldGradientColorTo DEPEND %Control LONG TIMES 2
+WHEN  ('') (-1)
+WHEN  ('?LookupFile') (-1)
+
+%FieldGradientColorToVariable DEPEND %Control DEFAULT TIMES 0
+
+%FieldGradientColorToIsVariable DEPEND %Control LONG TIMES 2
+WHEN  ('') (0)
+WHEN  ('?LookupFile') (0)
+
+%ButtonAction DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('No Special Action')
+WHEN  ('?BUTTON1') ('No Special Action')
+WHEN  ('?Close') ('No Special Action')
+WHEN  ('?LookupFile') ('No Special Action')
+
+%ButtonRunName DEPEND %Control DEFAULT TIMES 1
+WHEN  ('?LookupFile') ('')
+
+%ButtonRunParameters DEPEND %Control DEFAULT TIMES 1
+WHEN  ('?LookupFile') ('')
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 1
+WHEN  ('?LookupFile') ()
+
+%ButtonThread DEPEND %Control LONG TIMES 1
+WHEN  ('?LookupFile') (0)
+
+%ButtonThreadStack DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('25000')
+WHEN  ('?BUTTON1') ('25000')
+WHEN  ('?Close') ('25000')
+WHEN  ('?LookupFile') ('25000')
+
+%ButtonParameters DEPEND %Control DEFAULT TIMES 1
+WHEN  ('?LookupFile') ('')
+
+%ButtonReturnValueAssignment DEPEND %Control FIELD TIMES 1
+WHEN  ('?LookupFile') ()
+
+%ButtonReturnValueReferenceAssign DEPEND %Control LONG TIMES 1
+WHEN  ('?LookupFile') (0)
+
+%ButtonRequest DEPEND %Control DEFAULT TIMES 4
+WHEN  ('') ('None')
+WHEN  ('?BUTTON1') ('None')
+WHEN  ('?Close') ('None')
+WHEN  ('?LookupFile') ('None')
+
+%ButtonThreadParameters DEPEND %Control DEFAULT TIMES 1
+WHEN  ('?LookupFile') ('')
+
+%ButtonThreadReturnValueAssignment DEPEND %Control FIELD TIMES 1
+WHEN  ('?LookupFile') ()
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PreLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
+
+%PostLookupDuringValidate DEPEND %Control LONG TIMES 4
+WHEN  ('') (1)
+WHEN  ('?ImportTablePath') (1)
+WHEN  ('?LookupFile') (1)
+WHEN  ('?SQLDatabase') (1)
+
+%LookupAssign DEPEND %Control MULTI LONG TIMES 0
+
+%MoreTarget DEPEND %LookupAssign FIELD TIMES 0
+
+%MoreField DEPEND %LookupAssign DEFAULT TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+
+%CheckedAssigns DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedAssignVariable DEPEND %CheckedAssigns FIELD TIMES 0
+
+%CheckedAssignValue DEPEND %CheckedAssigns DEFAULT TIMES 0
+
+%CheckedHides DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedControl DEPEND %CheckedHides DEFAULT TIMES 0
+
+%CheckedControlAction DEPEND %CheckedHides DEFAULT TIMES 2
+WHEN  ('')TIMES 0
+WHEN  ('?LookupFile')TIMES 0
+
+%CheckedEnables DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedControl1 DEPEND %CheckedEnables DEFAULT TIMES 0
+
+%CheckedControl1Action DEPEND %CheckedEnables DEFAULT TIMES 2
+WHEN  ('')TIMES 0
+WHEN  ('?LookupFile')TIMES 0
+
+%UncheckedAssigns DEPEND %Control MULTI LONG TIMES 0
+
+%UncheckedAssignVariable DEPEND %UncheckedAssigns FIELD TIMES 0
+
+%UncheckedAssignValue DEPEND %UncheckedAssigns DEFAULT TIMES 0
+
+%UnCheckedHides DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedControl DEPEND %UnCheckedHides DEFAULT TIMES 0
+
+%UnCheckedControlAction DEPEND %UnCheckedHides DEFAULT TIMES 2
+WHEN  ('')TIMES 0
+WHEN  ('?LookupFile')TIMES 0
+
+%UnCheckedEnables DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedControl1 DEPEND %UnCheckedEnables DEFAULT TIMES 0
+
+%UnCheckedControl1Action DEPEND %UnCheckedEnables DEFAULT TIMES 2
+WHEN  ('')TIMES 0
+WHEN  ('?LookupFile')TIMES 0
+
+%CheckedDisables DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedDisableControl DEPEND %CheckedDisables DEFAULT TIMES 0
+
+%CheckedDisableControlAction DEPEND %CheckedDisables DEFAULT TIMES 2
+WHEN  ('')TIMES 0
+WHEN  ('?LookupFile')TIMES 0
+
+%UnCheckedDisables DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedDisableControl DEPEND %UnCheckedDisables DEFAULT TIMES 0
+
+%UnCheckedDisableControlAction DEPEND %UnCheckedDisables DEFAULT TIMES 2
+WHEN  ('')TIMES 0
+WHEN  ('?LookupFile')TIMES 0
+
+%ActiveImageEnable DEPEND %Control LONG TIMES 0
+
+%AIObjectName DEPEND %Control DEFAULT TIMES 2
+WHEN  ('') ('AIBtn0')
+WHEN  ('?LookupFile') ('AIBtn6')
+
+%AIEnableMimicControl DEPEND %Control LONG TIMES 2
+WHEN  ('') (1)
+WHEN  ('?LookupFile') (1)
+
+%AIMimicControl DEPEND %Control DEFAULT TIMES 2
+WHEN  ('') ('?Close')
+WHEN  ('?LookupFile') ('?Close')
+
+%AIImgRound DEPEND %Control LONG TIMES 0
+
+%AIOverrideImg DEPEND %Control DEFAULT TIMES 0
+
+%AIOverrideImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIOverrideImgIsVariable DEPEND %Control LONG TIMES 2
+WHEN  ('') (0)
+WHEN  ('?LookupFile') (0)
+
+%AIDisableImg DEPEND %Control DEFAULT TIMES 0
+
+%AIDisableImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIDisableImgIsVariable DEPEND %Control LONG TIMES 2
+WHEN  ('') (0)
+WHEN  ('?LookupFile') (0)
+
+%AIHotImg DEPEND %Control DEFAULT TIMES 0
+
+%AIHotImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIHotImgIsVariable DEPEND %Control LONG TIMES 2
+WHEN  ('') (0)
+WHEN  ('?LookupFile') (0)
+
+%AIPressedImg DEPEND %Control DEFAULT TIMES 0
+
+%AIPressedImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIPressedImgIsVariable DEPEND %Control LONG TIMES 2
+WHEN  ('') (0)
+WHEN  ('?LookupFile') (0)
+
+[EMBED]
+EMBED %DataSection
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 1000
+PROPERTY:END
+TurboSQLTable   	FILE,DRIVER('MSSQL','/TURBOSQL=True/LOGONSCREEN=FALSE'), pre(TurboSQL)
+record            	RECORD
+                    END
+                    END
+
+TempTable   FILE,DRIVER('ODBC','/ODBCCALL=TRUE/VERIFYVIASELECT = TRUE/TURBOSQL=True')   !,OWNER(GLO:dbOwner) !,PRE(Tem),CREATE,BINDABLE,THREAD     !,'/TURBOSQL=True/LOGONSCREEN=FALSE'), pre(TurboSQL) ,/VERIFYVIASELECT = TRUE  /TURBOSQL=True
+record            RECORD
+f1                  STRING(255),NAME('Field')
+f2                  STRING(255),NAME('Field')
+f3                  STRING(255),NAME('Field')
+f4                  STRING(255),NAME('Field')
+f5                  STRING(255),NAME('Field')
+f6                  STRING(255),NAME('Field')
+f7                  STRING(255),NAME('Field')
+f8                  STRING(255),NAME('Field')
+f9                  STRING(255),NAME('Field')
+f10                 STRING(255),NAME('Field')
+f11                 STRING(255),NAME('Field')
+f12                 STRING(255),NAME('Field')
+f13                 STRING(255),NAME('Field')
+f14                 STRING(255),NAME('Field')
+f15                 STRING(255),NAME('Field')
+f16                 STRING(255),NAME('Field')
+f17                 STRING(255),NAME('Field')
+f18                 STRING(255),NAME('Field')
+f19                 STRING(255),NAME('Field')
+f20                 STRING(255),NAME('Field')
+f21                 STRING(255),NAME('Field')
+f22                 STRING(255),NAME('Field')
+f23                 STRING(255),NAME('Field')
+f24                 STRING(255),NAME('Field')
+f25                 STRING(255),NAME('Field')
+f26                 STRING(255),NAME('Field')
+f27                 STRING(255),NAME('Field')
+f28                 STRING(255),NAME('Field')
+f29                 STRING(255),NAME('Field')
+f30                 STRING(255),NAME('Field')
+f31                 STRING(255),NAME('Field')
+f32                 STRING(255),NAME('Field')
+f33                 STRING(255),NAME('Field')
+f34                 STRING(255),NAME('Field')
+f35                 STRING(255),NAME('Field')
+f36                 STRING(255),NAME('Field')
+f37                 STRING(255),NAME('Field')
+f38                 STRING(255),NAME('Field')
+f39                 STRING(255),NAME('Field')
+f40                 STRING(255),NAME('Field')
+f41                 STRING(255),NAME('Field')
+f42                 STRING(255),NAME('Field')
+f43                 STRING(255),NAME('Field')
+f44                 STRING(255),NAME('Field')
+f46                 STRING(255),NAME('Field')
+f47                 STRING(255),NAME('Field')
+f48                 STRING(255),NAME('Field')
+                  END
+                END
+
+MyDct               dwrDctParser
+
+ParamsGrp           Group(ParamsGroupType).
+OverStr             String(Size(ParamsGrp)),Over(ParamsGrp)
+
+FieldsView          View(Fields)
+                    End
+
+st              StringTheory
+SqlSt           StringTheory
+ValSt           StringTheory
+InsertIntoSt    StringTheory
+ValuesSt        StringTheory
+Rec             &GROUP
+RecIn           &GROUP
+x               Long
+y               Long
+CurrentField    ANY
+[END]
+EMBED %ControlEventHandling
+[INSTANCES]
+WHEN '?BUTTON1'
+[INSTANCES]
+WHEN 'Accepted'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 2500
+PROPERTY:END
+!ALTER TABLE dbo.doc_exa
+!ADD column_b VARCHAR(20) NULL, column_c INT NULL ;
+
+MyDct.Trace('')
+MyDct.Trace('FieldsView Filter = ' & FieldsView{PROP:Filter})
+MyDct.Trace('')
+!SqlSt.AddLine(Records(SqlSt)+1,'')
+LOOP
+  Next(FieldsView)
+  If Errorcode(); Break END
+  MyDct.Trace(Fld:DataType)
+  Case UPPER(Clip(Fld:DataType))
+  Of 'STRING'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' VARCHAR(' & Clip(Fld:FieldSize) & ') NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  Of 'CSTRING'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' VARCHAR(' & Clip(Fld:FieldSize) & ') NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  Of 'BYTE'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' SMALLINT NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  Of 'SHORT'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' INT NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  Of 'LONG'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' INT NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  Of 'ULONG'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' INT NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  Of 'SREAL'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' REAL NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  Of 'REAL'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' REAL NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  Of 'DECIMAL'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' REAL NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  Of 'PDECIMAL'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' REAL NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  Of 'DATE'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' DATE NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  Of 'TIME'
+      SqlSt.AddLine(Records(SqlSt)+1,Clip(Fld:FieldName) & ' TIME NULL')
+      ColumnsQ.RowNum = Records(ColumnsQ)+1
+      ColumnsQ.ColName = Clip(Fld:FieldName)
+      Add(ColumnsQ)
+  End
+END
+!Message(SqlSt.FileNameOnly(ImportTablePath,False))
+SqlSt.Join(',<13,10>')
+SqlSt.Prepend('CREATE TABLE dbo.' & SqlSt.FileNameOnly(ImportTablePath,False) & ' (<13,10>')
+!SqlSt.Prepend('CREATE TABLE dbo.TestTable (<13,10>')
+SqlSt.Append('<13,10>);')
+MyDct.Trace('')
+MyDct.Trace(SqlSt.GetValue())
+MyDct.Trace('')
+Close(FieldsView)
+
+TurboSQLTable{PROP:Owner} = 'DESKTOP-250R642\SQLEXPRESS,' & Clip(SQLDatabase) & ',PdmanagerSql,OPD@2022!'
+!TurboSQLTable{PROP:Owner} = 'DESKTOP-250R642\SQLEXPRESS,TestTables,PdmanagerSql,OPD@2022!'
+Open(TurboSQLTable)
+MyDct.Trace('Opening TurboSQLTable')
+MyDct.Trace('Break Error - Error[' & Error() & ']<9>FileErrorCode[' & FileErrorcode() & ']<9>FileError[' & FileError() & ']')
+TurboSQLTable{PROP:SQL} = SqlSt.GetValue()
+MyDct.Trace('Break Error - Error[' & Error() & ']<9>FileErrorCode[' & FileErrorcode() & ']<9>FileError[' & FileError() & ']')
+
+
+
+TempTable{PROP:Owner} = 'DRIVER={{TopSpeed ODBC Driver};DBQ=' & SqlSt.PathOnly(ImportTablePath) & '\;Extension=tps;Oem=N;NullEmptyStr=N;NoDot=N;UlongAsDate=N;'
+
+MyDct.Trace(TempTable{PROP:Owner})
+
+Open(TempTable)
+MyDct.Trace('Opening TempTable')
+MyDct.Trace('Break Error - Error[' & Error() & ']<9>FileErrorCode[' & FileErrorcode() & ']<9>FileError[' & FileError() & ']')
+
+
+!      LOOP
+!        Next(FieldsView)
+!        If Errorcode(); Break END
+!        Rec &= Fields{PROP:Record}
+!        RecIn &= TurboSQLTable{PROP:Record}
+!        RecIn = Rec
+!        Add(TurboSQLTable)
+!      End
+
+SqlSt.Start()
+Set(TempTable)
+TempTable{PROP:SQL} = 'select * from ' & SqlSt.FileNameOnly(ImportTablePath,False) !st.GetValue()
+!st.Start()
+Loop
+  Next(TempTable)
+  If Errorcode()
+      Break
+  END
+  x+=1
+  Rec &= TempTable{PROP:Record}
+  RecIn &= TurboSQLTable{PROP:Record}
+  !SqlSt.SerializeGroup(Rec,',')
+  !MyDct.Trace(TurboSQLTable{PROP:Fields})
+  ValuesSt.Start()
+
+  Loop x = 1 to TempTable{PROP:Fields}
+      CurrentField &= WHAT(Rec,x)
+      ValSt.SetValue(CurrentField)
+      MyDct.Trace(ValSt.GetValue())
+      Get(ColumnsQ,x)
+      If Not Errorcode()
+          !st.AppendA(ValSt.GetValue(),True,'')
+          If ValSt.ContainsA('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+              If Not ValSt.FindChar('<0>')
+                  !ValSt.Remove('<32>')
+                  ValSt.Trim()
+                  ValuesSt.AppendA(ValSt.GetValue(),True,',')
+                  !st.AppendA(Clip(ColumnsQ.ColName) & ' = <39>' & ValSt.GetValue() & '<39>',True,',<32>')
+              End
+          End
+          !st.AddLine(Records(st.lines)+1,Clip(ColumnsQ.ColName) & ' = ' & ValSt.GetValue())
+      End
+      Clear(CurrentField)
+  End
+  !st.Join(',')
+  !RecIn = st.GetValue()
+  !Add(TurboSQLTable)
+  !MyDct.Trace(st.GetValue())
+  !st.Prepend('SET<32>')
+  !st.Prepend('UPDATE TestTable<32>') !& SqlSt.FileNameOnly(ImportTablePath,False) & '<32>')
+
+  !TurboSQLTable{PROP:SQL} = st.GetValue()
+
+  SqlSt.AddLine(Records(SqlSt.lines)+1,ValuesSt.GetValue())
+  !RecIn &= TurboSQLTable{PROP:Record}
+  !Get(TurboSQLTable,x)
+  !RecIn :=: Rec
+  !ADD(TurboSQLTable)
+  !Loop y = 1 to TempTable{PROP:Fields}
+  !End
+End
+SqlSt.Join('<13,10>')
+MyDct.Trace('')
+MyDct.Trace(SqlSt.GetValue())
+MyDct.Trace('')
+SqlSt.SaveFile('SqlOut.txt')
+Close(TempTable)
+TempTable{PROP:Disconnect}
+[END]
+[END]
+[END]
+EMBED %WindowManagerMethodCodeSection
+[INSTANCES]
+WHEN 'Init'
+[INSTANCES]
+WHEN '(),BYTE'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 300
+PROPERTY:END
+  OverStr = pParams
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 7800
+PROPERTY:END
+
+  Open(FieldsView)
+  FieldsView{PROP:Order} = ''
+  FieldsView{PROP:Filter} = '(Fld:ParentGUID = ' & '''' & ParamsGrp.TableGuid & '''' & ')'
+  Set(FieldsView)
+
+
+[END]
+[END]
+[END]
+[END]
+[ADDITION]
+NAME DMTemporalID PceJSGBLocalExtension
+[INSTANCE]
+INSTANCE 6
+OWNER 33
+[PROMPTS]
+%PceJSGBLocalGenerateOpenClose LONG  (0)
+%EnableDebugTracingForThisWindow LONG  (0)
+%PceJSGBTraceMethodName DEFAULT  ('')
+%DisableSetFilePaths LONG  (0)
+%DisableSetPropPixels LONG  (0)
+%PceJSGBLocalDisableThreadTracking LONG  (0)
+%PceJSGBLocalThreadTrackingIsMainStartup LONG  (0)
+%PceJSGBLocalDisablePreserving LONG  (0)
+%PceJSGBIniFileName DEFAULT  ('')
+%PceJSGBPreserveVarsLoc MULTI LONG  ()
+%PceJSGBPreserveVarLoc DEPEND %PceJSGBPreserveVarsLoc DEFAULT TIMES 0
+
+[ADDITION]
+NAME NYS_DockingPaneTpl NYS_DockingPaneWndHndl
+[INSTANCE]
+INSTANCE 3
+OWNER 15
+[PROMPTS]
+%ClassItem UNIQUE DEFAULT  ('Default')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('DockingPaneEventMgrClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
+
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NYS:DockingPane_EventMgr')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ObjectID DEFAULT  ('')
+%NYS006CtrlDisable LONG  (0)
+%NYS006DisableRuntime DEFAULT  ('FALSE')
+[ADDITION]
+NAME WinEvent WinEvent
+[INSTANCE]
+INSTANCE 2
+OWNER 10
+[PROMPTS]
+%DisableWinEvent LONG  (0)
+%CheckForCantCloseNowSetHere LONG  (1)
+%AutoDown LONG  (0)
+%NoAutoDown LONG  (0)
+%LocWindowsVisible DEFAULT  ('0')
+%WindowsVisibleAfterOpen LONG  (1)
+%AlertWinEventDebug LONG  (0)
+%DisplayCompileDate LONG  (0)
+%DisplayCompileDateFormat DEFAULT  ('@D10')
+%locNoHandleCloseDown LONG  (0)
+%locCloseDownWhenWindowCloses LONG  (0)
+%locCloseDownWhenWindowClosesCtrl DEFAULT  ('')
+%altWinFix DEFAULT  ('Default')
+%WinAlert MULTI LONG  ()
+%Mess DEPEND %WinAlert DEFAULT TIMES 0
+
+%Act1 DEPEND %WinAlert DEFAULT TIMES 0
+
+%act2 DEPEND %WinAlert DEFAULT TIMES 0
+
+%AlertControl DEPEND %WinAlert DEFAULT TIMES 0
+
+%AlertControlType DEPEND %WinAlert DEFAULT TIMES 0
+
+%locCloseDownWhenWindowClosesSet LONG  (0)
+[ADDITION]
+NAME UltimateNotify UltimateNotifyLocalExtension
+[INSTANCE]
+INSTANCE 1
+OWNER 9
+[PROMPTS]
+%ClassName DEFAULT  ('NotifyHandler')
+%StringClassName DEFAULT  ('us')
+%UseStringTheory LONG  (0)
+%EnableNotifyTracking LONG  (0)
+%NotifyProcedureType DEFAULT  ('Independent')
+%ParentThreadVariable DEFAULT  ('')
+%FieldToReceiveParameter FIELD  ()
+%NotifyIDToMonitor DEFAULT  ('1')
+%NotifyIDs MULTI LONG  ()
+%NotifyID DEPEND %NotifyIDs DEFAULT TIMES 0
+
+%NotifyGroupNames MULTI LONG  ()
+%NotifyGroupName DEPEND %NotifyGroupNames DEFAULT TIMES 0
+
+%DisableEventNotifyTemplate LONG  (0)
+[ADDITION]
+NAME ABC CloseButton
+[INSTANCE]
+INSTANCE 4
+[ADDITION]
+NAME ABC DOSFileLookup
+[INSTANCE]
+INSTANCE 5
+[PROMPTS]
+%ClassItem UNIQUE DEFAULT  ('Default')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('SelectFileClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
+
+%DOSFileDialogHeader DEFAULT  ('')
+%DOSFileField FIELD  (ImportTablePath)
+%DOSInitialDirectory DEFAULT  ('')
+%DOSInitialFilename DEFAULT  ('')
+%ReturnToOriginalDir LONG  (1)
+%AllowLongFilenames LONG  (1)
+%DOSFileDialogType DEFAULT  ('Open')
+%AllowNoError LONG  (0)
+%DefaultOnCancel LONG  (0)
+%AllowMultiSelect LONG  (0)
+%ActionsToTake DEFAULT  ('')
+%AssignToImageControl LONG  (0)
+%ImageControl DEFAULT  ('')
+%ImageResize LONG  (1)
+%DOSVariableMask LONG  (0)
+%DOSMaskVariable DEFAULT  ('')
+%DOSMaskDesc DEFAULT  ('All Files')
+%DOSMask DEFAULT  ('*.tps')
+%DOSMoreMasks MULTI LONG  ()
+%DOSMoreMaskDesc DEPEND %DOSMoreMasks DEFAULT TIMES 0
+
+%DOSMoreMask DEPEND %DOSMoreMasks DEFAULT TIMES 0
+
+%RedisplayWindow LONG  (1)
+%UpdateFields MULTI LONG  ()
+%UpdateFeq DEPEND %UpdateFields DEFAULT TIMES 0
+
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('FileLookup5')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('ADOBlob')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+[WINDOW]
+Window  WINDOW('Create SQL Fields'),AT(,,364,240),FONT('Segoe UI',9),AUTO,GRAY,SYSTEM
+          BUTTON('Close'),AT(318,218),USE(?Close),#ORIG(?Close),#SEQ(4),#ORDINAL(1)
+          BUTTON('Button1'),AT(11,213),USE(?BUTTON1),#ORDINAL(2)
+          LIST,AT(3,49,346,160),USE(?LIST1),VSCROLL,FORMAT('74L(2)M~Row Num~L(1)@n_14@1' & |
+            '60L(2)M~Col Name~@s40@'),FROM(ColumnsQ),#FIELDS(Col:RowNum,Col:ColName),#ORDINAL(3)
+          PROMPT('Import Table Path:'),AT(2,3),USE(?ImportTablePath:Prompt),#ORDINAL(4)
+          ENTRY(@s255),AT(3,17,318,10),USE(ImportTablePath),LEFT(2),#ORDINAL(5)
+          BUTTON('...'),AT(334,15,12,12),USE(?LookupFile),#ORIG(?LookupFile),#SEQ(5),#ORDINAL(6)
+          PROMPT('SQL Database:'),AT(2,31),USE(?SQLDatabase:Prompt),#ORDINAL(10000)
+          ENTRY(@s50),AT(49,30,177,10),USE(SQLDatabase),LEFT(2),#ORDINAL(10001)
+        END
+
+[END]

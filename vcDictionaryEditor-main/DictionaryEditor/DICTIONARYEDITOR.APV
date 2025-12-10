@@ -1,0 +1,139 @@
+[PROGRAM]
+[COMMON]
+FROM ABC ABC
+[DATA]
+[SCREENCONTROLS]
+! PROMPT('Glo : Save Btn Feq:'),USE(?Glo:SaveBtnFeq:Prompt)
+! ENTRY(@n-14),USE(Glo:SaveBtnFeq),RIGHT(1)
+[REPORTCONTROLS]
+! STRING(@n-14),USE(Glo:SaveBtnFeq),RIGHT(1)
+Glo:SaveBtnFeq           LONG
+!!> GUID('4dd08c85-3d62-45fa-9614-d958f157dff1'),PROMPT('Glo : Save Btn Feq:'),HEADER('Glo : Save Btn Feq'),PICTURE(@n-14),TYPEMODE(INS),JUSTIFY(RIGHT,1)
+[EMBED]
+EMBED %AfterGlobalIncludes
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 4000
+PROPERTY:END
+not:closeWindow               EQUATE(3292)
+not:RecordUpdated             EQUATE(3293)
+INCLUDE('BackgroundManagerClass.inc'),ONCE
+INCLUDE('CFCQLocator.inc')
+[END]
+EMBED %GlobalMap
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 8910
+PROPERTY:END
+  INCLUDE('cwutil.inc'),ONCE
+  Module('Win32')
+    Dct_GetDC               (LONG hWnd),LONG,RAW,PASCAL,Name('GetDC')
+    Dct_ReleaseDC           (LONG hWnd, LONG hDC),LONG,RAW,PASCAL,Name('ReleaseDC')
+
+    Dct_CreateFontA         (LONG nHeight,LONG nWidth,LONG nEscapement,LONG nOrientation, |
+                            LONG fnWeight, BYTE fdwItalic, BYTE fdwUnderline, BYTE fdwStrikeOut, |
+                            BYTE fdwCharSet, BYTE fdwOutputPrecision, BYTE fdwClipPrecision,      |
+                            BYTE fdwQuality, BYTE fdwPitchAndFamily, *CSTRING lpszFace),LONG,RAW,PASCAL,Name('CreateFontA')
+
+    Dct_SelectObject        (LONG hdc, LONG hObject),LONG,RAW,PASCAL,Name('SelectObject')
+    Dct_DeleteObject        (LONG hObject),BOOL,RAW,PASCAL,Name('DeleteObject')
+    !Dct_GetGlyphOutlineA    (LONG hdc, ULONG ch, ULONG format, *GlyphMetrics lpMetrics, LONG cbBuffer, *BYTE lpBuffer, *LOGFONT lpMat2),LONG,PASCAL,RAW,Name('GetGlyphOutlineA')
+    Dct_GetGlyphOutlineA    (LONG hdc, UNSIGNED uChar, UNSIGNED fuFormat, *GLYPHMETRICS lpgm,LONG cjBuffer, LONG pvBuffer, *MAT2 lpmat2),LONG,RAW,PASCAL,Name('GetGlyphOutlineA')
+    !Dct_GetGlyphOutlineA    (LONG hdc, UNSIGNED uChar, UNSIGNED fuFormat, LONG lpgm,LONG cjBuffer, LONG pvBuffer, LONG lpmat2),LONG,RAW,PASCAL,Name('GetGlyphOutlineA')
+    Dct_FormatMessage       (ulong dwFlags, ulong lpSource, ulong dwMessageId, ulong dwLanguageId, *cstring lpBuffer,ulong nSize, ulong Arguments), ulong, raw, pascal, name('FormatMessageA')
+    Dct_GetLastError        (),long,PASCAL,name('GetLastError')
+
+    Dct_CreateFileA         (*CSTRING lpFileName, LONG dwDesiredAccess, LONG dwShareMode, LONG lpSec,LONG dwCreationDisposition, LONG dwFlagsAndAttributes, LONG hTemplateFile),LONG,PASCAL,RAW,Name('CreateFileA')
+    Dct_WriteFile           (LONG hFile, LONG lpBuffer, LONG nBytesToWrite, *LONG lpBytesWritten, LONG lpOverlapped),BOOL,PASCAL,RAW,Name('WriteFile')
+    Dct_CloseHandle         (LONG hObject),BOOL,PASCAL,RAW,Name('CloseHandle')
+    Dct_GetObjectA          (LONG hGDIObj, LONG cbBuffer, LONG pBuffer),LONG,PASCAL,RAW,Name('GetObjectA')
+  End
+[END]
+EMBED %GlobalData
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 1800
+PROPERTY:END
+! ----- GetGlyphOutline constants -----
+GGO_BITMAP              EQUATE(1)          ! 1-bpp bitmap
+GGO_GRAY8_BITMAP        EQUATE(16)         ! 8-bit anti-aliased bitmap
+GDI_ERROR               EQUATE(-1)         ! returned on error
+
+ANSI_CHARSET            EQUATE(0)
+OUT_DEFAULT_PRECIS      EQUATE(0)
+CLIP_DEFAULT_PRECIS     EQUATE(0)
+DEFAULT_QUALITY         EQUATE(0)
+DEFAULT_PITCH           EQUATE(0)
+FF_DONTCARE             EQUATE(0)
+FW_NORMAL               EQUATE(400)
+
+GlyphMetrics            GROUP,TYPE
+gmBlackBoxX             LONG
+gmBlackBoxY             LONG
+gmptGlyphOrigin          GROUP
+x                          LONG
+y                          LONG
+                         END
+gmCellIncX              LONG
+gmCellIncY              LONG
+                        END
+
+MAT2                    GROUP,TYPE
+eM11                    LONG
+eM12                    LONG
+eM21                    LONG
+eM22                    LONG
+                        END
+
+LOGFONT                 GROUP,TYPE
+lfHeight                LONG
+lfWidth                 LONG
+lfEscapement            LONG
+lfOrientation           LONG
+lfWeight                LONG
+lfItalic                BYTE
+lfUnderline             BYTE
+lfStrikeOut             BYTE
+lfCharSet               BYTE
+lfOutPrecision          BYTE
+lfClipPrecision         BYTE
+lfQuality               BYTE
+lfPitchAndFamily        BYTE
+lfFaceName              CSTRING(64)
+                        END
+
+! Win32 constants
+GENERIC_READ            EQUATE(80000000h)
+GENERIC_WRITE           EQUATE(40000000h)
+FILE_SHARE_NONE         EQUATE(0)
+CREATE_ALWAYS           EQUATE(2)
+FILE_ATTRIBUTE_NORMAL   EQUATE(80h)
+INVALID_HANDLE_VALUE    EQUATE(-1)
+
+BITMAPFILEHEADER        GROUP,TYPE
+bfType                  USHORT
+bfSize                  LONG
+bfReserved1             USHORT
+bfReserved2             USHORT
+bfOffBits               LONG
+                        END
+
+BITMAPINFOHEADER        GROUP,TYPE
+biSize                  LONG
+biWidth                 LONG
+biHeight                LONG
+biPlanes                USHORT
+biBitCount              USHORT
+biCompression           LONG
+biSizeImage             LONG
+biXPelsPerMeter         LONG
+biYPelsPerMeter         LONG
+biClrUsed               LONG
+biClrImportant          LONG
+                        END
+[END]
+[END]
+[END]

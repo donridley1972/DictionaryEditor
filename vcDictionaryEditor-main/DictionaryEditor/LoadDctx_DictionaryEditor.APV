@@ -1,0 +1,729 @@
+[MODULE]
+NAME 'LoadDctx_DictionaryEditor.clw'
+[COMMON]
+FROM ABC GENERATED
+[PROCEDURE]
+NAME LoadDctx
+PROTOTYPE '(string pDctxFile,string pParams,string pThread)'
+PARAMETERS '(string pDctxFile,string pParams,string pThread)'
+[COMMON]
+FROM ABC Window
+[DATA]
+[SCREENCONTROLS]
+! PROMPT('Notify Param:'),USE(?NotifyParam:Prompt)
+! ENTRY(@s255),USE(NotifyParam),LEFT(2)
+[REPORTCONTROLS]
+! STRING(@s255),USE(NotifyParam),LEFT(2)
+NotifyParam              STRING(1500)
+!!> GUID('af6f19b1-5eb4-4f54-a77f-53970599fc74'),PROMPT('Notify Param:'),HEADER('Notify Param'),PICTURE(@s255),TYPEMODE(INS),JUSTIFY(LEFT,2)
+[SCREENCONTROLS]
+! PROMPT('Display Str:'),USE(?DisplayStr:Prompt)
+! STRING(@s50),USE(DisplayStr),LEFT(2)
+[REPORTCONTROLS]
+! STRING(@s50),USE(DisplayStr),LEFT(2)
+DisplayStr               STRING(50)
+!!> GUID('55694580-4756-4937-9798-897ee4553a37'),PROMPT('Display Str:'),HEADER('Display Str'),PICTURE(@s50),TYPEMODE(INS),JUSTIFY(LEFT,2)
+[SCREENCONTROLS]
+! PROMPT('Progress Str:'),USE(?ProgressStr:Prompt)
+! STRING(@s10),USE(ProgressStr),LEFT(2)
+[REPORTCONTROLS]
+! STRING(@s10),USE(ProgressStr),LEFT(2)
+ProgressStr              STRING(10)
+!!> GUID('2ba0f235-636d-4351-8588-3b477579a0bd'),PROMPT('Progress Str:'),HEADER('Progress Str'),PICTURE(@s10),TYPEMODE(INS),JUSTIFY(LEFT,2)
+[PROMPTS]
+%ClassItem UNIQUE DEFAULT  ('Default', 'WindowToolbar')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('WindowManager')
+WHEN  ('WindowToolbar') ('ToolbarClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('')
+WHEN  ('WindowToolbar') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 1
+WHEN  ('Default') ('Init {19}PROCEDURE(),BYTE,PROC,DERIVED', 'Kill {19}PROCEDURE(),BYTE,PROC,DERIVED', |
+  'TakeEvent {14}PROCEDURE(),BYTE,PROC,DERIVED', 'TakeWindowEvent        PROCEDURE(),BYTE,PROC,DERIVED')
+
+%ReturnValue FIELD  ()
+%ProcedureOneInstance LONG  (0)
+%WindowOperationMode DEFAULT  ('Use WINDOW setting')
+%INISaveWindow LONG  (1)
+%ProcedureDisableEnhanceFocus LONG  (0)
+%ProcedureUseEnterInsteadTabOverride LONG  (0)
+%WindowUseEnterInsteadTab LONG  (1)
+%ProcedureUseEnterInsteadTabExcludeListCombo LONG  (0)
+%ProcedureUseEnterInsteadTabEnableNextTabStop LONG  (0)
+%ProcedureUseEnterInsteadTabExcludeG LONG  (1)
+%WindowUseEnterInsteadTabExclude MULTI DEFAULT  ()
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('NO')
+WHEN  ('WindowToolbar') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('ThisWindow')
+WHEN  ('WindowToolbar') ('Toolbar')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (1)
+WHEN  ('WindowToolbar') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (1)
+WHEN  ('WindowToolbar') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('')
+WHEN  ('WindowToolbar') ('')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (0)
+WHEN  ('WindowToolbar') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('WindowToolbar')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('WindowToolbar')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%WindowStyles MULTI LONG  ()
+%WindowStyleFontName DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontNameVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontNameIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontSize DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontSizeVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontSizeIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontStyle DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontStyleVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontStyleIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontColor DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontCharSet DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundNormal DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundNormalVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundNormalIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundNormal DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundNormalVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleBackgroundNormalIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundSelected DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundSelectedVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundSelectedIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundSelected DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundSelectedVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleBackgroundSelectedIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStylePicture DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStylePictureVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStylePictureIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleOtherListboxes MULTI DEFAULT  ()
+%ProcedureAutoBindFields MULTI LONG  ()
+%ProcedureAutoBindField DEPEND %ProcedureAutoBindFields DEFAULT TIMES 0
+
+%ProcedureAutoBindFieldTPL DEPEND %ProcedureAutoBindFields DEFAULT TIMES 0
+
+%ProcedureAutoBindProcedures MULTI LONG  ()
+%ProcedureAutoBindProcedure DEPEND %ProcedureAutoBindProcedures DEFAULT TIMES 0
+
+%ProcedureAutoBindProcedureTPL DEPEND %ProcedureAutoBindProcedures DEFAULT TIMES 0
+
+%ProcedureAutoBindFieldsIgnored MULTI LONG  ()
+%ProcedureAutoBindFieldIgnored DEPEND %ProcedureAutoBindFieldsIgnored DEFAULT TIMES 0
+
+%ProcedureAutoBindProceduresIgnored MULTI LONG  ()
+%ProcedureAutoBindProcedureIgnored DEPEND %ProcedureAutoBindProceduresIgnored DEFAULT TIMES 0
+
+%ProcedureAutoBindValidToAddField LONG  (0)
+%ProcedureUserBindFields MULTI LONG  ()
+%ProcedureUserBindField DEPEND %ProcedureUserBindFields FIELD TIMES 0
+
+%ProcedureAutoBindFieldIgnore DEPEND %ProcedureAutoBindFields LONG TIMES 0
+
+%ProcedureUserBindProcedures MULTI LONG  ()
+%ProcedureUserBindProcedure DEPEND %ProcedureUserBindProcedures PROCEDURE TIMES 0
+
+%ProcedureAutoBindProcedureIgnore DEPEND %ProcedureAutoBindProcedures LONG TIMES 0
+
+%ProcedureUserBindExpressions MULTI LONG  ()
+%ProcedureUserBindExpressionName DEPEND %ProcedureUserBindExpressions DEFAULT TIMES 0
+
+%ProcedureUserBindExpression DEPEND %ProcedureUserBindExpressions DEFAULT TIMES 0
+
+%PreserveVarsLoc MULTI LONG  ()
+%PreserveVarLoc DEPEND %PreserveVarsLoc DEFAULT TIMES 0
+
+%ExtUITabIcon DEPEND %Control DEFAULT TIMES 0
+
+%ExtUITabStyleOverrideGlobal DEPEND %Control LONG TIMES 0
+
+%ExtUITabStyle DEPEND %Control DEFAULT TIMES 1
+WHEN  ('') ('Default')
+
+%FieldGradientColorType DEPEND %Control DEFAULT TIMES 1
+WHEN  ('') ('Off')
+
+%FieldGradientColorTypeVariable DEPEND %Control DEFAULT TIMES 1
+WHEN  ('') ('')
+
+%FieldGradientColorTypeIsVariable DEPEND %Control LONG TIMES 1
+WHEN  ('') (0)
+
+%FieldGradientColorFrom DEPEND %Control LONG TIMES 1
+WHEN  ('') (-1)
+
+%FieldGradientColorFromVariable DEPEND %Control DEFAULT TIMES 0
+
+%FieldGradientColorFromIsVariable DEPEND %Control LONG TIMES 1
+WHEN  ('') (0)
+
+%FieldGradientColorTo DEPEND %Control LONG TIMES 1
+WHEN  ('') (-1)
+
+%FieldGradientColorToVariable DEPEND %Control DEFAULT TIMES 0
+
+%FieldGradientColorToIsVariable DEPEND %Control LONG TIMES 1
+WHEN  ('') (0)
+
+%ButtonAction DEPEND %Control DEFAULT TIMES 2
+WHEN  ('') ('No Special Action')
+WHEN  ('?Close') ('No Special Action')
+
+%ButtonRunName DEPEND %Control DEFAULT TIMES 0
+
+%ButtonRunParameters DEPEND %Control DEFAULT TIMES 0
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ButtonThread DEPEND %Control LONG TIMES 0
+
+%ButtonThreadStack DEPEND %Control DEFAULT TIMES 2
+WHEN  ('') ('25000')
+WHEN  ('?Close') ('25000')
+
+%ButtonParameters DEPEND %Control DEFAULT TIMES 0
+
+%ButtonReturnValueAssignment DEPEND %Control FIELD TIMES 0
+
+%ButtonReturnValueReferenceAssign DEPEND %Control LONG TIMES 0
+
+%ButtonRequest DEPEND %Control DEFAULT TIMES 2
+WHEN  ('') ('None')
+WHEN  ('?Close') ('None')
+
+%ButtonThreadParameters DEPEND %Control DEFAULT TIMES 0
+
+%ButtonThreadReturnValueAssignment DEPEND %Control FIELD TIMES 0
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PreLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
+
+%PostLookupDuringValidate DEPEND %Control LONG TIMES 1
+WHEN  ('') (1)
+
+%LookupAssign DEPEND %Control MULTI LONG TIMES 0
+
+%MoreTarget DEPEND %LookupAssign FIELD TIMES 0
+
+%MoreField DEPEND %LookupAssign DEFAULT TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+
+%CheckedAssigns DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedAssignVariable DEPEND %CheckedAssigns FIELD TIMES 0
+
+%CheckedAssignValue DEPEND %CheckedAssigns DEFAULT TIMES 0
+
+%CheckedHides DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedControl DEPEND %CheckedHides DEFAULT TIMES 0
+
+%CheckedControlAction DEPEND %CheckedHides DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%CheckedEnables DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedControl1 DEPEND %CheckedEnables DEFAULT TIMES 0
+
+%CheckedControl1Action DEPEND %CheckedEnables DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%UncheckedAssigns DEPEND %Control MULTI LONG TIMES 0
+
+%UncheckedAssignVariable DEPEND %UncheckedAssigns FIELD TIMES 0
+
+%UncheckedAssignValue DEPEND %UncheckedAssigns DEFAULT TIMES 0
+
+%UnCheckedHides DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedControl DEPEND %UnCheckedHides DEFAULT TIMES 0
+
+%UnCheckedControlAction DEPEND %UnCheckedHides DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%UnCheckedEnables DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedControl1 DEPEND %UnCheckedEnables DEFAULT TIMES 0
+
+%UnCheckedControl1Action DEPEND %UnCheckedEnables DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%CheckedDisables DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedDisableControl DEPEND %CheckedDisables DEFAULT TIMES 0
+
+%CheckedDisableControlAction DEPEND %CheckedDisables DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%UnCheckedDisables DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedDisableControl DEPEND %UnCheckedDisables DEFAULT TIMES 0
+
+%UnCheckedDisableControlAction DEPEND %UnCheckedDisables DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%ActiveImageEnable DEPEND %Control LONG TIMES 0
+
+%AIObjectName DEPEND %Control DEFAULT TIMES 1
+WHEN  ('') ('AIBtn0')
+
+%AIEnableMimicControl DEPEND %Control LONG TIMES 1
+WHEN  ('') (1)
+
+%AIMimicControl DEPEND %Control DEFAULT TIMES 1
+WHEN  ('') ('?Close')
+
+%AIImgRound DEPEND %Control LONG TIMES 0
+
+%AIOverrideImg DEPEND %Control DEFAULT TIMES 0
+
+%AIOverrideImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIOverrideImgIsVariable DEPEND %Control LONG TIMES 1
+WHEN  ('') (0)
+
+%AIDisableImg DEPEND %Control DEFAULT TIMES 0
+
+%AIDisableImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIDisableImgIsVariable DEPEND %Control LONG TIMES 1
+WHEN  ('') (0)
+
+%AIHotImg DEPEND %Control DEFAULT TIMES 0
+
+%AIHotImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIHotImgIsVariable DEPEND %Control LONG TIMES 1
+WHEN  ('') (0)
+
+%AIPressedImg DEPEND %Control DEFAULT TIMES 0
+
+%AIPressedImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIPressedImgIsVariable DEPEND %Control LONG TIMES 1
+WHEN  ('') (0)
+
+%ITHasDllTemplate DEFAULT  ('')
+[EMBED]
+EMBED %WindowManagerMethodCodeSection
+[INSTANCES]
+WHEN 'Init'
+[INSTANCES]
+WHEN '(),BYTE'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 300
+PROPERTY:END
+  OverStr = pParams
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 8040
+PROPERTY:END
+  0{PROP:Buffer} = 1
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 9500
+PROPERTY:END
+  AmReady = 1
+[END]
+[END]
+WHEN 'TakeEvent'
+[INSTANCES]
+WHEN '(),BYTE'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 2520
+PROPERTY:END
+  Case EVENT()
+  Of EVENT:Timer
+      If AmReady
+          0{PROP:Timer} = 0
+          UNHIDE(?PROGRESS1)
+          MyDct.LoadFile(pDctxFile)
+      End
+  End
+[END]
+[END]
+[END]
+EMBED %DataSection
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 1000
+PROPERTY:END
+AmReady             Long
+ParamsGrp           Group(ParamsGroupType).
+OverStr             String(Size(ParamsGrp)),Over(ParamsGrp)
+[END]
+EMBED %dMethodCodeSection
+[INSTANCES]
+WHEN 'DwrClassExtension(DonRidleyTemplate)5'
+[INSTANCES]
+WHEN 'SetProgress (long pProgress),Virtual,Proc'
+[INSTANCES]
+WHEN 'CODE'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 7500
+PROPERTY:END
+    self.Trace('LoadDctx - MyDct.SetProgress - Progress = ' & self.Progress)
+[END]
+[END]
+WHEN 'SetProgress (long pCurrentCnt,long pTotal),Virtual,Proc'
+[INSTANCES]
+WHEN 'CODE'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 6300
+PROPERTY:END
+    self.Trace('LoadDctx - MyDct.SetProgress - Progress = ' & self.Progress)
+    ?PROGRESS1{PROP:Progress} = self.Progress
+[END]
+[END]
+WHEN 'SetProgress (long pCurrentCnt,long pTotal,<<string pDisplayStr>),Virtual,Proc'
+[INSTANCES]
+WHEN 'CODE'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 7500
+PROPERTY:END
+    If self.Progress > 100
+        self.Progress = 100
+    End
+    ?PROGRESS1{PROP:Progress} = self.Progress
+    ProgressStr = self.Progress & ' %'
+    DisplayStr = pDisplayStr
+    Display(?ProgressStr)
+    Display(?DisplayStr)
+    self.Trace(pDisplayStr)
+    If self.Progress = 100
+        ParamsGrp.DictionaryGuid = self.GetDictionaryGuid()
+        MyDct.SendNotifyJson(NotifyManager,'Main3','LoadDctx','DctLoaded',OverStr)
+        Post(EVENT:CloseWindow)
+    End
+[END]
+[END]
+[END]
+[END]
+[END]
+[ADDITION]
+NAME DMTemporalID PceJSGBLocalExtension
+[INSTANCE]
+INSTANCE 6
+OWNER 33
+[PROMPTS]
+%PceJSGBLocalGenerateOpenClose LONG  (0)
+%EnableDebugTracingForThisWindow LONG  (0)
+%PceJSGBTraceMethodName DEFAULT  ('')
+%DisableSetFilePaths LONG  (0)
+%DisableSetPropPixels LONG  (0)
+%PceJSGBLocalDisableThreadTracking LONG  (0)
+%PceJSGBLocalThreadTrackingIsMainStartup LONG  (0)
+%PceJSGBLocalDisablePreserving LONG  (0)
+%PceJSGBIniFileName DEFAULT  ('')
+%PceJSGBPreserveVarsLoc MULTI LONG  ()
+%PceJSGBPreserveVarLoc DEPEND %PceJSGBPreserveVarsLoc DEFAULT TIMES 0
+
+[ADDITION]
+NAME NYS_DockingPaneTpl NYS_DockingPaneWndHndl
+[INSTANCE]
+INSTANCE 3
+OWNER 15
+[PROMPTS]
+%ClassItem UNIQUE DEFAULT  ('Default')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('DockingPaneEventMgrClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
+
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NYS:DockingPane_EventMgr')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ObjectID DEFAULT  ('')
+%NYS006CtrlDisable LONG  (0)
+%NYS006DisableRuntime DEFAULT  ('FALSE')
+[ADDITION]
+NAME WinEvent WinEvent
+[INSTANCE]
+INSTANCE 2
+OWNER 10
+[PROMPTS]
+%DisableWinEvent LONG  (0)
+%CheckForCantCloseNowSetHere LONG  (1)
+%AutoDown LONG  (0)
+%NoAutoDown LONG  (0)
+%LocWindowsVisible DEFAULT  ('0')
+%WindowsVisibleAfterOpen LONG  (1)
+%AlertWinEventDebug LONG  (0)
+%DisplayCompileDate LONG  (0)
+%DisplayCompileDateFormat DEFAULT  ('@D10')
+%locNoHandleCloseDown LONG  (0)
+%locCloseDownWhenWindowCloses LONG  (0)
+%locCloseDownWhenWindowClosesCtrl DEFAULT  ('')
+%altWinFix DEFAULT  ('Default')
+%WinAlert MULTI LONG  ()
+%Mess DEPEND %WinAlert DEFAULT TIMES 0
+
+%Act1 DEPEND %WinAlert DEFAULT TIMES 0
+
+%act2 DEPEND %WinAlert DEFAULT TIMES 0
+
+%AlertControl DEPEND %WinAlert DEFAULT TIMES 0
+
+%AlertControlType DEPEND %WinAlert DEFAULT TIMES 0
+
+%locCloseDownWhenWindowClosesSet LONG  (0)
+[ADDITION]
+NAME UltimateNotify UltimateNotifyLocalExtension
+[INSTANCE]
+INSTANCE 1
+OWNER 9
+[PROMPTS]
+%ClassName DEFAULT  ('NotifyHandler')
+%StringClassName DEFAULT  ('us')
+%UseStringTheory LONG  (0)
+%EnableNotifyTracking LONG  (1)
+%NotifyProcedureType DEFAULT  ('Child')
+%ParentThreadVariable DEFAULT  ('pThread')
+%FieldToReceiveParameter FIELD  (NotifyParam)
+%NotifyIDToMonitor DEFAULT  ('1')
+%NotifyIDs MULTI LONG  ()
+%NotifyID DEPEND %NotifyIDs DEFAULT TIMES 0
+
+%NotifyGroupNames MULTI LONG  ()
+%NotifyGroupName DEPEND %NotifyGroupNames DEFAULT TIMES 0
+
+%DisableEventNotifyTemplate LONG  (0)
+[ADDITION]
+NAME ABC CloseButton
+[INSTANCE]
+INSTANCE 4
+[ADDITION]
+NAME DonRidleyTemplate DwrClassExtension
+[INSTANCE]
+INSTANCE 5
+[PROMPTS]
+%NoMyObject LONG  (0)
+%DictionariesBrowseObjectName DEFAULT  ('')
+%DictionaryVersionsBrowseObjectName DEFAULT  ('')
+%CommentsBrowseObjectName DEFAULT  ('')
+%AuditsBrowseObjectName DEFAULT  ('')
+%MyObject DEFAULT  ('MyDct')
+%MyClassName DEFAULT  ('dwrDctParser')
+%ixTables MULTI LONG  (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+%ixFile DEPEND %ixTables DEFAULT TIMES 10
+WHEN  (1) ('Dictionaries')
+WHEN  (2) ('Tables')
+WHEN  (3) ('DctVersions')
+WHEN  (4) ('Fields')
+WHEN  (5) ('Keys')
+WHEN  (6) ('Relations')
+WHEN  (7) ('Aliases')
+WHEN  (8) ('TableTypes')
+WHEN  (9) ('Triggers')
+WHEN  (10) ('DuplicateKeys')
+
+%appTables UNIQUE DEFAULT  ('Aliases', 'ControlTypesLkUp', 'DataTypesLkUp', 'DctCode', |
+  'DctComments', 'DctVersions', 'Dictionaries', 'DriversLkUp', 'DuplicateKeys', |
+  'FieldDefaultsLkUp', 'Fields', 'ForeignMappings', 'Keys', 'KitchenSink', 'Lines', |
+  'MasterXml', 'Options', 'PrimaryMappings', 'Relations', 'TableTypes', 'Tables', |
+  'TagFilePos_', 'TagFile_', 'TagSet_', 'TreeMemTable', 'Triggers', 'Validities', |
+  'WindowControls')
+[WINDOW]
+Window  WINDOW('Load DCTX'),AT(,,260,62),FONT('Segoe UI',9),AUTO,ICON('Dictionary.ico'),GRAY, |
+          SYSTEM,TIMER(1),WALLPAPER('Background1.png')
+          BUTTON('Close'),AT(226,47),USE(?Close),#ORIG(?Close),#SEQ(4),#ORDINAL(1)
+          PROGRESS,AT(1,20,257,10),USE(?PROGRESS1),HIDE,RANGE(0,100),#ORDINAL(2)
+          STRING(@s50),AT(2,7,256),USE(DisplayStr),CENTER(2),TRN,#ORDINAL(3)
+          STRING(@s10),AT(2,34,256),USE(ProgressStr),CENTER(2),TRN,#ORDINAL(4)
+        END
+
+[END]

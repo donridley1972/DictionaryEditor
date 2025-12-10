@@ -1,0 +1,431 @@
+[MODULE]
+NAME 'TotalRecordsCount_DictionaryEditor.clw'
+[COMMON]
+FROM ABC GENERATED
+[PROCEDURE]
+NAME TotalRecordsCount
+PROTOTYPE '(string pParams,string pThread),long'
+PARAMETERS '(string pParams,string pThread)'
+[COMMON]
+FROM ABC Source
+[FILES]
+[OTHERS]
+Relations
+Aliases
+Triggers
+Keys
+Fields
+Tables
+DctVersions
+[PROMPTS]
+%GenerateOpenClose LONG  (0)
+%GenerateSaveRestore LONG  (0)
+%ITHasDllTemplate DEFAULT  ('')
+[EMBED]
+EMBED %DataSection
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 1000
+PROPERTY:END
+ParamsGrp                   Group(ParamsGroupType).
+OverStr                     String(Size(ParamsGrp)),Over(ParamsGrp)
+RecCnt                      Long
+
+MyDct               dwrDctParser
+
+DctVersionsView     View(DctVersions)
+                    Project(Ver:GUID)
+                    End
+					
+TablesView          VIEW(Tables)
+                    !PROJECT(Tab:PKGuid)
+                    !PROJECT(Tab:DictionaryGuid)
+                    !JOIN(Fld:FKFldParentGuidKey,Tab:PKGuid),Inner
+                    !END
+                    !JOIN(Key:FKKeyParentGuidKey,Tab:PKGuid),Inner
+                    !END
+                    !JOIN(Ali:FKAliParentGuidKey,Tab:PKGuid),Inner
+                    !END
+                    !JOIN(Tri:FKTriParentGuidKey,Tab:PKGuid),Inner
+                    !END
+                    !JOIN(Rel:FKRelPrimaryTableKey,Tab:Guid)
+                    !END
+                    END
+
+FieldsView          View(Fields)
+                    End
+
+KeysView            View(Keys)
+                    End
+
+AliasesView         View(Aliases)
+                    End
+
+RelationsView       View(Relations)
+                    End
+
+TriggersView        View(Triggers)
+                    End
+[END]
+EMBED %AdditionalDebugHooks
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 5000
+PROPERTY:END
+
+
+
+    !Logout(1,DctVersions,Tables,Fields,Keys,Aliases,Triggers,Relations)
+    OverStr = pParams
+
+    MyDct.Trace('')
+    MyDct.Trace('TotalRecordsCount')
+    MyDct.Trace('<9>ParamsGrp.DictionaryGuid = ' & ParamsGrp.DictionaryGuid)
+    MyDct.Trace('')
+    MyDct.Trace('')
+
+    Open(DctVersionsView)
+    !BUFFER(DctVersionsView,100,0,20,300)
+    DctVersionsView{PROP:Order} = ''
+    DctVersionsView{PROP:Filter} = '(Ver:ParentGUID = ' & '''' & ParamsGrp.DictionaryGuid & '''' & ')'
+    Set(DctVersionsView)
+    LOOP
+        Next(DctVersionsView)
+        If Errorcode(); Break END
+        RecCnt += 1
+    END
+    Close(DctVersionsView)
+
+    Open(TablesView)
+    TablesView{PROP:Order} = '' !'Tab:DctxOrder' !'Tab:PKGuid' !,Fld:ParentGUID,Key:ParentGUID,Ali:ParentGUID,Rel:ParentGUID,Tri:ParentGUID'
+    TablesView{PROP:Filter} = '(Tab:DictionaryGuid = ' & '''' & ParamsGrp.DictionaryGuid & '''' & ')'
+    !MyDct.Trace('<9>TablesView{{PROP:Filter} = ' & TablesView{PROP:Filter})
+    Set(TablesView)
+    LOOP
+        Next(TablesView)
+        If Errorcode(); Break END
+        RecCnt += 1
+    End
+    Close(TablesView)
+
+!    Open(TablesView)
+!    Open(FieldsView)
+!    Open(KeysView)
+!    Open(AliasesView)
+!    Open(RelationsView)
+!    Open(TriggersView)
+!    !BUFFER(TablesView,100,0,20,300)
+!    TablesView{PROP:Order} = '' !'Tab:DctxOrder' !'Tab:PKGuid' !,Fld:ParentGUID,Key:ParentGUID,Ali:ParentGUID,Rel:ParentGUID,Tri:ParentGUID'
+!    TablesView{PROP:Filter} = '(Tab:DictionaryGuid = ' & '''' & ParamsGrp.DictionaryGuid & '''' & ')'
+!    !MyDct.Trace('<9>TablesView{{PROP:Filter} = ' & TablesView{PROP:Filter})
+!    Set(TablesView)
+!    LOOP
+!        Next(TablesView)
+!        If Errorcode(); Break END
+!        RecCnt += 1
+!        !MyDct.Trace('TablesView - RecCnt = ' & RecCnt & ' Tab:TableName = ' & Clip(Tab:TableName))
+!
+!        !If Not FieldsView{PROP:Filter}
+!            FieldsView{PROP:Filter} = '(Fld:ParentGUID = ' & '''' & Tab:PKGuid & '''' & ')'
+!            !MyDct.Trace('<9>FieldsView{{PROP:Filter} = ' & FieldsView{PROP:Filter})
+!            Set(FieldsView)
+!        !End
+!        LOOP
+!            Next(FieldsView)
+!            If Errorcode(); Break END
+!            RecCnt += 1
+!            !MyDct.Trace('<9>FieldsView - RecCnt = ' & RecCnt)
+!        END
+!
+!        !If Not KeysView{PROP:Filter}
+!            KeysView{PROP:Filter} = '(Key:ParentGUID = ' & '''' & Tab:PKGuid & '''' & ')'
+!            !MyDct.Trace('<9><9>KeysView{{PROP:Filter} = ' & KeysView{PROP:Filter})
+!            Set(KeysView)
+!        !End
+!        LOOP
+!            Next(KeysView)
+!            If Errorcode(); Break END
+!            RecCnt += 1
+!            !MyDct.Trace('<9><9>KeysView - RecCnt = ' & RecCnt)
+!        END
+!
+!        !If Not AliasesView{PROP:Filter}
+!            AliasesView{PROP:Filter} = '(Ali:ParentGUID = ' & '''' & Tab:PKGuid & '''' & ')'
+!            !MyDct.Trace('<9><9><9><9>AliasesView{{PROP:Filter} = ' & AliasesView{PROP:Filter})
+!            Set(AliasesView)
+!        !End
+!        LOOP
+!            Next(AliasesView)
+!            If Errorcode(); Break END
+!            RecCnt += 1
+!            !MyDct.Trace('<9><9><9>AliasesView - RecCnt = ' & RecCnt)
+!        END
+!
+!!        !If Not RelationsView{PROP:Filter}
+!!            RelationsView{PROP:Filter} = '(Rel:ParentGUID = ' & '''' & Tab:PKGuid & '''' & ')'
+!!            !MyDct.Trace('<9><9><9><9><9><9>RelationsView{{PROP:Filter} = ' & RelationsView{PROP:Filter})
+!!            Set(RelationsView)
+!!        !End
+!!        LOOP
+!!            Next(RelationsView)
+!!            If Errorcode(); Break END
+!!            RecCnt += 1
+!!            !MyDct.Trace('<9><9><9><9>RelationsView - RecCnt = ' & RecCnt)
+!!        END
+!
+!        !If Not TriggersView{PROP:Filter}
+!            TriggersView{PROP:Filter} = '(Tri:ParentGUID = ' & '''' & Tab:PKGuid & '''' & ')'
+!            !MyDct.Trace('<9>TriggersView{{PROP:Filter} = ' & TriggersView{PROP:Filter})
+!            Set(TriggersView)
+!        !End
+!        LOOP
+!            Next(TriggersView)
+!            If Errorcode(); Break END
+!            RecCnt += 1
+!            !MyDct.Trace('<9><9><9><9><9>TriggersView - RecCnt = ' & RecCnt)
+!        END
+!
+!    END
+!    Close(TablesView)
+!    Close(FieldsView)
+!    Close(KeysView)
+!    Close(AliasesView)
+!    Close(RelationsView)
+!    Close(TriggersView)
+
+    !BUFFER(TablesView,100,0,20,300)
+!    FieldsView{PROP:Order} = '' !'Tab:DctxOrder' !'Tab:PKGuid' !,Fld:ParentGUID,Key:ParentGUID,Ali:ParentGUID,Rel:ParentGUID,Tri:ParentGUID'
+!    FieldsView{PROP:Filter} = '(Tab:DictionaryGuid = ' & '''' & ParamsGrp.DictionaryGuid & '''' & ')'
+!    MyDct.Trace('<9>FieldsView{{PROP:Filter} = ' & FieldsView{PROP:Filter})
+!    Set(FieldsView)
+!    LOOP
+!        Next(FieldsView)
+!        If Errorcode(); Break END
+!        RecCnt += 1
+!    END
+!    Close(FieldsView)
+
+!    Open(KeysView)
+!    BUFFER(TablesView,100,0,20,300)
+!    KeysView{PROP:Order} = '' !'Tab:DctxOrder' !'Tab:PKGuid' !,Fld:ParentGUID,Key:ParentGUID,Ali:ParentGUID,Rel:ParentGUID,Tri:ParentGUID'
+!    KeysView{PROP:Filter} = '(Tab:DictionaryGuid = ' & '''' & ParamsGrp.DictionaryGuid & '''' & ')'
+!    MyDct.Trace('<9>KeysView{{PROP:Filter} = ' & KeysView{PROP:Filter})
+!    Set(KeysView)
+!    LOOP
+!        Next(KeysView)
+!        If Errorcode(); Break END
+!        RecCnt += 1
+!    END
+!    Close(KeysView)
+
+!    Open(AliasesView)
+!    !BUFFER(TablesView,100,0,20,300)
+!    AliasesView{PROP:Order} = '' !'Tab:DctxOrder' !'Tab:PKGuid' !,Fld:ParentGUID,Key:ParentGUID,Ali:ParentGUID,Rel:ParentGUID,Tri:ParentGUID'
+!    AliasesView{PROP:Filter} = '(Tab:DictionaryGuid = ' & '''' & ParamsGrp.DictionaryGuid & '''' & ')'
+!    MyDct.Trace('<9>AliasesView{{PROP:Filter} = ' & AliasesView{PROP:Filter})
+!    Set(AliasesView)
+!    LOOP
+!        Next(AliasesView)
+!        If Errorcode(); Break END
+!        RecCnt += 1
+!    END
+!    Close(AliasesView)
+
+    Open(RelationsView)
+    !BUFFER(TablesView,100,0,20,300)
+    RelationsView{PROP:Order} = '' !'Tab:DctxOrder' !'Tab:PKGuid' !,Fld:ParentGUID,Key:ParentGUID,Ali:ParentGUID,Rel:ParentGUID,Tri:ParentGUID'
+    RelationsView{PROP:Filter} = '(Rel:ParentGUID = ' & '''' & ParamsGrp.DictionaryGuid & '''' & ')'
+    !MyDct.Trace('<9>RelationsView{{PROP:Filter} = ' & RelationsView{PROP:Filter})
+    Set(RelationsView)
+    LOOP
+        Next(RelationsView)
+        If Errorcode(); Break END
+        RecCnt += 1
+    END
+    Close(RelationsView)
+
+!    Open(TriggersView)
+!    !BUFFER(TablesView,100,0,20,300)
+!    TriggersView{PROP:Order} = '' !'Tab:DctxOrder' !'Tab:PKGuid' !,Fld:ParentGUID,Key:ParentGUID,Ali:ParentGUID,Rel:ParentGUID,Tri:ParentGUID'
+!    TriggersView{PROP:Filter} = '(Tab:DictionaryGuid = ' & '''' & ParamsGrp.DictionaryGuid & '''' & ')'
+!    MyDct.Trace('<9>TriggersView{{PROP:Filter} = ' & TriggersView{PROP:Filter})
+!    Set(TriggersView)
+!    LOOP
+!        Next(TriggersView)
+!        If Errorcode(); Break END
+!        RecCnt += 1
+!    END
+!    Close(TriggersView)
+
+
+
+    Return RecCnt
+[END]
+[END]
+[ADDITION]
+NAME DMTemporalID PceJSGBLocalExtension
+[INSTANCE]
+INSTANCE 4
+OWNER 33
+[PROMPTS]
+%PceJSGBLocalGenerateOpenClose LONG  (0)
+%EnableDebugTracingForThisWindow LONG  (0)
+%PceJSGBTraceMethodName DEFAULT  ('')
+%DisableSetFilePaths LONG  (0)
+%DisableSetPropPixels LONG  (0)
+%PceJSGBLocalDisableThreadTracking LONG  (0)
+%PceJSGBLocalThreadTrackingIsMainStartup LONG  (0)
+%PceJSGBLocalDisablePreserving LONG  (0)
+%PceJSGBIniFileName DEFAULT  ('')
+%PceJSGBPreserveVarsLoc MULTI LONG  ()
+%PceJSGBPreserveVarLoc DEPEND %PceJSGBPreserveVarsLoc DEFAULT TIMES 0
+
+[ADDITION]
+NAME NYS_DockingPaneTpl NYS_DockingPaneWndHndl
+[INSTANCE]
+INSTANCE 3
+OWNER 15
+[PROMPTS]
+%ClassItem UNIQUE DEFAULT  ('Default')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('DockingPaneEventMgrClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
+
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NYS:DockingPane_EventMgr')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ObjectID DEFAULT  ('')
+%NYS006CtrlDisable LONG  (0)
+%NYS006DisableRuntime DEFAULT  ('FALSE')
+[ADDITION]
+NAME WinEvent WinEvent
+[INSTANCE]
+INSTANCE 2
+OWNER 10
+[PROMPTS]
+%DisableWinEvent LONG  (0)
+%CheckForCantCloseNowSetHere LONG  (1)
+%AutoDown LONG  (0)
+%NoAutoDown LONG  (0)
+%LocWindowsVisible DEFAULT  ('0')
+%WindowsVisibleAfterOpen LONG  (1)
+%AlertWinEventDebug LONG  (0)
+%DisplayCompileDate LONG  (0)
+%DisplayCompileDateFormat DEFAULT  ('@D10')
+%locNoHandleCloseDown LONG  (0)
+%locCloseDownWhenWindowCloses LONG  (0)
+%locCloseDownWhenWindowClosesCtrl DEFAULT  ('')
+%altWinFix DEFAULT  ('Default')
+%WinAlert MULTI LONG  ()
+%Mess DEPEND %WinAlert DEFAULT TIMES 0
+
+%Act1 DEPEND %WinAlert DEFAULT TIMES 0
+
+%act2 DEPEND %WinAlert DEFAULT TIMES 0
+
+%AlertControl DEPEND %WinAlert DEFAULT TIMES 0
+
+%AlertControlType DEPEND %WinAlert DEFAULT TIMES 0
+
+%locCloseDownWhenWindowClosesSet LONG  (0)
+[ADDITION]
+NAME UltimateNotify UltimateNotifyLocalExtension
+[INSTANCE]
+INSTANCE 1
+OWNER 9
+[PROMPTS]
+%ClassName DEFAULT  ('NotifyHandler')
+%StringClassName DEFAULT  ('us')
+%UseStringTheory LONG  (0)
+%EnableNotifyTracking LONG  (0)
+%NotifyProcedureType DEFAULT  ('Independent')
+%ParentThreadVariable DEFAULT  ('')
+%FieldToReceiveParameter FIELD  ()
+%NotifyIDToMonitor DEFAULT  ('1')
+%NotifyIDs MULTI LONG  ()
+%NotifyID DEPEND %NotifyIDs DEFAULT TIMES 0
+
+%NotifyGroupNames MULTI LONG  ()
+%NotifyGroupName DEPEND %NotifyGroupNames DEFAULT TIMES 0
+
+%DisableEventNotifyTemplate LONG  (0)
+[END]
