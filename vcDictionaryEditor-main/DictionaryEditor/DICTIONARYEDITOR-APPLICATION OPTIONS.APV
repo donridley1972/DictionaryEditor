@@ -13239,7 +13239,7 @@ WHEN  (1) ('TXA')
 
 %AJEPathBackupsFolder DEPEND %AJEOtherFiles DEFAULT TIMES 0
 
-%AJEVersion DEFAULT  ('804')
+%AJEVersion DEFAULT  ('3')
 %AJEHistoryWindow LONG  (0)
 %AJEDataBaseType DEFAULT  ('TopSpeed')
 %AJEODBCStringConnection DEFAULT  ('')
