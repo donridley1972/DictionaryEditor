@@ -31,6 +31,395 @@ SettingsGrp              GROUP(SettingsGroupType),PRE()
 DctSearch                STRING(30)
 !!> GUID('6dceedbe-a287-447b-ae59-835eb06030c3'),PROMPT('Search:'),HEADER('Search'),PICTURE(@s30),TYPEMODE(INS),JUSTIFY(LEFT,2)
 [SCREENCONTROLS]
+! PROMPT('Out Q:'),USE(?OutQ:Prompt)
+! ENTRY(@s20),USE(OutQ)
+[REPORTCONTROLS]
+! STRING(@s20),USE(OutQ)
+OutQ                     QUEUE,PRE(Ot)
+!!> GUID('60b97018-33b1-4003-b2dc-40a5300db4b3'),PROMPT('Out Q:'),HEADER('Out Q'),PICTURE(@s20),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 1:'),USE(?Ot:Str1:Prompt)
+! ENTRY(@s255),USE(Ot:Str1)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str1)
+Str1                       STRING(255)
+!!> GUID('af425df8-41c8-414b-a033-4e9dd7cb8a70'),PROMPT('Str 1:'),HEADER('Str 1'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 2:'),USE(?Ot:Str2:Prompt)
+! ENTRY(@s255),USE(Ot:Str2)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str2)
+Str2                       STRING(255)
+!!> GUID('5059a97f-173e-4fb0-84ad-0548459aee5b'),PROMPT('Str 2:'),HEADER('Str 2'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 3:'),USE(?Ot:Str3:Prompt)
+! ENTRY(@s255),USE(Ot:Str3)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str3)
+Str3                       STRING(255)
+!!> GUID('363ac1c0-3c6d-4f8e-b216-13d17a39ca50'),PROMPT('Str 3:'),HEADER('Str 3'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 4:'),USE(?Ot:Str4:Prompt)
+! ENTRY(@s255),USE(Ot:Str4)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str4)
+Str4                       STRING(255)
+!!> GUID('ee65c48f-374a-4ed9-a001-e9afe2b72bfa'),PROMPT('Str 4:'),HEADER('Str 4'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 5:'),USE(?Ot:Str5:Prompt)
+! ENTRY(@s255),USE(Ot:Str5)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str5)
+Str5                       STRING(255)
+!!> GUID('4fec3638-0862-49f9-96d0-c1a1723ae1d1'),PROMPT('Str 5:'),HEADER('Str 5'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 6:'),USE(?Ot:Str6:Prompt)
+! ENTRY(@s255),USE(Ot:Str6)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str6)
+Str6                       STRING(255)
+!!> GUID('ffc0cfcc-856d-4d6f-9821-1693510ad574'),PROMPT('Str 6:'),HEADER('Str 6'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 7:'),USE(?Ot:Str7:Prompt)
+! ENTRY(@s255),USE(Ot:Str7)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str7)
+Str7                       STRING(255)
+!!> GUID('d7c16dc6-a5bc-4af9-a900-4d6a7d64dd31'),PROMPT('Str 7:'),HEADER('Str 7'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 8:'),USE(?Ot:Str8:Prompt)
+! ENTRY(@s255),USE(Ot:Str8)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str8)
+Str8                       STRING(255)
+!!> GUID('125e7611-c8a6-406a-a30e-163ece8013b1'),PROMPT('Str 8:'),HEADER('Str 8'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 9:'),USE(?Ot:Str9:Prompt)
+! ENTRY(@s255),USE(Ot:Str9)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str9)
+Str9                       STRING(255)
+!!> GUID('552b2ce2-0ebd-4c7a-9d54-48f2023bf5cb'),PROMPT('Str 9:'),HEADER('Str 9'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 10:'),USE(?Ot:Str10:Prompt)
+! ENTRY(@s255),USE(Ot:Str10)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str10)
+Str10                      STRING(255)
+!!> GUID('de7fbe1a-fdb5-4ed0-9c55-9ea3c9c7a634'),PROMPT('Str 10:'),HEADER('Str 10'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 11:'),USE(?Ot:Str11:Prompt)
+! ENTRY(@s255),USE(Ot:Str11)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str11)
+Str11                      STRING(255)
+!!> GUID('6e8841df-b885-4f20-9fc9-bfe337e5d4d0'),PROMPT('Str 11:'),HEADER('Str 11'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 12:'),USE(?Ot:Str12:Prompt)
+! ENTRY(@s255),USE(Ot:Str12)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str12)
+Str12                      STRING(255)
+!!> GUID('a4b9850e-2d79-4594-9dc4-9f33d4d12811'),PROMPT('Str 12:'),HEADER('Str 12'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 13:'),USE(?Ot:Str13:Prompt)
+! ENTRY(@s255),USE(Ot:Str13)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str13)
+Str13                      STRING(255)
+!!> GUID('541e25d5-018f-4b8c-a164-6909bbf0f447'),PROMPT('Str 13:'),HEADER('Str 13'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 14:'),USE(?Ot:Str14:Prompt)
+! ENTRY(@s255),USE(Ot:Str14)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str14)
+Str14                      STRING(255)
+!!> GUID('741dc032-429d-4780-8cb9-e46b7f149dae'),PROMPT('Str 14:'),HEADER('Str 14'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 15:'),USE(?Ot:Str15:Prompt)
+! ENTRY(@s255),USE(Ot:Str15)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str15)
+Str15                      STRING(255)
+!!> GUID('a8489b03-c89c-4413-913a-0c96446bd819'),PROMPT('Str 15:'),HEADER('Str 15'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 16:'),USE(?Ot:Str16:Prompt)
+! ENTRY(@s255),USE(Ot:Str16)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str16)
+Str16                      STRING(255)
+!!> GUID('62b387b5-752d-489a-ae39-f0b33c9f64af'),PROMPT('Str 16:'),HEADER('Str 16'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 17:'),USE(?Ot:Str17:Prompt)
+! ENTRY(@s255),USE(Ot:Str17)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str17)
+Str17                      STRING(255)
+!!> GUID('6df8f0f7-69c3-423c-9c15-5cc264b13045'),PROMPT('Str 17:'),HEADER('Str 17'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 18:'),USE(?Ot:Str18:Prompt)
+! ENTRY(@s255),USE(Ot:Str18)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str18)
+Str18                      STRING(255)
+!!> GUID('bf1b05df-7102-4a7f-8dad-094d32792d44'),PROMPT('Str 18:'),HEADER('Str 18'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 19:'),USE(?Ot:Str19:Prompt)
+! ENTRY(@s255),USE(Ot:Str19)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str19)
+Str19                      STRING(255)
+!!> GUID('f3d1491f-1c2e-49cf-bbeb-8876981f2785'),PROMPT('Str 19:'),HEADER('Str 19'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 20:'),USE(?Ot:Str20:Prompt)
+! ENTRY(@s255),USE(Ot:Str20)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str20)
+Str20                      STRING(255)
+!!> GUID('d5dcb0b9-86ea-4172-8bd7-8bcf0ec5958a'),PROMPT('Str 20:'),HEADER('Str 20'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 21:'),USE(?Ot:Str21:Prompt)
+! ENTRY(@s255),USE(Ot:Str21)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str21)
+Str21                      STRING(255)
+!!> GUID('e5738dd5-71c1-4d10-9e8c-63cf8245fe18'),PROMPT('Str 21:'),HEADER('Str 21'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 22:'),USE(?Ot:Str22:Prompt)
+! ENTRY(@s255),USE(Ot:Str22)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str22)
+Str22                      STRING(255)
+!!> GUID('c7a1f2f8-9ce5-4b33-9ef9-6f224dfdb60a'),PROMPT('Str 22:'),HEADER('Str 22'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 23:'),USE(?Ot:Str23:Prompt)
+! ENTRY(@s255),USE(Ot:Str23)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str23)
+Str23                      STRING(255)
+!!> GUID('5ccc7355-e636-4002-ad14-aec6c2243ab1'),PROMPT('Str 23:'),HEADER('Str 23'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 24:'),USE(?Ot:Str24:Prompt)
+! ENTRY(@s255),USE(Ot:Str24)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str24)
+Str24                      STRING(255)
+!!> GUID('7c0ab7aa-3a49-4efb-a059-e0df489117fd'),PROMPT('Str 24:'),HEADER('Str 24'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 25:'),USE(?Ot:Str25:Prompt)
+! ENTRY(@s255),USE(Ot:Str25)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str25)
+Str25                      STRING(255)
+!!> GUID('e0f87f68-8b3e-414d-8d52-52da0dc50238'),PROMPT('Str 25:'),HEADER('Str 25'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 26:'),USE(?Ot:Str26:Prompt)
+! ENTRY(@s255),USE(Ot:Str26)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str26)
+Str26                      STRING(255)
+!!> GUID('244b7339-1515-448a-8925-76d7482db2fe'),PROMPT('Str 26:'),HEADER('Str 26'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 27:'),USE(?Ot:Str27:Prompt)
+! ENTRY(@s255),USE(Ot:Str27)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str27)
+Str27                      STRING(255)
+!!> GUID('ed012fc4-9e79-460b-a7da-bbafe8dec5ec'),PROMPT('Str 27:'),HEADER('Str 27'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 28:'),USE(?Ot:Str28:Prompt)
+! ENTRY(@s255),USE(Ot:Str28)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str28)
+Str28                      STRING(255)
+!!> GUID('003866ad-2fab-4e01-8d19-2d0f6e8fd844'),PROMPT('Str 28:'),HEADER('Str 28'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 29:'),USE(?Ot:Str29:Prompt)
+! ENTRY(@s255),USE(Ot:Str29)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str29)
+Str29                      STRING(255)
+!!> GUID('b2babde3-5e0d-4734-a960-335477c0efc4'),PROMPT('Str 29:'),HEADER('Str 29'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 30:'),USE(?Ot:Str30:Prompt)
+! ENTRY(@s255),USE(Ot:Str30)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str30)
+Str30                      STRING(255)
+!!> GUID('c5a33bf4-6464-420e-bfbe-c39ef05f3270'),PROMPT('Str 30:'),HEADER('Str 30'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 31:'),USE(?Ot:Str31:Prompt)
+! ENTRY(@s255),USE(Ot:Str31)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str31)
+Str31                      STRING(255)
+!!> GUID('139594b3-c689-4614-9f9b-d6e6ce540280'),PROMPT('Str 31:'),HEADER('Str 31'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 32:'),USE(?Ot:Str32:Prompt)
+! ENTRY(@s255),USE(Ot:Str32)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str32)
+Str32                      STRING(255)
+!!> GUID('dae1e24c-2a92-4366-ac76-db87e93aa389'),PROMPT('Str 32:'),HEADER('Str 32'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 33:'),USE(?Ot:Str33:Prompt)
+! ENTRY(@s255),USE(Ot:Str33)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str33)
+Str33                      STRING(255)
+!!> GUID('8c7f431c-85b4-4af3-a3e6-03e02b897c74'),PROMPT('Str 33:'),HEADER('Str 33'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 34:'),USE(?Ot:Str34:Prompt)
+! ENTRY(@s255),USE(Ot:Str34)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str34)
+Str34                      STRING(255)
+!!> GUID('daba3e29-1f52-4dae-bab0-8a64f980f9e7'),PROMPT('Str 34:'),HEADER('Str 34'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 35:'),USE(?Ot:Str35:Prompt)
+! ENTRY(@s255),USE(Ot:Str35)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str35)
+Str35                      STRING(255)
+!!> GUID('dac54ea4-9470-4248-9efc-9a572db1efe2'),PROMPT('Str 35:'),HEADER('Str 35'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 36:'),USE(?Ot:Str36:Prompt)
+! ENTRY(@s255),USE(Ot:Str36)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str36)
+Str36                      STRING(255)
+!!> GUID('3ffbfb44-8a20-4b9e-945b-702202f95f39'),PROMPT('Str 36:'),HEADER('Str 36'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 37:'),USE(?Ot:Str37:Prompt)
+! ENTRY(@s255),USE(Ot:Str37)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str37)
+Str37                      STRING(255)
+!!> GUID('4efe0692-6771-4bb4-ae69-bfbdb7e51d97'),PROMPT('Str 37:'),HEADER('Str 37'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 38:'),USE(?Ot:Str38:Prompt)
+! ENTRY(@s255),USE(Ot:Str38)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str38)
+Str38                      STRING(255)
+!!> GUID('822a4f85-3ebb-41be-b286-50925f32efe1'),PROMPT('Str 38:'),HEADER('Str 38'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 39:'),USE(?Ot:Str39:Prompt)
+! ENTRY(@s255),USE(Ot:Str39)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str39)
+Str39                      STRING(255)
+!!> GUID('1d1dc1f5-b2a7-43fb-9985-024dd67d71da'),PROMPT('Str 39:'),HEADER('Str 39'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 40:'),USE(?Ot:Str40:Prompt)
+! ENTRY(@s255),USE(Ot:Str40)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str40)
+Str40                      STRING(255)
+!!> GUID('cbc90699-974f-4767-a5b0-83ec4e77eefd'),PROMPT('Str 40:'),HEADER('Str 40'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 41:'),USE(?Ot:Str41:Prompt)
+! ENTRY(@s255),USE(Ot:Str41)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str41)
+Str41                      STRING(255)
+!!> GUID('e414154d-7cc7-448f-9484-585c01aa9681'),PROMPT('Str 41:'),HEADER('Str 41'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 42:'),USE(?Ot:Str42:Prompt)
+! ENTRY(@s255),USE(Ot:Str42)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str42)
+Str42                      STRING(255)
+!!> GUID('34112632-8454-44d6-b0bd-bfe33179d2ec'),PROMPT('Str 42:'),HEADER('Str 42'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 43:'),USE(?Ot:Str43:Prompt)
+! ENTRY(@s255),USE(Ot:Str43)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str43)
+Str43                      STRING(255)
+!!> GUID('a0b11e82-12b6-4076-994d-8c5ae4176816'),PROMPT('Str 43:'),HEADER('Str 43'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 44:'),USE(?Ot:Str44:Prompt)
+! ENTRY(@s255),USE(Ot:Str44)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str44)
+Str44                      STRING(255)
+!!> GUID('130caa1f-46fc-4ca0-b4fd-f3ce2eac3404'),PROMPT('Str 44:'),HEADER('Str 44'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 45:'),USE(?Ot:Str45:Prompt)
+! ENTRY(@s255),USE(Ot:Str45)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str45)
+Str45                      STRING(255)
+!!> GUID('0bfb3a9a-0f2e-49c9-b10b-3eb6abf4e290'),PROMPT('Str 45:'),HEADER('Str 45'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 46:'),USE(?Ot:Str46:Prompt)
+! ENTRY(@s255),USE(Ot:Str46)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str46)
+Str46                      STRING(255)
+!!> GUID('0ea8ed2e-5364-4613-9e93-b1cfc6266169'),PROMPT('Str 46:'),HEADER('Str 46'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 47:'),USE(?Ot:Str47:Prompt)
+! ENTRY(@s255),USE(Ot:Str47)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str47)
+Str47                      STRING(255)
+!!> GUID('d01e8e62-5136-4731-9f56-03c1b320cfaf'),PROMPT('Str 47:'),HEADER('Str 47'),PICTURE(@s255),TYPEMODE(INS)
+                         END
+!!> GUID('0042defd-bd89-4447-bc65-2e3dba71e750')
+[SCREENCONTROLS]
+! PROMPT('Files Q:'),USE(?FilesQ:Prompt)
+! ENTRY(@s20),USE(FilesQ)
+[REPORTCONTROLS]
+! STRING(@s20),USE(FilesQ)
+FilesQ                   QUEUE,PRE(FQ)
+!!> GUID('f2d2743c-4ea9-49b0-bf86-1b384858d9be'),PROMPT('Files Q:'),HEADER('Files Q'),PICTURE(@s20),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('name:'),USE(?FQ:name:Prompt)
+! ENTRY(@s255),USE(FQ:name)
+[REPORTCONTROLS]
+! STRING(@s255),USE(FQ:name)
+name                       STRING(256)
+!!> GUID('1482bb0f-32b0-4b43-a595-b0ba3133c699'),PROMPT('name:'),HEADER('name'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('shortname:'),USE(?FQ:shortname:Prompt)
+! ENTRY(@s13),USE(FQ:shortname)
+[REPORTCONTROLS]
+! STRING(@s13),USE(FQ:shortname)
+shortname                  STRING(13)
+!!> GUID('cd8eb3fd-50e0-4a62-9254-4e2efca0bb29'),PROMPT('shortname:'),HEADER('shortname'),PICTURE(@s13),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('date:'),USE(?FQ:date:Prompt)
+! ENTRY(@n-14),USE(FQ:date),RIGHT(1)
+[REPORTCONTROLS]
+! STRING(@n-14),USE(FQ:date),RIGHT(1)
+date                       LONG
+!!> GUID('29bcc339-b08d-4bcc-93c5-0b38265a9df3'),PROMPT('date:'),HEADER('date'),PICTURE(@n-14),TYPEMODE(INS),JUSTIFY(RIGHT,1)
+[SCREENCONTROLS]
+! PROMPT('time:'),USE(?FQ:time:Prompt)
+! ENTRY(@n-14),USE(FQ:time),RIGHT(1)
+[REPORTCONTROLS]
+! STRING(@n-14),USE(FQ:time),RIGHT(1)
+time                       LONG
+!!> GUID('7cf1505e-f0e3-410d-b4d4-a310c53ba86f'),PROMPT('time:'),HEADER('time'),PICTURE(@n-14),TYPEMODE(INS),JUSTIFY(RIGHT,1)
+[SCREENCONTROLS]
+! PROMPT('size:'),USE(?FQ:size:Prompt)
+! ENTRY(@n-14),USE(FQ:size),RIGHT(1)
+[REPORTCONTROLS]
+! STRING(@n-14),USE(FQ:size),RIGHT(1)
+size                       LONG
+!!> GUID('3e379623-96d9-45bf-a683-3937bd5d9cd6'),PROMPT('size:'),HEADER('size'),PICTURE(@n-14),TYPEMODE(INS),JUSTIFY(RIGHT,1)
+[SCREENCONTROLS]
+! PROMPT('attrib:'),USE(?FQ:attrib:Prompt)
+! ENTRY(@n3),USE(FQ:attrib)
+[REPORTCONTROLS]
+! STRING(@n3),USE(FQ:attrib)
+attrib                     BYTE
+!!> GUID('d4d1a0e7-0517-4172-af7a-d5bbe8cf8465'),PROMPT('attrib:'),HEADER('attrib'),PICTURE(@n3),TYPEMODE(INS)
+                         END
+!!> GUID('60c1fa18-abda-4cfb-8b69-0d564e5825dd')
+[SCREENCONTROLS]
 ! PROMPT('Search:'),USE(?TableSearch:Prompt)
 ! ENTRY(@s30),USE(TableSearch),LEFT(2)
 [REPORTCONTROLS]
@@ -390,6 +779,7 @@ Dictionaries
 [KEY]
 Dct:FKDctNameKey
 [OTHERS]
+DriversLkUp
 DataTypesLkUp
 FieldDefaultsLkUp
 DuplicateKeys
@@ -417,11 +807,12 @@ WHEN  ('Default') ('')
 WHEN  ('WindowToolbar') ('')
 
 %ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 1
-WHEN  ('Default') ('Init {19}PROCEDURE(),BYTE,PROC,DERIVED', 'Kill {19}PROCEDURE(),BYTE,PROC,DERIVED', |
-  'Run {20}PROCEDURE(USHORT Number,BYTE Request),BYTE,PROC,DERIVED', 'TakeAccepted {11}PROCEDURE(),BYTE,PROC,DERIVED', |
-  'TakeCloseEvent {9}PROCEDURE(),BYTE,PROC,DERIVED', 'TakeEvent {14}PROCEDURE(),BYTE,PROC,DERIVED', |
-  'TakeFieldEvent {9}PROCEDURE(),BYTE,PROC,DERIVED', 'TakeNewSelection       PROCEDURE(),BYTE,PROC,DERIVED', |
-  'TakeSelected {11}PROCEDURE(),BYTE,PROC,DERIVED', 'TakeWindowEvent        PROCEDURE(),BYTE,PROC,DERIVED')
+WHEN  ('Default') ('Ask {20}PROCEDURE(),DERIVED', 'ChangeAction {11}PROCEDURE(),BYTE,DERIVED', |
+  'OnCloseEventCancelled  PROCEDURE(),DERIVED', 'PrimeUpdate {12}PROCEDURE(),BYTE,PROC,DERIVED', |
+  'Reset {18}PROCEDURE(BYTE Force=0),DERIVED', 'Run {20}PROCEDURE(),BYTE,PROC,DERIVED', |
+  'SetAlerts {14}PROCEDURE(),DERIVED', 'TakeAccepted {11}PROCEDURE(),BYTE,PROC,DERIVED', |
+  'TakeDisableButton      PROCEDURE(SIGNED Control,BYTE MakeDisable),DERIVED', 'TakeEvent {14}PROCEDURE(),BYTE,PROC,DERIVED', |
+  'Update {17}PROCEDURE(),DERIVED')
 
 %ReturnValue FIELD  ()
 %ProcedureOneInstance LONG  (0)
@@ -572,14 +963,18 @@ WHEN  ('WindowToolbar')TIMES 0
 %WindowStylePictureIsVariable DEPEND %WindowStyles LONG TIMES 0
 
 %WindowStyleOtherListboxes MULTI DEFAULT  ()
-%ProcedureAutoBindFields MULTI LONG  (1, 2)
-%ProcedureAutoBindField DEPEND %ProcedureAutoBindFields DEFAULT TIMES 2
+%ProcedureAutoBindFields MULTI LONG  (1, 2, 3, 4)
+%ProcedureAutoBindField DEPEND %ProcedureAutoBindFields DEFAULT TIMES 4
 WHEN  (1) ('Dct:DctName')
-WHEN  (2) ('Dct:GUID')
+WHEN  (2) ('Dct:SourceDirectory')
+WHEN  (3) ('Dct:DestinationDirectory')
+WHEN  (4) ('Dct:GUID')
 
-%ProcedureAutoBindFieldTPL DEPEND %ProcedureAutoBindFields DEFAULT TIMES 2
+%ProcedureAutoBindFieldTPL DEPEND %ProcedureAutoBindFields DEFAULT TIMES 4
 WHEN  (1) ('BrowseBox(ABC)')
 WHEN  (2) ('BrowseBox(ABC)')
+WHEN  (3) ('BrowseBox(ABC)')
+WHEN  (4) ('BrowseBox(ABC)')
 
 %ProcedureAutoBindProcedures MULTI LONG  ()
 %ProcedureAutoBindProcedure DEPEND %ProcedureAutoBindProcedures DEFAULT TIMES 0
@@ -615,8 +1010,7 @@ WHEN  (2) ('BrowseBox(ABC)')
 
 %ExtUITabStyleOverrideGlobal DEPEND %Control LONG TIMES 0
 
-%ExtUITabStyle DEPEND %Control DEFAULT TIMES 28
-WHEN  ('') ('Default')
+%ExtUITabStyle DEPEND %Control DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn') ('Default')
 WHEN  ('?AddNewFieldBtn') ('Default')
 WHEN  ('?AddNewTableBtn') ('Default')
@@ -645,8 +1039,7 @@ WHEN  ('?SettingsBtn') ('Default')
 WHEN  ('?TaggedCount') ('Default')
 WHEN  ('?TaggedCount:Prompt') ('Default')
 
-%FieldGradientColorType DEPEND %Control DEFAULT TIMES 29
-WHEN  ('') ('Off')
+%FieldGradientColorType DEPEND %Control DEFAULT TIMES 28
 WHEN  ('?AddNewDctBtn') ('Off')
 WHEN  ('?AddNewFieldBtn') ('Off')
 WHEN  ('?AddNewTableBtn') ('Off')
@@ -676,8 +1069,7 @@ WHEN  ('?TOOLBAR1') ('Off')
 WHEN  ('?TaggedCount') ('Off')
 WHEN  ('?TaggedCount:Prompt') ('Off')
 
-%FieldGradientColorTypeVariable DEPEND %Control DEFAULT TIMES 29
-WHEN  ('') ('')
+%FieldGradientColorTypeVariable DEPEND %Control DEFAULT TIMES 28
 WHEN  ('?AddNewDctBtn') ('')
 WHEN  ('?AddNewFieldBtn') ('')
 WHEN  ('?AddNewTableBtn') ('')
@@ -707,8 +1099,7 @@ WHEN  ('?TOOLBAR1') ('')
 WHEN  ('?TaggedCount') ('')
 WHEN  ('?TaggedCount:Prompt') ('')
 
-%FieldGradientColorTypeIsVariable DEPEND %Control LONG TIMES 29
-WHEN  ('') (0)
+%FieldGradientColorTypeIsVariable DEPEND %Control LONG TIMES 28
 WHEN  ('?AddNewDctBtn') (0)
 WHEN  ('?AddNewFieldBtn') (0)
 WHEN  ('?AddNewTableBtn') (0)
@@ -738,8 +1129,7 @@ WHEN  ('?TOOLBAR1') (0)
 WHEN  ('?TaggedCount') (0)
 WHEN  ('?TaggedCount:Prompt') (0)
 
-%FieldGradientColorFrom DEPEND %Control LONG TIMES 29
-WHEN  ('') (-1)
+%FieldGradientColorFrom DEPEND %Control LONG TIMES 28
 WHEN  ('?AddNewDctBtn') (-1)
 WHEN  ('?AddNewFieldBtn') (-1)
 WHEN  ('?AddNewTableBtn') (-1)
@@ -771,8 +1161,7 @@ WHEN  ('?TaggedCount:Prompt') (-1)
 
 %FieldGradientColorFromVariable DEPEND %Control DEFAULT TIMES 0
 
-%FieldGradientColorFromIsVariable DEPEND %Control LONG TIMES 29
-WHEN  ('') (0)
+%FieldGradientColorFromIsVariable DEPEND %Control LONG TIMES 28
 WHEN  ('?AddNewDctBtn') (0)
 WHEN  ('?AddNewFieldBtn') (0)
 WHEN  ('?AddNewTableBtn') (0)
@@ -802,8 +1191,7 @@ WHEN  ('?TOOLBAR1') (0)
 WHEN  ('?TaggedCount') (0)
 WHEN  ('?TaggedCount:Prompt') (0)
 
-%FieldGradientColorTo DEPEND %Control LONG TIMES 29
-WHEN  ('') (-1)
+%FieldGradientColorTo DEPEND %Control LONG TIMES 28
 WHEN  ('?AddNewDctBtn') (-1)
 WHEN  ('?AddNewFieldBtn') (-1)
 WHEN  ('?AddNewTableBtn') (-1)
@@ -835,8 +1223,7 @@ WHEN  ('?TaggedCount:Prompt') (-1)
 
 %FieldGradientColorToVariable DEPEND %Control DEFAULT TIMES 0
 
-%FieldGradientColorToIsVariable DEPEND %Control LONG TIMES 29
-WHEN  ('') (0)
+%FieldGradientColorToIsVariable DEPEND %Control LONG TIMES 28
 WHEN  ('?AddNewDctBtn') (0)
 WHEN  ('?AddNewFieldBtn') (0)
 WHEN  ('?AddNewTableBtn') (0)
@@ -866,8 +1253,7 @@ WHEN  ('?TOOLBAR1') (0)
 WHEN  ('?TaggedCount') (0)
 WHEN  ('?TaggedCount:Prompt') (0)
 
-%ButtonAction DEPEND %Control DEFAULT TIMES 28
-WHEN  ('') ('No Special Action')
+%ButtonAction DEPEND %Control DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn') ('No Special Action')
 WHEN  ('?AddNewFieldBtn') ('No Special Action')
 WHEN  ('?AddNewTableBtn') ('No Special Action')
@@ -944,8 +1330,7 @@ WHEN  ('?SaveBtn') (0)
 WHEN  ('?SearchBtn') (0)
 WHEN  ('?SearchBtn:2') (0)
 
-%ButtonThreadStack DEPEND %Control DEFAULT TIMES 28
-WHEN  ('') ('25000')
+%ButtonThreadStack DEPEND %Control DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn') ('25000')
 WHEN  ('?AddNewFieldBtn') ('25000')
 WHEN  ('?AddNewTableBtn') ('25000')
@@ -1010,8 +1395,7 @@ WHEN  ('?SaveBtn') (0)
 WHEN  ('?SearchBtn') (0)
 WHEN  ('?SearchBtn:2') (0)
 
-%ButtonRequest DEPEND %Control DEFAULT TIMES 28
-WHEN  ('') ('None')
+%ButtonRequest DEPEND %Control DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn') ('None')
 WHEN  ('?AddNewFieldBtn') ('None')
 WHEN  ('?AddNewTableBtn') ('None')
@@ -1080,8 +1464,7 @@ WHEN  ('?SearchBtn:2') ()
 
 %PostLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
 
-%PostLookupDuringValidate DEPEND %Control LONG TIMES 28
-WHEN  ('') (1)
+%PostLookupDuringValidate DEPEND %Control LONG TIMES 27
 WHEN  ('?AddNewDctBtn') (1)
 WHEN  ('?AddNewFieldBtn') (1)
 WHEN  ('?AddNewTableBtn') (1)
@@ -1128,8 +1511,7 @@ WHEN  ('?TaggedCount:Prompt') (1)
 
 %CheckedControl DEPEND %CheckedHides DEFAULT TIMES 0
 
-%CheckedControlAction DEPEND %CheckedHides DEFAULT TIMES 28
-WHEN  ('')TIMES 0
+%CheckedControlAction DEPEND %CheckedHides DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn')TIMES 0
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
@@ -1162,8 +1544,7 @@ WHEN  ('?TaggedCount:Prompt')TIMES 0
 
 %CheckedControl1 DEPEND %CheckedEnables DEFAULT TIMES 0
 
-%CheckedControl1Action DEPEND %CheckedEnables DEFAULT TIMES 28
-WHEN  ('')TIMES 0
+%CheckedControl1Action DEPEND %CheckedEnables DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn')TIMES 0
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
@@ -1202,8 +1583,7 @@ WHEN  ('?TaggedCount:Prompt')TIMES 0
 
 %UnCheckedControl DEPEND %UnCheckedHides DEFAULT TIMES 0
 
-%UnCheckedControlAction DEPEND %UnCheckedHides DEFAULT TIMES 28
-WHEN  ('')TIMES 0
+%UnCheckedControlAction DEPEND %UnCheckedHides DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn')TIMES 0
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
@@ -1236,8 +1616,7 @@ WHEN  ('?TaggedCount:Prompt')TIMES 0
 
 %UnCheckedControl1 DEPEND %UnCheckedEnables DEFAULT TIMES 0
 
-%UnCheckedControl1Action DEPEND %UnCheckedEnables DEFAULT TIMES 28
-WHEN  ('')TIMES 0
+%UnCheckedControl1Action DEPEND %UnCheckedEnables DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn')TIMES 0
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
@@ -1270,8 +1649,7 @@ WHEN  ('?TaggedCount:Prompt')TIMES 0
 
 %CheckedDisableControl DEPEND %CheckedDisables DEFAULT TIMES 0
 
-%CheckedDisableControlAction DEPEND %CheckedDisables DEFAULT TIMES 28
-WHEN  ('')TIMES 0
+%CheckedDisableControlAction DEPEND %CheckedDisables DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn')TIMES 0
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
@@ -1304,8 +1682,7 @@ WHEN  ('?TaggedCount:Prompt')TIMES 0
 
 %UnCheckedDisableControl DEPEND %UnCheckedDisables DEFAULT TIMES 0
 
-%UnCheckedDisableControlAction DEPEND %UnCheckedDisables DEFAULT TIMES 28
-WHEN  ('')TIMES 0
+%UnCheckedDisableControlAction DEPEND %UnCheckedDisables DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn')TIMES 0
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
@@ -1336,8 +1713,7 @@ WHEN  ('?TaggedCount:Prompt')TIMES 0
 
 %ActiveImageEnable DEPEND %Control LONG TIMES 0
 
-%AIObjectName DEPEND %Control DEFAULT TIMES 28
-WHEN  ('') ('AIBtn0')
+%AIObjectName DEPEND %Control DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn') ('AIBtn18')
 WHEN  ('?AddNewFieldBtn') ('AIBtn17')
 WHEN  ('?AddNewTableBtn') ('AIBtn16')
@@ -1366,8 +1742,7 @@ WHEN  ('?SettingsBtn') ('AIBtn10')
 WHEN  ('?TaggedCount') ('AIBtn9')
 WHEN  ('?TaggedCount:Prompt') ('AIBtn8')
 
-%AIEnableMimicControl DEPEND %Control LONG TIMES 28
-WHEN  ('') (1)
+%AIEnableMimicControl DEPEND %Control LONG TIMES 27
 WHEN  ('?AddNewDctBtn') (1)
 WHEN  ('?AddNewFieldBtn') (1)
 WHEN  ('?AddNewTableBtn') (1)
@@ -1396,8 +1771,7 @@ WHEN  ('?SettingsBtn') (1)
 WHEN  ('?TaggedCount') (1)
 WHEN  ('?TaggedCount:Prompt') (1)
 
-%AIMimicControl DEPEND %Control DEFAULT TIMES 28
-WHEN  ('') ('?TOOLBAR1')
+%AIMimicControl DEPEND %Control DEFAULT TIMES 27
 WHEN  ('?AddNewDctBtn') ('?TOOLBAR1')
 WHEN  ('?AddNewFieldBtn') ('?TOOLBAR1')
 WHEN  ('?AddNewTableBtn') ('?TOOLBAR1')
@@ -1432,8 +1806,7 @@ WHEN  ('?TaggedCount:Prompt') ('?TOOLBAR1')
 
 %AIOverrideImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIOverrideImgIsVariable DEPEND %Control LONG TIMES 28
-WHEN  ('') (0)
+%AIOverrideImgIsVariable DEPEND %Control LONG TIMES 27
 WHEN  ('?AddNewDctBtn') (0)
 WHEN  ('?AddNewFieldBtn') (0)
 WHEN  ('?AddNewTableBtn') (0)
@@ -1466,8 +1839,7 @@ WHEN  ('?TaggedCount:Prompt') (0)
 
 %AIDisableImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIDisableImgIsVariable DEPEND %Control LONG TIMES 28
-WHEN  ('') (0)
+%AIDisableImgIsVariable DEPEND %Control LONG TIMES 27
 WHEN  ('?AddNewDctBtn') (0)
 WHEN  ('?AddNewFieldBtn') (0)
 WHEN  ('?AddNewTableBtn') (0)
@@ -1500,8 +1872,7 @@ WHEN  ('?TaggedCount:Prompt') (0)
 
 %AIHotImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIHotImgIsVariable DEPEND %Control LONG TIMES 28
-WHEN  ('') (0)
+%AIHotImgIsVariable DEPEND %Control LONG TIMES 27
 WHEN  ('?AddNewDctBtn') (0)
 WHEN  ('?AddNewFieldBtn') (0)
 WHEN  ('?AddNewTableBtn') (0)
@@ -1534,8 +1905,7 @@ WHEN  ('?TaggedCount:Prompt') (0)
 
 %AIPressedImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIPressedImgIsVariable DEPEND %Control LONG TIMES 28
-WHEN  ('') (0)
+%AIPressedImgIsVariable DEPEND %Control LONG TIMES 27
 WHEN  ('?AddNewDctBtn') (0)
 WHEN  ('?AddNewFieldBtn') (0)
 WHEN  ('?AddNewTableBtn') (0)
@@ -1627,6 +1997,7 @@ CloseActiveDonutHole		Procedure()
 PopulateTree                Procedure()
 PopulateTableTypesTree      Procedure()
 ParseMarked                 Procedure()
+RunOdbc                     Procedure()
 SetFieldGuids               Procedure(long pMouseDownRow)
 SetTaggedCount              Procedure()
 							End
@@ -1762,56 +2133,11 @@ WHEN 'Accepted'
 PROPERTY:BEGIN
 PRIORITY 8800
 PROPERTY:END
-!MyDCT.LoadFile(DctFile)
-Start(LoadDctx,,DctFile,OverStr,Thread())
-!      Dct:GUID = MyDct.GetDictionaryGuid()
-!      Access:Dictionaries.Fetch(Dct:PKDctGUIDKey)
-!      !MyDct.Trace('')
-!      !MyDct.Trace('============================================================================================================================================')
-!      !MyDct.Trace('')
-!      !MyDct.Trace('After Loading DCTX')
-!      !MyDct.Trace('<9>Dct:GUID = ' & Dct:GUID)
-!      !MyDct.Trace('<9>Records(Dictionaries) = ' & Records(Dictionaries))
-!      If Errorcode()
-!        !MyDct.Trace('<9>Error Fetching Dictionaries Record - Error = ' & ERROR())
-!      ELSE
-!        !MyDct.Trace('<9>Dictionaries Record Fetched!')
-!        BrwDct.ResetFromFile()
-!        ThisWindow.Reset(True)
-!        POST(EVENT:Accepted,?DictionariesList)
-!        SELECT(?DictionariesList)
-!      End
-!MyDct.Trace('')
-!MyDct.Trace('============================================================================================================================================')
-!MyDct.Trace('')
-
-!BrwDct.ResetSort(True)
-!If Records(Dictionaries) = 1
-!  BrwDct.ResetSort(True)
-!  POST(EVENT:Accepted,?DictionariesList)
-!Else
-
-!End
-!POST(EVENT:NewSelection,?DictionariesList)
-!BrwDct.ResetQueue(Reset:Queue)
-!Queue:Browse.Dct:GUID = MyDct.GetDictionaryGuid()
-!get(Queue:Browse,Queue:Browse.Dct:GUID)
-!IF Queue:Browse.Dct:GUID
-!   BrwDct.StartAtCurrent=True
-!   !POH:Status = ''
-!   !POH:PO_NBR = pPONumber
-!END
-
-!BrwTables.ResetSort(True)
-!Do REL9::RefreshTree
-!SORT(Queue:RelTree,Queue:RelTree.REL9::Display)
-!POST(EVENT:Accepted,?DictionariesList)
-!ParamsGrp.Action = 'Refresh'
-!json.Start()
-!json.SetTagCase(jF:CaseAsIs)
-!json.Save(ParamsGrp,st)
-!NotifyManager.NotifyProcedure('BrowseDictionaries',st.GetValue())
-!NotifyManager.NotifyProcedure('TreeWindow',st.GetValue())
+If not DctFile
+    Return Level:Benign
+Else
+    Start(LoadDctx,,DctFile,OverStr,Thread())
+End
 [END]
 [END]
 WHEN '?DictionariesList'
@@ -2989,77 +3315,77 @@ ql11.SetSearchType(SettingsGrp.DefaultSearchType)
 
 
 
-!    If Records(TableTypes) = 0
-!        TblTypes:PKGuid = Glo:st.MakeGuid()
-!        TblTypes:Description = 'Pool'
-!        TblTypes:TypeOrder = 1
-!        Access:TableTypes.Insert()
-!        TblTypes:PKGuid = Glo:st.MakeGuid()
-!        TblTypes:Description = 'Global'
-!        TblTypes:TypeOrder = 2
-!        Access:TableTypes.Insert()
-!        TblTypes:PKGuid = Glo:st.MakeGuid()
-!        TblTypes:Description = 'Table'
-!        TblTypes:TypeOrder = 3
-!        Access:TableTypes.Insert()
-!    End
+  If Records(TableTypes) = 0
+      TblTypes:PKGuid = Glo:st.MakeGuid()
+      TblTypes:Description = 'Pool'
+      TblTypes:TypeOrder = 1
+      Access:TableTypes.Insert()
+      TblTypes:PKGuid = Glo:st.MakeGuid()
+      TblTypes:Description = 'Global'
+      TblTypes:TypeOrder = 2
+      Access:TableTypes.Insert()
+      TblTypes:PKGuid = Glo:st.MakeGuid()
+      TblTypes:Description = 'Table'
+      TblTypes:TypeOrder = 3
+      Access:TableTypes.Insert()
+  End
 
-!    If Records(DriversLkUp) = 0
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'ADO'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'ASCII'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'BASIC'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'Btrieve'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'Clarion'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'Clipper'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'dBase3'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'dBase4'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'DOS'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'FoxPro'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'MEMORY'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'MSSQL'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'ODBC'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'Oracle'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'Scalable'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'SQLAnywhere'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'SQLite'
-!        Access:DriversLkUp.Insert()
-!        Dri:GUID = gLO:ST.MakeGuid()
-!        Dri:Driver = 'TOPSPEED'
-!        Access:DriversLkUp.Insert()
-!    End
+  If Records(DriversLkUp) = 0
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'ADO'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'ASCII'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'BASIC'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'Btrieve'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'Clarion'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'Clipper'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'dBase3'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'dBase4'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'DOS'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'FoxPro'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'MEMORY'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'MSSQL'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'ODBC'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'Oracle'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'Scalable'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'SQLAnywhere'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'SQLite'
+      Access:DriversLkUp.Insert()
+      Dri:GUID = gLO:ST.MakeGuid()
+      Dri:Driver = 'TOPSPEED'
+      Access:DriversLkUp.Insert()
+  End
 
   If Records(DataTypesLkUp) = 0
       Dat:GUID          =  Glo:st.MakeGuid()
@@ -3371,10 +3697,11 @@ WHEN '(),BYTE'
 PROPERTY:BEGIN
 PRIORITY 1500
 PROPERTY:END
-  Loop x = 1 to Records(HostMgrQ)
-      Get(HostMgrQ,x)
-      !DonutHoleHost:5.Close(HostMgrQ.ThreadNo)
-  End
+  !Loop x = 1 to Records(HostMgrQ)
+  !    Get(HostMgrQ,x)
+  !    !DonutHoleHost:5.Close(HostMgrQ.ThreadNo)
+  !End
+  PostAll(EVENT:CloseWindow)
 [SOURCE]
 PROPERTY:BEGIN
 PRIORITY 7400
@@ -3990,6 +4317,10 @@ x       Long
         End
     End
 
+local.RunOdbc                     Procedure()
+    CODE
+
+
 local.SetFieldGuids               Procedure(long pMouseDownRow)
     code
     Clear(DwrTreeQ)
@@ -4071,10 +4402,10 @@ PRIORITY 5000
 PROPERTY:END
 	If Size(NotifyParam) > 0
 		TempSt.SetValue(NotifyParam)
-        !MyDct.Trace('')
-        !MyDct.Trace('Main3 - NotifyHandler.HandleNotify')
-		!MyDct.Trace(TempSt.GetValue())
-        !MyDct.Trace('')
+        MyDct.Trace('')
+        MyDct.Trace('Main3 - NotifyHandler.HandleNotify')
+		MyDct.Trace(TempSt.GetValue())
+        MyDct.Trace('')
 		json.Start()
 		json.SetTagCase(jF:CaseAsIs)
 		json.Load(ParamsGrp,TempSt)
@@ -4120,17 +4451,22 @@ PROPERTY:END
             !Message('Main3 - AddFm3Version')
             Loop x = 1 to Records(DwrTreeQ:1)
                 Get(DwrTreeQ:1,x)
-                If DwrTreeQ:1.WinMark = 1
+                !If DwrTreeQ:1.WinMark = 1
                     Tab:PKGuid = DwrTreeQ:1.ItemGuid
                     If Access:Tables.Fetch(Tab:PKTabGuidKey) = Level:Benign
-                        If Not MyDct.GetHasFM3VersionOption(Tables,'OptionsBlob')
-                            !MyDct.Trace('Adding Version Option To: ' & Clip(Tab:TableName))
-                            MyDct.InsertOptionQRec(Tables,'OptionsBlob','Version','1','1')
+                        If Not MyDct.GetHasFM3VersionOption(Tables,'OptionsBlob') And Tab:TableDriver <> 'MEMORY'
+                            MyDct.Trace('Adding Version Option To: ' & Clip(Tab:TableName))
+                            !-->>MyDct.InsertOptionQRec(Tables,'OptionsBlob','Version','1','1')
+                            TempSt.FromBlob(Tab:OptionsBlob)
+                            MyDct.InsertOption(TempSt,'Version','1','1')
+                            TempSt.ToBlob(Tab:OptionsBlob)
+                            mt.SetBlob(Tables,Tab:OptionsBlob[1:Size(Tab:OptionsBlob)],st,mt:label)
+                            Put(Tables)
                         End
                     ELSE
                         !MyDct.Trace('Main3 - NotifyHandler.HandleNotify - AddFm3Version - Error Fetching Tables Record!')
                     End
-                End
+                !End
             End
 !            Open(TablesView9)
 !            TablesView9{PROP:Order} = ''
@@ -4231,6 +4567,7 @@ PROPERTY:BEGIN
 PRIORITY 5000
 PROPERTY:END
 TempSt      StringTheory
+mt          MyTableClass
 VersionVal  Long
 [END]
 EMBED %WindowEventHandling
@@ -4269,8 +4606,7 @@ NAME EasyResizeAndSplit EasyResize
 [FIELDPROMPT]
 %CheckStrategy DEPEND %Control LONG TIMES 0
 
-%ParentStrategyControl DEPEND %Control DEFAULT TIMES 29
-WHEN  ('') ('?TOOLBAR1')
+%ParentStrategyControl DEPEND %Control DEFAULT TIMES 28
 WHEN  ('?AddNewDctBtn') ('?TOOLBAR1')
 WHEN  ('?AddNewFieldBtn') ('?TOOLBAR1')
 WHEN  ('?AddNewTableBtn') ('?TOOLBAR1')
@@ -4300,8 +4636,7 @@ WHEN  ('?TOOLBAR1') ('?TOOLBAR1')
 WHEN  ('?TaggedCount') ('?TOOLBAR1')
 WHEN  ('?TaggedCount:Prompt') ('?TOOLBAR1')
 
-%XStrategy DEPEND %Control DEFAULT TIMES 29
-WHEN  ('') ('None')
+%XStrategy DEPEND %Control DEFAULT TIMES 28
 WHEN  ('?AddNewDctBtn') ('None')
 WHEN  ('?AddNewFieldBtn') ('None')
 WHEN  ('?AddNewTableBtn') ('None')
@@ -4331,8 +4666,7 @@ WHEN  ('?TOOLBAR1') ('None')
 WHEN  ('?TaggedCount') ('None')
 WHEN  ('?TaggedCount:Prompt') ('None')
 
-%XMove DEPEND %Control DEFAULT TIMES 29
-WHEN  ('') ('0')
+%XMove DEPEND %Control DEFAULT TIMES 28
 WHEN  ('?AddNewDctBtn') ('0')
 WHEN  ('?AddNewFieldBtn') ('0')
 WHEN  ('?AddNewTableBtn') ('0')
@@ -4362,8 +4696,7 @@ WHEN  ('?TOOLBAR1') ('0')
 WHEN  ('?TaggedCount') ('0')
 WHEN  ('?TaggedCount:Prompt') ('0')
 
-%XResize DEPEND %Control DEFAULT TIMES 29
-WHEN  ('') ('0')
+%XResize DEPEND %Control DEFAULT TIMES 28
 WHEN  ('?AddNewDctBtn') ('0')
 WHEN  ('?AddNewFieldBtn') ('0')
 WHEN  ('?AddNewTableBtn') ('0')
@@ -4393,8 +4726,7 @@ WHEN  ('?TOOLBAR1') ('0')
 WHEN  ('?TaggedCount') ('0')
 WHEN  ('?TaggedCount:Prompt') ('0')
 
-%YStrategy DEPEND %Control DEFAULT TIMES 29
-WHEN  ('') ('None')
+%YStrategy DEPEND %Control DEFAULT TIMES 28
 WHEN  ('?AddNewDctBtn') ('None')
 WHEN  ('?AddNewFieldBtn') ('None')
 WHEN  ('?AddNewTableBtn') ('None')
@@ -4424,8 +4756,7 @@ WHEN  ('?TOOLBAR1') ('None')
 WHEN  ('?TaggedCount') ('None')
 WHEN  ('?TaggedCount:Prompt') ('None')
 
-%YMove DEPEND %Control DEFAULT TIMES 29
-WHEN  ('') ('0')
+%YMove DEPEND %Control DEFAULT TIMES 28
 WHEN  ('?AddNewDctBtn') ('0')
 WHEN  ('?AddNewFieldBtn') ('0')
 WHEN  ('?AddNewTableBtn') ('0')
@@ -4455,8 +4786,7 @@ WHEN  ('?TOOLBAR1') ('0')
 WHEN  ('?TaggedCount') ('0')
 WHEN  ('?TaggedCount:Prompt') ('0')
 
-%YResize DEPEND %Control DEFAULT TIMES 29
-WHEN  ('') ('0')
+%YResize DEPEND %Control DEFAULT TIMES 28
 WHEN  ('?AddNewDctBtn') ('0')
 WHEN  ('?AddNewFieldBtn') ('0')
 WHEN  ('?AddNewTableBtn') ('0')
@@ -5072,9 +5402,20 @@ WHEN  ('Locator0') ('EntryLocatorClass')
 WHEN  ('Default') ('')
 WHEN  ('Locator0') ('')
 
-%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 1
-WHEN  ('Default') ('Q {22}&Queue:Browse {18}!Reference to browse queue', 'ResetFromFile {10}PROCEDURE(),DERIVED', |
-  'TakeNewSelection       PROCEDURE(),DERIVED')
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 2
+WHEN  ('Default') ('Q {22}&Queue:Browse {18}!Reference to browse queue', 'AppendOrder {12}PROCEDURE(STRING Order),DERIVED', |
+  'ApplyRange {13}PROCEDURE(),BYTE,PROC,DERIVED', 'ClearFilesRecord       PROCEDURE(),DERIVED', |
+  'GetFreeElementAscending PROCEDURE(),STRING,DERIVED', 'Init {19}PROCEDURE(IListControl IC,VIEW V,BrowseQueue LQ,RelationManager RM,WindowManager WM)', |
+  'InitSort {15}PROCEDURE(BYTE NewOrder),BYTE,DERIVED', 'Kill {19}PROCEDURE(),DERIVED', |
+  'Next {19}PROCEDURE(),BYTE,DERIVED', 'Open {19}PROCEDURE(),DERIVED', 'Previous {15}PROCEDURE(),BYTE,DERIVED', |
+  'ReplaceSort {12}PROCEDURE(STRING NewSortString,<<LocatorClass NewLocator>,<<StepClass NewStepClass>),DERIVED', |
+  'ResetSort {14}PROCEDURE(BYTE Force),BYTE,PROC,DERIVED', 'RestoreBuffers {9}PROCEDURE(),DERIVED', |
+  'SetSort {16}PROCEDURE(BYTE NewOrder,BYTE Force),BYTE,PROC,DERIVED', 'SetUseMRP {14}PROCEDURE(BYTE UseMRP=True),DERIVED', |
+  'TakeKey {16}PROCEDURE(),BYTE,PROC,DERIVED', 'TakeLocate {13}PROCEDURE(),DERIVED', |
+  'ValidateRecord {9}PROCEDURE(),BYTE,DERIVED')
+WHEN  ('Locator0') ('Destruct {15}PROCEDURE(),DERIVED', 'GetShadow {14}PROCEDURE(),STRING,DERIVED', |
+  'Init {19}PROCEDURE(SIGNED Control = 0,*? Free,BYTE NoCase = 0),DERIVED', 'TakeAccepted {11}PROCEDURE(),BYTE,DERIVED', |
+  'Update {17}PROCEDURE(),DERIVED')
 
 %SQLViewFields MULTI DEFAULT  ()
 %TableSchematicsDescription DEFAULT  ('')
@@ -5283,17 +5624,19 @@ WHEN  ('Locator0')TIMES 0
 
 %SortScrollAlt DEPEND %SortOrder LONG TIMES 0
 
-%HotFields MULTI LONG  ()
-%HotField DEPEND %HotFields FIELD TIMES 0
+%HotFields MULTI LONG  (1, 2)
+%HotField DEPEND %HotFields FIELD TIMES 2
+WHEN  (1) (Dct:SourceDirectory)
+WHEN  (2) (Dct:DestinationDirectory)
 
-%HotFieldBound DEPEND %HotFields LONG TIMES 0
+%HotFieldBound DEPEND %HotFields LONG TIMES 2
+WHEN  (1) (1)
+WHEN  (2) (1)
 
 %HotFieldBindOnly DEPEND %HotFields LONG TIMES 0
 
 %UseSameColorForAll LONG  (0)
-%ControlGreenBarColor DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (0)
+%ControlGreenBarColor DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5303,9 +5646,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ControlFieldForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%ControlFieldForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5315,9 +5656,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ControlFieldBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%ControlFieldBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5327,9 +5666,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ControlFieldForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%ControlFieldForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5339,9 +5676,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ControlFieldBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%ControlFieldBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5355,9 +5690,7 @@ WHEN  ('?ExportBtn')TIMES 0
 
 %ColorCondition DEPEND %ConditionalColors DEFAULT TIMES 0
 
-%ConditionalControlFieldForegroundNormal DEPEND %ConditionalColors LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('')TIMES 0
+%ConditionalControlFieldForegroundNormal DEPEND %ConditionalColors LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5366,9 +5699,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ConditionalControlFieldBackgroundNormal DEPEND %ConditionalColors LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('')TIMES 0
+%ConditionalControlFieldBackgroundNormal DEPEND %ConditionalColors LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5377,9 +5708,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ConditionalControlFieldForegroundSelected DEPEND %ConditionalColors LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('')TIMES 0
+%ConditionalControlFieldForegroundSelected DEPEND %ConditionalColors LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5388,9 +5717,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ConditionalControlFieldBackgroundSelected DEPEND %ConditionalColors LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('')TIMES 0
+%ConditionalControlFieldBackgroundSelected DEPEND %ConditionalColors LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5399,9 +5726,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%GreenBarOnForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%GreenBarOnForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5411,9 +5736,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%GreenBarOnBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%GreenBarOnBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5423,9 +5746,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%GreenBarOnForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%GreenBarOnForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5435,9 +5756,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%GreenBarOnBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%GreenBarOnBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5447,9 +5766,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%GreenBarOffForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%GreenBarOffForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5459,9 +5776,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%GreenBarOffBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%GreenBarOffBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5471,9 +5786,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%GreenBarOffForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%GreenBarOffForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5483,9 +5796,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%GreenBarOffBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (-1)
+%GreenBarOffBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5533,9 +5844,7 @@ WHEN  ('?ExportBtn')TIMES 0
 %ConditionalControlFieldIconIsNumber DEPEND %ConditionalIcons LONG TIMES 0
 
 %UseSameStyleForAll LONG  (0)
-%ControlGreenBarStyle DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (0)
+%ControlGreenBarStyle DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5545,9 +5854,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%GreenBarOnStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') ('Local List')
+%GreenBarOnStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5557,9 +5864,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%GreenBarOnStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') ('')
+%GreenBarOnStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5571,9 +5876,7 @@ WHEN  ('?ExportBtn')TIMES 0
 
 %GreenBarOnStyle DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
 
-%GreenBarOffStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') ('Local List')
+%GreenBarOffStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5583,9 +5886,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%GreenBarOffStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') ('')
+%GreenBarOffStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5597,9 +5898,7 @@ WHEN  ('?ExportBtn')TIMES 0
 
 %GreenBarOffStyle DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
 
-%ControlFieldStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') ('Local List')
+%ControlFieldStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5609,9 +5908,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ControlFieldStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') ('')
+%ControlFieldStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5627,9 +5924,7 @@ WHEN  ('?ExportBtn')TIMES 0
 
 %StyleCondition DEPEND %ConditionalStyles DEFAULT TIMES 0
 
-%ConditionalControlFieldStyleType DEPEND %ConditionalStyles DEFAULT TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('')TIMES 0
+%ConditionalControlFieldStyleType DEPEND %ConditionalStyles DEFAULT TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5638,9 +5933,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ConditionalControlFieldStyleLocalList DEPEND %ConditionalStyles DEFAULT TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('')TIMES 0
+%ConditionalControlFieldStyleLocalList DEPEND %ConditionalStyles DEFAULT TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5691,9 +5984,7 @@ WHEN  ('?ExportBtn')TIMES 0
 %EnableSortHeader LONG  (0)
 %ControlFieldSortHeaderSave LONG  (0)
 %ControlFieldSortHeaderMulti LONG  (1)
-%ControlFieldSortHeaderOnlyAsc DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (0)
+%ControlFieldSortHeaderOnlyAsc DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5703,9 +5994,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ControlFieldSortHeaderOverride DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (0)
+%ControlFieldSortHeaderOverride DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5715,9 +6004,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ControlFieldSortHeaderDisableColumn DEPEND %Control DEPEND %ControlField LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('') (0)
+%ControlFieldSortHeaderDisableColumn DEPEND %Control DEPEND %ControlField LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5731,9 +6018,7 @@ WHEN  ('?ExportBtn')TIMES 0
 
 %ControlFieldSortHeaderField DEPEND %ControlFieldSortHeaderFields FIELD TIMES 0
 
-%ControlFieldSortHeaderFieldOrder DEPEND %ControlFieldSortHeaderFields DEFAULT TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('')TIMES 0
+%ControlFieldSortHeaderFieldOrder DEPEND %ControlFieldSortHeaderFields DEFAULT TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5742,9 +6027,7 @@ WHEN  ('?DonutHoleHostRegion')TIMES 0
 WHEN  ('?DwrTreeList:2')TIMES 0
 WHEN  ('?ExportBtn')TIMES 0
 
-%ControlFieldSortHeaderFieldCase DEPEND %ControlFieldSortHeaderFields LONG TIMES 8
-WHEN  ('')TIMES 1
-WHEN  ('')TIMES 0
+%ControlFieldSortHeaderFieldCase DEPEND %ControlFieldSortHeaderFields LONG TIMES 7
 WHEN  ('?AddNewFieldBtn')TIMES 0
 WHEN  ('?AddNewTableBtn')TIMES 0
 WHEN  ('?DctSearch')TIMES 0
@@ -5893,7 +6176,8 @@ WHEN  ('Default') ('SelectFileClass')
 %ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
 WHEN  ('Default') ('')
 
-%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 1
+WHEN  ('Default') ('Ask {20}PROCEDURE(BYTE KeepDir=0),STRING', 'Ask {20}PROCEDURE(SelectFileQueue FileQueue,BYTE KeepDir = 0)')
 
 %DOSFileDialogHeader DEFAULT  ('Select DCTX File')
 %DOSFileField FIELD  (DctFile)

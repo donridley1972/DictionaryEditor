@@ -1,0 +1,435 @@
+[MODULE]
+NAME 'RunOdbc_DictionaryEditor.clw'
+[COMMON]
+FROM ABC GENERATED
+[PROCEDURE]
+NAME RunOdbc
+PROTOTYPE '(*QUEUE pOutQ,string pDirectory,string pSelectString,*WINDOW pWindow,Long pListFeq)'
+PARAMETERS '(*QUEUE pOutQ,string pDirectory,string pSelectString,*WINDOW pWindow,Long pListFeq)'
+GLOBAL
+[COMMON]
+FROM ABC Source
+[DATA]
+[SCREENCONTROLS]
+! PROMPT('Files Q:'),USE(?FilesQ:Prompt)
+! ENTRY(@s20),USE(FilesQ)
+[REPORTCONTROLS]
+! STRING(@s20),USE(FilesQ)
+FilesQ                   QUEUE,PRE(FQ)
+!!> GUID('1748f4f6-8a7d-4c71-a332-8dfca72f68da'),PROMPT('Files Q:'),HEADER('Files Q'),PICTURE(@s20),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('name:'),USE(?FQ:name:Prompt)
+! ENTRY(@s255),USE(FQ:name)
+[REPORTCONTROLS]
+! STRING(@s255),USE(FQ:name)
+name                       STRING(256)
+!!> GUID('0a9c9a48-3ed4-4077-baed-dc3fcf0e2d35'),PROMPT('name:'),HEADER('name'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('shortname:'),USE(?FQ:shortname:Prompt)
+! ENTRY(@s13),USE(FQ:shortname)
+[REPORTCONTROLS]
+! STRING(@s13),USE(FQ:shortname)
+shortname                  STRING(13)
+!!> GUID('7a93b063-69dd-4aff-8fbf-c25dceb3ed17'),PROMPT('shortname:'),HEADER('shortname'),PICTURE(@s13),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('date:'),USE(?FQ:date:Prompt)
+! ENTRY(@n-14),USE(FQ:date),RIGHT(1)
+[REPORTCONTROLS]
+! STRING(@n-14),USE(FQ:date),RIGHT(1)
+date                       LONG
+!!> GUID('276f48ba-75a9-433f-9883-c6212975ba59'),PROMPT('date:'),HEADER('date'),PICTURE(@n-14),TYPEMODE(INS),JUSTIFY(RIGHT,1)
+[SCREENCONTROLS]
+! PROMPT('time:'),USE(?FQ:time:Prompt)
+! ENTRY(@n-14),USE(FQ:time),RIGHT(1)
+[REPORTCONTROLS]
+! STRING(@n-14),USE(FQ:time),RIGHT(1)
+time                       LONG
+!!> GUID('88460558-472d-437d-88f2-40362299444a'),PROMPT('time:'),HEADER('time'),PICTURE(@n-14),TYPEMODE(INS),JUSTIFY(RIGHT,1)
+[SCREENCONTROLS]
+! PROMPT('size:'),USE(?FQ:size:Prompt)
+! ENTRY(@n-14),USE(FQ:size),RIGHT(1)
+[REPORTCONTROLS]
+! STRING(@n-14),USE(FQ:size),RIGHT(1)
+size                       LONG
+!!> GUID('eacdb9fe-9048-4886-a5c0-787a36bee64d'),PROMPT('size:'),HEADER('size'),PICTURE(@n-14),TYPEMODE(INS),JUSTIFY(RIGHT,1)
+[SCREENCONTROLS]
+! PROMPT('attrib:'),USE(?FQ:attrib:Prompt)
+! ENTRY(@n3),USE(FQ:attrib)
+[REPORTCONTROLS]
+! STRING(@n3),USE(FQ:attrib)
+attrib                     BYTE
+!!> GUID('e0263755-77c3-4e67-9262-2c5e66f3bc4d'),PROMPT('attrib:'),HEADER('attrib'),PICTURE(@n3),TYPEMODE(INS)
+                         END
+!!> GUID('2404f24f-8bb1-45a7-a029-c8c112f57256')
+[PROMPTS]
+%GenerateOpenClose LONG  (0)
+%GenerateSaveRestore LONG  (0)
+[EMBED]
+EMBED %DataSection
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 1000
+PROPERTY:END
+MyOdbc                  dwrODBC
+st                      StringTheory
+LneSt                   StringTheory
+ValSt                   StringTheory
+OdbcGrp         		Group(OdbcDsnGroupType).
+QGrp                    &GROUP
+QFld                    ANY
+RetVal                  Long
+PiRow                   Long
+dbms_name               CSTRING(256)
+ServerName              CSTRING(100)
+ConnectionString 		CSTRING(255)
+OutConnectionString     CSTRING(255)
+SelectString            CSTRING(255)
+EnvironmentHandle       &Long
+ConnectionHandle        &Long
+STMTHandle              &Long
+UserName                CSTRING(100)
+NameLength2             Long
+Authentication          CSTRING(100)
+NameLength3             Long
+InfoValuePtr            Long
+BufferLength            Long
+CatalogName             CSTRING(255)
+CatalogAddr             Long
+SchemaName              CSTRING(255)
+SchemaAddr              Long
+TableName               CSTRING(255)
+TableNameAddr           Long
+TableType               CSTRING(255)
+TableTypeAddr           Long
+QueryTextLen            Long
+OdbcDsnGroup            GROUP,NAME('OdbcDsn'),PRE(Dns)
+DRIVER                  STRING(100),NAME('DRIVER')
+UlongAsDate             STRING(1),NAME('UlongAsDate')
+ExtSuperFile            STRING(3),NAME('ExtSuperFile')
+ExtSeperator            STRING(3),NAME('ExtSeperator')
+NoDot                   STRING(1),NAME('NoDot')
+NullEmptyStr            STRING(1),NAME('NullEmptyStr')
+Timefield               STRING(20),NAME('Timefield')
+Datefield               STRING(20),NAME('Datefield')
+Oem                     STRING(1),NAME('Oem')
+EnvFile                 STRING(255),NAME('EnvFile')
+Extension               STRING(3),NAME('Extension')
+DBQ                     STRING(255),NAME('DBQ')
+                        END
+ConnectionStringLen     Long
+dbms_ver                CSTRING(256)
+getdata_support         Long
+max_concur_act          Long
+NameLength1             Long
+ColumnCountPtr          Long
+NativeErrorPtr          Long
+NameLengthPtr           Long
+i                       Long
+x                       Long
+y                       Long
+StringLengthPtr         Long
+StrLen                  Long
+TextLengthPtr           Long
+FetchRetVal             Long
+TargetValuePtr          Long
+NumericAttributePtr     Long
+CharacterAttributePtr   Long
+CharacterBuffer         &CSTRING
+SqlState                CSTRING(255)
+MessageText             CSTRING(512)
+InfoStr                 CSTRING(255)
+InfoStrLen              Long
+ColumnName              CSTRING(50)
+ValuePtr                Long
+DataTypePtr             Long
+ColumnSizePtr           Long
+DecimalDigitsPtr        Long
+NullablePtr             Long
+WindowRef				&Window
+ListRef					Long
+MyState                     Long
+MyState:SQLFetch            Equate(1)
+MyState:SetColumnHeaders    Equate(2)
+MyState:CloseSQL            Equate(3)
+[END]
+EMBED %ProcessedCode
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 1800
+PROPERTY:END
+      MyOdbc.OdbcDsnGroup.DRIVER        =  'TopSpeed ODBC Driver'
+      MyOdbc.OdbcDsnGroup.DBQ           =  Clip(pDirectory) !'C:\ACTIVE CLARION PROJECTS\Clarion 11\PDManager App Group\Topspeed ODBC Testing\'
+      MyOdbc.OdbcDsnGroup.Extension     =  'tps'
+      MyOdbc.OdbcDsnGroup.Oem           =  'N'
+      MyOdbc.OdbcDsnGroup.NullEmptyStr  =  'Y'
+      MyOdbc.OdbcDsnGroup.NoDot         =  'N'
+      MyOdbc.OdbcDsnGroup.UlongAsDate   =  'Y'
+      !MyOdbc.OdbcDsnGroup
+      !MyOdbc.OdbcDsnGroup
+      !MyOdbc.OdbcDsnGroup
+      !MyOdbc.OdbcDsnGroup
+      MyOdbc.SetConnectionString(MyOdbc.OdbcDsnGroup)
+
+      MyOdbc.Trace('')
+      MyOdbc.Trace('pSelectString = ' & Clip(pSelectString))
+      MyOdbc.Trace('')
+      Glo:DBOwner = 'DRIVER={{TopSpeed ODBC Driver};DBQ='& Clip(pDirectory) & ';Extension=tps;Oem=Y;NullEmptyStr=Y;NoDot=N;UlongAsDate=Y;'
+      MyOdbc.Trace('')
+      MyOdbc.Trace('<9>Glo:DBOwner  [' & Clip(Glo:DBOwner) &']')
+      MyOdbc.Trace('<9>pDirectory   [' & Clip(pDirectory) &']')
+      MyOdbc.Trace('<9>pSelectString[' & Clip(pSelectString) &']')
+      MyOdbc.Trace('')
+      WindowRef &= pWindow
+      ListRef = pListFeq
+
+      SelectString = Clip(pSelectString)
+      OdbcDsnGroup.DBQ = pDirectory
+      QGrp &= pOutQ
+      Free(pOutQ)
+      EnvironmentHandle &=  NEW Long
+      ConnectionHandle  &=  New Long
+      STMTHandle        &=  NEW Long
+      If dwrSQLAllocHandle(SQL_HANDLE_ENV,0,EnvironmentHandle) = SQL_ERROR
+        MyOdbc.Trace('dwrSQLAllocHandle - Error - Unable to allocate an environment handle')
+      ELSE
+            If dwrSQLSetEnvAttr(EnvironmentHandle,SQL_ATTR_ODBC_VERSION,SQL_OV_ODBC3,0) = SQL_ERROR     !SQL_OV_ODBC2
+                MyOdbc.Trace('dwrSQLSetEnvAttr - Error - Unable to Set Environment Attribute')
+            ELSE
+                If dwrSQLAllocHandle(SQL_HANDLE_DBC,EnvironmentHandle,ConnectionHandle) = SQL_ERROR
+                    MyOdbc.Trace('dwrSQLAllocHandle - Error - Unable to allocate an Connection handle')
+                ELSE
+                    ServerName = 'TopsepeedODBC'
+                    ConnectionString = Glo:DBOwner  !MyBase.GetOdbcDriverString(OdbcDsnGroup,';','=')
+                    ConnectionStringLen = LEN(Glo:DBOwner) !LEN(ConnectionString) !LEN(Glo:DBOwner)
+                    OutConnectionString = '<0>'
+                    UserName = ''
+                    NameLength2 = 0
+                    Authentication = ''
+                    NameLength3 = 0
+                    RetVal = dwrSQLDriverConnect(ConnectionHandle,0,ConnectionString,ConnectionStringLen,OutConnectionString,BufferLength,StrLen,SD_DRIVER_NOPROMPT)
+                    MyOdbc.Trace('dwrSQLDriverConnect - RetVal = ' & RetVal)
+                    If RetVal <> SQL_SUCCESS != SQL_ERROR  !SD_DRIVER_NOPROMPT SQL_DRIVER_COMPLETE
+                        MyOdbc.Trace('If RetVal <> SQL_SUCCESS - Error - Unable to connect to server')
+                    ELSE
+                        !InfoValuePtr = Address(dbms_name)
+                        !BufferLength = SIZE(dbms_name)
+                        !RetVal = dwrSQLGetInfo(ConnectionHandle,SQL_DBMS_NAME,InfoValuePtr,BufferLength,StringLengthPtr)
+                        !MyOdbc.Trace('dwrSQLGetInfo - SQL_DBMS_NAME - RetVal = ' & RetVal & '<9>dbms_name = ' & dbms_name)
+
+                        !InfoValuePtr = Address(dbms_ver)
+                        !BufferLength = SIZE(dbms_ver)
+                        !RetVal = dwrSQLGetInfo(ConnectionHandle,SQL_DBMS_VER,InfoValuePtr,BufferLength,StringLengthPtr)
+                        !MyOdbc.Trace('dwrSQLGetInfo - SQL_DBMS_VER - RetVal = ' & RetVal & '<9>dbms_ver = ' & dbms_ver)
+
+                        !InfoValuePtr = Address(getdata_support)
+                        !BufferLength = SIZE(getdata_support)
+                        !RetVal = dwrSQLGetInfo(ConnectionHandle,SQL_GETDATA_EXTENSIONS,InfoValuePtr,BufferLength,StringLengthPtr)
+                        !MyOdbc.Trace('dwrSQLGetInfo - SQL_GETDATA_EXTENSIONS - RetVal = ' & RetVal & '<9>getdata_support = ' & getdata_support)
+
+                        !InfoValuePtr = Address(max_concur_act)
+                        !BufferLength = SIZE(max_concur_act)
+                        !RetVal = dwrSQLGetInfo(ConnectionHandle,SQL_MAX_CONCURRENT_ACTIVITIES,InfoValuePtr,BufferLength,StringLengthPtr)
+                        !MyOdbc.Trace('dwrSQLGetInfo - SQL_MAX_CONCURRENT_ACTIVITIES - RetVal = ' & RetVal & '<9>max_concur_act = ' & max_concur_act)
+
+                        If dwrSQLAllocHandle(SQL_HANDLE_STMT,ConnectionHandle,STMTHandle) = SQL_ERROR
+                            MyOdbc.Trace('Error - Unable to allocate an STMT handle')
+                        ELSE
+                            CatalogName = ''
+                            SchemaName = ''
+                            TableName = ''
+                            NameLength1 = Size(CatalogName)
+                            NameLength2 = Size(SchemaName)
+                            NameLength3 = Size(TableName)
+                            CatalogAddr = Address(CatalogName)
+                            SchemaAddr = Address(SchemaName)
+                            TableNameAddr = Address(TableName)
+                            TableType = 'TABLE'
+                            TableTypeAddr = Address(TableType)
+                            NameLengthPtr = Size(TableType)
+                        !    Free(FilesQ)
+                        !    DIRECTORY(FilesQ,st.PathOnly(OdbcDsnGroup.DBQ) & '\*.tps',ff_:NORMAL)
+                        End
+                    End
+                End
+            End
+      End
+
+      If Not STMTHandle
+          Return
+      End
+      PiRow = 0
+      RetVal = dwrSQLParamOptions(STMTHandle,1,PiRow)
+      If RetVal <> SQL_SUCCESS
+          MyOdbc.Trace('dwrSQLParamOptions - Error - RetVal[' & RetVal & ']')
+          !Return
+      End
+      MyOdbc.Trace('dwrSQLParamOptions - RetVal[' & RetVal & ']')
+      QueryTextLen = LEN(SelectString)
+      RetVal = dwrSQLExecDirect(STMTHandle,SelectString,QueryTextLen) != SQL_ERROR
+      If RetVal <> SQL_SUCCESS
+          MyOdbc.Trace('dwrSQLExecDirect - Error - RetVal[' & RetVal & ']')
+          !Return
+      End
+      MyOdbc.Trace('')
+      MyOdbc.Trace('dwrSQLExecDirect - RetVal[' & RetVal & '] SelectString[' & SelectString & '] QueryTextLen[' & QueryTextLen & ']')
+      MyOdbc.Trace('')
+
+      BufferLength = 512 !Len(MessageText)
+      RetVal = dwrSQLGetDiagRec(SQL_HANDLE_STMT,STMTHandle,1,SqlState,NativeErrorPtr,MessageText,BufferLength,TextLengthPtr)
+      If RetVal <> SQL_SUCCESS
+          MyOdbc.Trace('dwrSQLGetDiagRec - Error - RetVal[' & RetVal & ']')
+          !Return
+      End
+      MyOdbc.Trace('dwrSQLGetDiagRec - RetVal[' & RetVal & '] SqlState[' & SqlState & '] NativeErrorPtr[' & NativeErrorPtr & '] MessageText[' & MessageText & '] BufferLength[' & BufferLength & ']')
+      BufferLength = 512 !Len(MessageText)
+      RetVal = dwrSQLGetDiagRec(SQL_HANDLE_STMT,STMTHandle,2,SqlState,NativeErrorPtr,MessageText,BufferLength,TextLengthPtr)
+      If RetVal <> SQL_SUCCESS
+          MyOdbc.Trace('dwrSQLGetDiagRec - Error - RetVal[' & RetVal & ']')
+          !Return
+      End
+      MyOdbc.Trace('dwrSQLGetDiagRec - RetVal[' & RetVal & '] SqlState[' & SqlState & '] NativeErrorPtr[' & NativeErrorPtr & '] MessageText[' & MessageText & '] BufferLength[' & BufferLength & ']')
+
+      If RetVal = SQL_ERROR
+        MyOdbc.Trace('Error - Unable to Run Query')
+      ELSE
+        If dwrSQLNumResultCols(STMTHandle,ColumnCountPtr) = SQL_ERROR
+            MyOdbc.Trace('Error getting columns')
+        ELSE
+            MyOdbc.Trace('dwrSQLNumResultCols - ColumnCountPtr = ' & ColumnCountPtr)
+            !0{PROP:Timer} = 1
+
+            y = 0
+            LOOP
+                y+=1
+                FetchRetVal = dwrSQLFetch(STMTHandle)
+                If FetchRetVal = SQL_NO_DATA Or FetchRetVal <> 0
+                    Break
+                    !Return
+                End
+                LneSt.Start()
+                Loop x = 1 to ColumnCountPtr
+                    RetVal = dwrSQLColAttribute(STMTHandle,x,SQL_COLUMN_DISPLAY_SIZE,CharacterAttributePtr,BufferLength,StringLengthPtr,NumericAttributePtr)
+                    RetVal = dwrSQLColAttribute(STMTHandle,x,SQL_COLUMN_TYPE,CharacterAttributePtr,BufferLength,StringLengthPtr,NumericAttributePtr)
+                    RetVal = dwrSQLBindCol(STMTHandle,x,SQL_CHAR,TargetValuePtr,BufferLength,StrLen)
+                    RetVal = dwrSQLColAttribute(STMTHandle,x,SQL_DESC_NAME,CharacterAttributePtr,BufferLength,StringLengthPtr,NumericAttributePtr)
+                    CharacterBuffer &= New CSTRING(512) !NumericAttributePtr
+                    TargetValuePtr = Address(CharacterBuffer)
+                    BufferLength = 513 !NumericAttributePtr + 1 !SIZE(CharacterBuffer)+1
+                    InfoValuePtr = Address(InfoStr)
+                    InfoStrLen = Len(InfoValuePtr)
+                    RetVal = dwrSQLGetInfo(STMTHandle,SQL_GETDATA_EXTENSIONS,InfoValuePtr,BufferLength,StringLengthPtr)
+                    dwrSQLParamData(STMTHandle,ValuePtr)
+                    RetVal = dwrSQLGetData(STMTHandle,x,SQL_CHAR,TargetValuePtr,BufferLength,StrLen)
+                    MyOdbc.Trace(CharacterBuffer)
+                    QFld &= WHAT(QGrp,x)
+                    If Not QFld &= NULL
+                        QFld = CharacterBuffer
+                    End
+                    LneSt.AppendA(CharacterBuffer,False,',')
+                    Clear(CharacterBuffer)
+                    Clear(TargetValuePtr)
+                End
+                Add(pOutQ)
+            END
+            !MyState = MyState:SQLFetch
+
+            Loop x = 1 to ColumnCountPtr
+                RetVal = dwrSQLDescribeCol(STMTHandle,x,ColumnName,BufferLength,NameLength1,DataTypePtr,ColumnSizePtr,DecimalDigitsPtr,NullablePtr)
+                !MyOdbc.Trace('dwrSQLDescribeCol - ColumnName = ' & ColumnName)
+                ValSt.SetValue(ColumnName)
+                If ValSt.Instring('|')
+                    ValSt.SetValue(ValSt.Before('|'))
+                End
+                MyOdbc.Trace('dwrSQLDescribeCol - ColumnName = ' & ValSt.GetValue())
+                !LabelSt.AppendA(ValSt.GetValue(),False,',')
+                WindowRef $ ListRef{PROPLIST:Header,x} = ValSt.GetValue()
+            End
+        End
+      End
+
+    MyOdbc.Trace('[RunOdbc][Just Before End of Procedure]')
+    If Not CharacterBuffer &= NULL
+        Dispose(CharacterBuffer)
+    End
+    dwrSQLFreeStmt(STMTHandle,SQL_CLOSE)
+    dwrSQLFreeHandle(SQL_HANDLE_STMT,STMTHandle);
+    dwrSQLFreeHandle(SQL_HANDLE_DBC,ConnectionHandle);
+    dwrSQLFreeHandle(SQL_HANDLE_ENV,EnvironmentHandle);
+    Dispose(EnvironmentHandle)
+    Dispose(ConnectionHandle)
+    Dispose(STMTHandle)
+[END]
+[END]
+[ADDITION]
+NAME DMTemporalID PceJSGBLocalExtension
+[INSTANCE]
+INSTANCE 3
+OWNER 33
+[PROMPTS]
+%PceJSGBLocalGenerateOpenClose LONG  (0)
+%EnableDebugTracingForThisWindow LONG  (0)
+%PceJSGBTraceMethodName DEFAULT  ('')
+%DisableSetFilePaths LONG  (0)
+%DisableSetPropPixels LONG  (0)
+%PceJSGBLocalDisableThreadTracking LONG  (0)
+%PceJSGBLocalThreadTrackingIsMainStartup LONG  (0)
+%PceJSGBLocalDisablePreserving LONG  (0)
+%PceJSGBIniFileName DEFAULT  ('')
+%PceJSGBPreserveVarsLoc MULTI LONG  ()
+%PceJSGBPreserveVarLoc DEPEND %PceJSGBPreserveVarsLoc DEFAULT TIMES 0
+
+[ADDITION]
+NAME WinEvent WinEvent
+[INSTANCE]
+INSTANCE 2
+OWNER 10
+[PROMPTS]
+%DisableWinEvent LONG  (0)
+%CheckForCantCloseNowSetHere LONG  (1)
+%AutoDown LONG  (0)
+%NoAutoDown LONG  (0)
+%LocWindowsVisible DEFAULT  ('0')
+%WindowsVisibleAfterOpen LONG  (1)
+%AlertWinEventDebug LONG  (0)
+%DisplayCompileDate LONG  (0)
+%DisplayCompileDateFormat DEFAULT  ('@D10')
+%locNoHandleCloseDown LONG  (0)
+%locCloseDownWhenWindowCloses LONG  (0)
+%locCloseDownWhenWindowClosesCtrl DEFAULT  ('')
+%altWinFix DEFAULT  ('Default')
+%WinAlert MULTI LONG  ()
+%Mess DEPEND %WinAlert DEFAULT TIMES 0
+
+%Act1 DEPEND %WinAlert DEFAULT TIMES 0
+
+%act2 DEPEND %WinAlert DEFAULT TIMES 0
+
+%AlertControl DEPEND %WinAlert DEFAULT TIMES 0
+
+%AlertControlType DEPEND %WinAlert DEFAULT TIMES 0
+
+%locCloseDownWhenWindowClosesSet LONG  (0)
+[ADDITION]
+NAME UltimateNotify UltimateNotifyLocalExtension
+[INSTANCE]
+INSTANCE 1
+OWNER 9
+[PROMPTS]
+%ClassName DEFAULT  ('NotifyHandler')
+%StringClassName DEFAULT  ('us')
+%UseStringTheory LONG  (0)
+%EnableNotifyTracking LONG  (0)
+%NotifyProcedureType DEFAULT  ('Independent')
+%ParentThreadVariable DEFAULT  ('')
+%FieldToReceiveParameter FIELD  ()
+%NotifyIDToMonitor DEFAULT  ('1')
+%NotifyIDs MULTI LONG  ()
+%NotifyID DEPEND %NotifyIDs DEFAULT TIMES 0
+
+%NotifyGroupNames MULTI LONG  ()
+%NotifyGroupName DEPEND %NotifyGroupNames DEFAULT TIMES 0
+
+%DisableEventNotifyTemplate LONG  (0)
+[END]

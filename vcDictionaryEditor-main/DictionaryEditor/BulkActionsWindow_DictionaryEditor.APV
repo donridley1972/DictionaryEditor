@@ -1978,7 +1978,7 @@ Window  WINDOW('Caption'),AT(,,449,265),FONT('Segoe UI',10),RESIZE,AUTO,GRAY,MAX
             END
             TAB('FM3'),USE(?Fm3Tab),ICON('fm3.ico'),#ORDINAL(16)
               BUTTON('Add FM3 Version Option'),AT(14,26,124,26),USE(?AddFm3VersionBtn),LEFT, |
-                ICON('DataSetVersion.ico'),DISABLE,FLAT,#ORDINAL(17)
+                ICON('DataSetVersion.ico'),FLAT,#ORDINAL(17)
               BUTTON('Increment FM3 Version'),AT(14,55,124,26),USE(?IncrementFm3VersionBtn), |
                 LEFT,ICON('DataVersionIncrement.ico'),DISABLE,FLAT,#ORDINAL(18)
             END

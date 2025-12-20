@@ -35,6 +35,57 @@ OptionQId                LONG
 NotifyParam              STRING(1500)
 !!> GUID('2d1cd780-5078-4a66-be59-e240e3f0bebf'),PROMPT('Notify Param:'),HEADER('Notify Param'),PICTURE(@s255),TYPEMODE(INS),JUSTIFY(LEFT,2)
 [SCREENCONTROLS]
+! PROMPT('Files Q:'),USE(?FilesQ:Prompt)
+! ENTRY(@s20),USE(FilesQ)
+[REPORTCONTROLS]
+! STRING(@s20),USE(FilesQ)
+FilesQ                   QUEUE,PRE(FQ)
+!!> GUID('137f7c6c-679d-4164-a852-50b9464ca3e3'),PROMPT('Files Q:'),HEADER('Files Q'),PICTURE(@s20),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('name:'),USE(?FQ:name:Prompt)
+! ENTRY(@s255),USE(FQ:name)
+[REPORTCONTROLS]
+! STRING(@s255),USE(FQ:name)
+name                       STRING(256)
+!!> GUID('19175f88-e18e-4a84-a0b0-97dbd916db91'),PROMPT('name:'),HEADER('name'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('shortname:'),USE(?FQ:shortname:Prompt)
+! ENTRY(@s13),USE(FQ:shortname)
+[REPORTCONTROLS]
+! STRING(@s13),USE(FQ:shortname)
+shortname                  STRING(13)
+!!> GUID('bb67f3fc-312c-4f0a-85a2-3f43b841a04d'),PROMPT('shortname:'),HEADER('shortname'),PICTURE(@s13),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('date:'),USE(?FQ:date:Prompt)
+! ENTRY(@n-14),USE(FQ:date),RIGHT(1)
+[REPORTCONTROLS]
+! STRING(@n-14),USE(FQ:date),RIGHT(1)
+date                       LONG
+!!> GUID('4674a400-de60-4c43-a827-c5cddc76f422'),PROMPT('date:'),HEADER('date'),PICTURE(@n-14),TYPEMODE(INS),JUSTIFY(RIGHT,1)
+[SCREENCONTROLS]
+! PROMPT('time:'),USE(?FQ:time:Prompt)
+! ENTRY(@n-14),USE(FQ:time),RIGHT(1)
+[REPORTCONTROLS]
+! STRING(@n-14),USE(FQ:time),RIGHT(1)
+time                       LONG
+!!> GUID('60bdba05-8a19-4629-aacc-982f0c85f203'),PROMPT('time:'),HEADER('time'),PICTURE(@n-14),TYPEMODE(INS),JUSTIFY(RIGHT,1)
+[SCREENCONTROLS]
+! PROMPT('size:'),USE(?FQ:size:Prompt)
+! ENTRY(@n-14),USE(FQ:size),RIGHT(1)
+[REPORTCONTROLS]
+! STRING(@n-14),USE(FQ:size),RIGHT(1)
+size                       LONG
+!!> GUID('eaf06be3-aa5e-4777-9a43-aa149f487d69'),PROMPT('size:'),HEADER('size'),PICTURE(@n-14),TYPEMODE(INS),JUSTIFY(RIGHT,1)
+[SCREENCONTROLS]
+! PROMPT('attrib:'),USE(?FQ:attrib:Prompt)
+! ENTRY(@n3),USE(FQ:attrib)
+[REPORTCONTROLS]
+! STRING(@n3),USE(FQ:attrib)
+attrib                     BYTE
+!!> GUID('1fdf1ec3-c9d1-4bbb-a077-9fa077d454e7'),PROMPT('attrib:'),HEADER('attrib'),PICTURE(@n3),TYPEMODE(INS)
+                         END
+!!> GUID('4206cefc-178f-49cc-b5fd-1a9ef20fd18f')
+[SCREENCONTROLS]
 ! PROMPT('Options Q:'),USE(?OptionsQ:Prompt)
 ! ENTRY(@s20),USE(OptionsQ)
 [REPORTCONTROLS]
@@ -161,6 +212,344 @@ ModifiedVersionNumber        STRING(3),NAME('ModifiedVersionNumber | attribute')
 !!> GUID('7b1a3d50-ad1f-47a8-b8f6-e590d1c3a30f')
 ActionMessage            CSTRING(40)
 !!> GUID('cc813945-2281-4e2d-8bfe-71b8a8d60436')
+[SCREENCONTROLS]
+! PROMPT('Out Q:'),USE(?OutQ:Prompt)
+! ENTRY(@s20),USE(OutQ)
+[REPORTCONTROLS]
+! STRING(@s20),USE(OutQ)
+OutQ                     QUEUE,PRE(Ot)
+!!> GUID('20aedd00-7ea3-408d-be94-777c82a4559b'),PROMPT('Out Q:'),HEADER('Out Q'),PICTURE(@s20),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 1:'),USE(?Ot:Str1:Prompt)
+! ENTRY(@s255),USE(Ot:Str1)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str1)
+Str1                       STRING(255)
+!!> GUID('68b147c7-f8a7-4de6-8e86-b146b78be8dc'),PROMPT('Str 1:'),HEADER('Str 1'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 2:'),USE(?Ot:Str2:Prompt)
+! ENTRY(@s255),USE(Ot:Str2)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str2)
+Str2                       STRING(255)
+!!> GUID('d5135ef5-5479-4032-8d72-ececc0fbee27'),PROMPT('Str 2:'),HEADER('Str 2'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 3:'),USE(?Ot:Str3:Prompt)
+! ENTRY(@s255),USE(Ot:Str3)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str3)
+Str3                       STRING(255)
+!!> GUID('1dc0e5e4-6d5a-44db-a3fe-b5e55a2459ec'),PROMPT('Str 3:'),HEADER('Str 3'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 4:'),USE(?Ot:Str4:Prompt)
+! ENTRY(@s255),USE(Ot:Str4)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str4)
+Str4                       STRING(255)
+!!> GUID('691a3fb8-ed9c-4f8a-a397-e559e7a8387f'),PROMPT('Str 4:'),HEADER('Str 4'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 5:'),USE(?Ot:Str5:Prompt)
+! ENTRY(@s255),USE(Ot:Str5)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str5)
+Str5                       STRING(255)
+!!> GUID('39a9607a-00aa-4e50-8865-ca82bc596ced'),PROMPT('Str 5:'),HEADER('Str 5'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 6:'),USE(?Ot:Str6:Prompt)
+! ENTRY(@s255),USE(Ot:Str6)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str6)
+Str6                       STRING(255)
+!!> GUID('b0ec07ba-0281-4fd3-8338-a784e7e6adcd'),PROMPT('Str 6:'),HEADER('Str 6'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 7:'),USE(?Ot:Str7:Prompt)
+! ENTRY(@s255),USE(Ot:Str7)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str7)
+Str7                       STRING(255)
+!!> GUID('6c3f9e00-6348-4ea6-8a98-1fd05f3c8cda'),PROMPT('Str 7:'),HEADER('Str 7'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 8:'),USE(?Ot:Str8:Prompt)
+! ENTRY(@s255),USE(Ot:Str8)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str8)
+Str8                       STRING(255)
+!!> GUID('2e38aceb-5bb0-4e28-860c-01559604f7f1'),PROMPT('Str 8:'),HEADER('Str 8'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 9:'),USE(?Ot:Str9:Prompt)
+! ENTRY(@s255),USE(Ot:Str9)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str9)
+Str9                       STRING(255)
+!!> GUID('dbfdc780-fa06-49a2-9a30-33d02c2e94c8'),PROMPT('Str 9:'),HEADER('Str 9'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 10:'),USE(?Ot:Str10:Prompt)
+! ENTRY(@s255),USE(Ot:Str10)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str10)
+Str10                      STRING(255)
+!!> GUID('d562a902-4028-4feb-87e5-5d280aea798e'),PROMPT('Str 10:'),HEADER('Str 10'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 11:'),USE(?Ot:Str11:Prompt)
+! ENTRY(@s255),USE(Ot:Str11)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str11)
+Str11                      STRING(255)
+!!> GUID('e07f73d5-37b4-41d7-a84a-dd2e745b60e5'),PROMPT('Str 11:'),HEADER('Str 11'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 12:'),USE(?Ot:Str12:Prompt)
+! ENTRY(@s255),USE(Ot:Str12)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str12)
+Str12                      STRING(255)
+!!> GUID('458d92da-90e9-415f-884b-07160f14a473'),PROMPT('Str 12:'),HEADER('Str 12'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 13:'),USE(?Ot:Str13:Prompt)
+! ENTRY(@s255),USE(Ot:Str13)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str13)
+Str13                      STRING(255)
+!!> GUID('cd741981-373c-4ffc-b910-80cef1079e67'),PROMPT('Str 13:'),HEADER('Str 13'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 14:'),USE(?Ot:Str14:Prompt)
+! ENTRY(@s255),USE(Ot:Str14)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str14)
+Str14                      STRING(255)
+!!> GUID('d815e704-e05e-4bbd-ad42-d89d6f9cb810'),PROMPT('Str 14:'),HEADER('Str 14'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 15:'),USE(?Ot:Str15:Prompt)
+! ENTRY(@s255),USE(Ot:Str15)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str15)
+Str15                      STRING(255)
+!!> GUID('1dbcb81c-74db-4227-95b8-795cc3fd8f63'),PROMPT('Str 15:'),HEADER('Str 15'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 16:'),USE(?Ot:Str16:Prompt)
+! ENTRY(@s255),USE(Ot:Str16)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str16)
+Str16                      STRING(255)
+!!> GUID('a487054e-6ede-4acb-82ba-0ff39656cfcc'),PROMPT('Str 16:'),HEADER('Str 16'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 17:'),USE(?Ot:Str17:Prompt)
+! ENTRY(@s255),USE(Ot:Str17)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str17)
+Str17                      STRING(255)
+!!> GUID('9083b001-7d56-4e27-81d0-32e0b3cf767d'),PROMPT('Str 17:'),HEADER('Str 17'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 18:'),USE(?Ot:Str18:Prompt)
+! ENTRY(@s255),USE(Ot:Str18)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str18)
+Str18                      STRING(255)
+!!> GUID('710e7b43-7bb6-4e6a-adfe-efd1a1768b64'),PROMPT('Str 18:'),HEADER('Str 18'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 19:'),USE(?Ot:Str19:Prompt)
+! ENTRY(@s255),USE(Ot:Str19)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str19)
+Str19                      STRING(255)
+!!> GUID('46baf9eb-1b50-4c57-bf3e-a028723309ac'),PROMPT('Str 19:'),HEADER('Str 19'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 20:'),USE(?Ot:Str20:Prompt)
+! ENTRY(@s255),USE(Ot:Str20)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str20)
+Str20                      STRING(255)
+!!> GUID('eb692894-b441-4974-9f05-3ab59d784dfc'),PROMPT('Str 20:'),HEADER('Str 20'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 21:'),USE(?Ot:Str21:Prompt)
+! ENTRY(@s255),USE(Ot:Str21)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str21)
+Str21                      STRING(255)
+!!> GUID('be885adc-f85e-4f02-8e81-5efcf5465a91'),PROMPT('Str 21:'),HEADER('Str 21'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 22:'),USE(?Ot:Str22:Prompt)
+! ENTRY(@s255),USE(Ot:Str22)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str22)
+Str22                      STRING(255)
+!!> GUID('035c1e92-ea2b-4185-94f9-85a1232de314'),PROMPT('Str 22:'),HEADER('Str 22'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 23:'),USE(?Ot:Str23:Prompt)
+! ENTRY(@s255),USE(Ot:Str23)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str23)
+Str23                      STRING(255)
+!!> GUID('6116116c-c10b-4482-afc8-6ef648c2e565'),PROMPT('Str 23:'),HEADER('Str 23'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 24:'),USE(?Ot:Str24:Prompt)
+! ENTRY(@s255),USE(Ot:Str24)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str24)
+Str24                      STRING(255)
+!!> GUID('fcd3cd91-aa47-4753-a26e-492e97de218f'),PROMPT('Str 24:'),HEADER('Str 24'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 25:'),USE(?Ot:Str25:Prompt)
+! ENTRY(@s255),USE(Ot:Str25)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str25)
+Str25                      STRING(255)
+!!> GUID('a30febea-7f14-4ff2-bf69-b87786d34e0b'),PROMPT('Str 25:'),HEADER('Str 25'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 26:'),USE(?Ot:Str26:Prompt)
+! ENTRY(@s255),USE(Ot:Str26)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str26)
+Str26                      STRING(255)
+!!> GUID('1cd203be-d566-44e9-8811-1183c812d5bb'),PROMPT('Str 26:'),HEADER('Str 26'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 27:'),USE(?Ot:Str27:Prompt)
+! ENTRY(@s255),USE(Ot:Str27)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str27)
+Str27                      STRING(255)
+!!> GUID('37755a20-5bf9-4860-8c5d-e6f959318977'),PROMPT('Str 27:'),HEADER('Str 27'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 28:'),USE(?Ot:Str28:Prompt)
+! ENTRY(@s255),USE(Ot:Str28)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str28)
+Str28                      STRING(255)
+!!> GUID('9b51cde8-6a26-4f5a-8593-231601bf4b2d'),PROMPT('Str 28:'),HEADER('Str 28'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 29:'),USE(?Ot:Str29:Prompt)
+! ENTRY(@s255),USE(Ot:Str29)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str29)
+Str29                      STRING(255)
+!!> GUID('310701fe-d02a-4138-bbff-ee3d31869b40'),PROMPT('Str 29:'),HEADER('Str 29'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 30:'),USE(?Ot:Str30:Prompt)
+! ENTRY(@s255),USE(Ot:Str30)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str30)
+Str30                      STRING(255)
+!!> GUID('94c3886c-09f5-4ff0-8107-e215d0a3e2ab'),PROMPT('Str 30:'),HEADER('Str 30'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 31:'),USE(?Ot:Str31:Prompt)
+! ENTRY(@s255),USE(Ot:Str31)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str31)
+Str31                      STRING(255)
+!!> GUID('603e1a55-9622-4fad-b3f5-6889b9660c79'),PROMPT('Str 31:'),HEADER('Str 31'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 32:'),USE(?Ot:Str32:Prompt)
+! ENTRY(@s255),USE(Ot:Str32)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str32)
+Str32                      STRING(255)
+!!> GUID('4e66af0c-f902-46f0-b23c-fe1d162fa751'),PROMPT('Str 32:'),HEADER('Str 32'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 33:'),USE(?Ot:Str33:Prompt)
+! ENTRY(@s255),USE(Ot:Str33)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str33)
+Str33                      STRING(255)
+!!> GUID('b9da8d44-d7e9-497c-b345-a611f2eab621'),PROMPT('Str 33:'),HEADER('Str 33'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 34:'),USE(?Ot:Str34:Prompt)
+! ENTRY(@s255),USE(Ot:Str34)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str34)
+Str34                      STRING(255)
+!!> GUID('96e5e392-521e-4ed5-9c49-f573da36b030'),PROMPT('Str 34:'),HEADER('Str 34'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 35:'),USE(?Ot:Str35:Prompt)
+! ENTRY(@s255),USE(Ot:Str35)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str35)
+Str35                      STRING(255)
+!!> GUID('20e004e1-f86c-451f-92b0-92396fc2cdee'),PROMPT('Str 35:'),HEADER('Str 35'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 36:'),USE(?Ot:Str36:Prompt)
+! ENTRY(@s255),USE(Ot:Str36)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str36)
+Str36                      STRING(255)
+!!> GUID('a9e89b62-145a-416e-acd3-5637d36b713c'),PROMPT('Str 36:'),HEADER('Str 36'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 37:'),USE(?Ot:Str37:Prompt)
+! ENTRY(@s255),USE(Ot:Str37)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str37)
+Str37                      STRING(255)
+!!> GUID('9b247b8b-01fa-4e69-864a-bc70b0b34846'),PROMPT('Str 37:'),HEADER('Str 37'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 38:'),USE(?Ot:Str38:Prompt)
+! ENTRY(@s255),USE(Ot:Str38)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str38)
+Str38                      STRING(255)
+!!> GUID('cd04e926-effe-42db-b9a1-759690c68b27'),PROMPT('Str 38:'),HEADER('Str 38'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 39:'),USE(?Ot:Str39:Prompt)
+! ENTRY(@s255),USE(Ot:Str39)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str39)
+Str39                      STRING(255)
+!!> GUID('74662e47-30df-4072-a0eb-a6dce806e30a'),PROMPT('Str 39:'),HEADER('Str 39'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 40:'),USE(?Ot:Str40:Prompt)
+! ENTRY(@s255),USE(Ot:Str40)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str40)
+Str40                      STRING(255)
+!!> GUID('f2d76667-afbc-472b-8d14-157a9c717f76'),PROMPT('Str 40:'),HEADER('Str 40'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 41:'),USE(?Ot:Str41:Prompt)
+! ENTRY(@s255),USE(Ot:Str41)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str41)
+Str41                      STRING(255)
+!!> GUID('0e9a6a8b-15f2-4c15-8b3c-6a04f9e331a1'),PROMPT('Str 41:'),HEADER('Str 41'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 42:'),USE(?Ot:Str42:Prompt)
+! ENTRY(@s255),USE(Ot:Str42)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str42)
+Str42                      STRING(255)
+!!> GUID('e188c69e-0e04-4de6-8b71-af46e5c70459'),PROMPT('Str 42:'),HEADER('Str 42'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 43:'),USE(?Ot:Str43:Prompt)
+! ENTRY(@s255),USE(Ot:Str43)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str43)
+Str43                      STRING(255)
+!!> GUID('4054af70-6b32-4e49-839f-141bb273d829'),PROMPT('Str 43:'),HEADER('Str 43'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 44:'),USE(?Ot:Str44:Prompt)
+! ENTRY(@s255),USE(Ot:Str44)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str44)
+Str44                      STRING(255)
+!!> GUID('cde2af7c-f35b-4139-95b9-8341b418ad81'),PROMPT('Str 44:'),HEADER('Str 44'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 45:'),USE(?Ot:Str45:Prompt)
+! ENTRY(@s255),USE(Ot:Str45)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str45)
+Str45                      STRING(255)
+!!> GUID('6e86cb35-2ef3-4731-813b-e962919850d3'),PROMPT('Str 45:'),HEADER('Str 45'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 46:'),USE(?Ot:Str46:Prompt)
+! ENTRY(@s255),USE(Ot:Str46)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str46)
+Str46                      STRING(255)
+!!> GUID('b0af985a-4393-4edc-883d-afb33276f15f'),PROMPT('Str 46:'),HEADER('Str 46'),PICTURE(@s255),TYPEMODE(INS)
+[SCREENCONTROLS]
+! PROMPT('Str 47:'),USE(?Ot:Str47:Prompt)
+! ENTRY(@s255),USE(Ot:Str47)
+[REPORTCONTROLS]
+! STRING(@s255),USE(Ot:Str47)
+Str47                      STRING(255)
+!!> GUID('6d4eac56-2749-4534-a4fb-23edd47b74dd'),PROMPT('Str 47:'),HEADER('Str 47'),PICTURE(@s255),TYPEMODE(INS)
+                         END
+!!> GUID('c8d21bf4-e3e7-4ac8-b468-690c5e36f5fe')
 [FILES]
 [PRIMARY]
 DctVersions
@@ -174,9 +563,10 @@ Dictionaries
 Options
 DctComments
 [PROMPTS]
-%ButtonAction DEPEND %Control DEFAULT TIMES 16
+%ButtonAction DEPEND %Control DEFAULT TIMES 22
 WHEN  ('') ('No Special Action')
 WHEN  ('?AddCommentBtn') ('No Special Action')
+WHEN  ('?AddFM3VersionBtn') ('No Special Action')
 WHEN  ('?AddOptionBtn') ('No Special Action')
 WHEN  ('?Cancel') ('No Special Action')
 WHEN  ('?Change') ('No Special Action')
@@ -187,50 +577,68 @@ WHEN  ('?DeleteOptionBtn') ('No Special Action')
 WHEN  ('?EditCommentBtn') ('No Special Action')
 WHEN  ('?EditOptionBtn') ('No Special Action')
 WHEN  ('?Insert') ('No Special Action')
+WHEN  ('?LIST1') ('No Special Action')
+WHEN  ('?LookupDestination') ('No Special Action')
+WHEN  ('?LookupSource') ('No Special Action')
 WHEN  ('?OK') ('No Special Action')
 WHEN  ('?OptionsList') ('No Special Action')
+WHEN  ('?OutQList1') ('No Special Action')
 WHEN  ('?SHEET1') ('No Special Action')
+WHEN  ('?SHEET2') ('No Special Action')
 WHEN  ('?VersionsList') ('No Special Action')
 
-%ButtonRunName DEPEND %Control DEFAULT TIMES 7
+%ButtonRunName DEPEND %Control DEFAULT TIMES 10
 WHEN  ('?AddCommentBtn') ('')
+WHEN  ('?AddFM3VersionBtn') ('')
 WHEN  ('?AddOptionBtn') ('')
 WHEN  ('?Cancel') ('')
 WHEN  ('?DeleteCommentBtn') ('')
 WHEN  ('?EditCommentBtn') ('')
 WHEN  ('?Insert') ('')
+WHEN  ('?LookupDestination') ('')
+WHEN  ('?LookupSource') ('')
 WHEN  ('?OK') ('')
 
-%ButtonRunParameters DEPEND %Control DEFAULT TIMES 7
+%ButtonRunParameters DEPEND %Control DEFAULT TIMES 10
 WHEN  ('?AddCommentBtn') ('')
+WHEN  ('?AddFM3VersionBtn') ('')
 WHEN  ('?AddOptionBtn') ('')
 WHEN  ('?Cancel') ('')
 WHEN  ('?DeleteCommentBtn') ('')
 WHEN  ('?EditCommentBtn') ('')
 WHEN  ('?Insert') ('')
+WHEN  ('?LookupDestination') ('')
+WHEN  ('?LookupSource') ('')
 WHEN  ('?OK') ('')
 
-%ButtonProcedure DEPEND %Control PROCEDURE TIMES 7
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 10
 WHEN  ('?AddCommentBtn') ()
+WHEN  ('?AddFM3VersionBtn') ()
 WHEN  ('?AddOptionBtn') ()
 WHEN  ('?Cancel') ()
 WHEN  ('?DeleteCommentBtn') ()
 WHEN  ('?EditCommentBtn') ()
 WHEN  ('?Insert') ()
+WHEN  ('?LookupDestination') ()
+WHEN  ('?LookupSource') ()
 WHEN  ('?OK') ()
 
-%ButtonThread DEPEND %Control LONG TIMES 7
+%ButtonThread DEPEND %Control LONG TIMES 10
 WHEN  ('?AddCommentBtn') (0)
+WHEN  ('?AddFM3VersionBtn') (0)
 WHEN  ('?AddOptionBtn') (0)
 WHEN  ('?Cancel') (0)
 WHEN  ('?DeleteCommentBtn') (0)
 WHEN  ('?EditCommentBtn') (0)
 WHEN  ('?Insert') (0)
+WHEN  ('?LookupDestination') (0)
+WHEN  ('?LookupSource') (0)
 WHEN  ('?OK') (0)
 
-%ButtonThreadStack DEPEND %Control DEFAULT TIMES 16
+%ButtonThreadStack DEPEND %Control DEFAULT TIMES 22
 WHEN  ('') ('25000')
 WHEN  ('?AddCommentBtn') ('25000')
+WHEN  ('?AddFM3VersionBtn') ('25000')
 WHEN  ('?AddOptionBtn') ('25000')
 WHEN  ('?Cancel') ('25000')
 WHEN  ('?Change') ('25000')
@@ -241,23 +649,32 @@ WHEN  ('?DeleteOptionBtn') ('25000')
 WHEN  ('?EditCommentBtn') ('25000')
 WHEN  ('?EditOptionBtn') ('25000')
 WHEN  ('?Insert') ('25000')
+WHEN  ('?LIST1') ('25000')
+WHEN  ('?LookupDestination') ('25000')
+WHEN  ('?LookupSource') ('25000')
 WHEN  ('?OK') ('25000')
 WHEN  ('?OptionsList') ('25000')
+WHEN  ('?OutQList1') ('25000')
 WHEN  ('?SHEET1') ('25000')
+WHEN  ('?SHEET2') ('25000')
 WHEN  ('?VersionsList') ('25000')
 
-%ButtonParameters DEPEND %Control DEFAULT TIMES 7
+%ButtonParameters DEPEND %Control DEFAULT TIMES 10
 WHEN  ('?AddCommentBtn') ('')
+WHEN  ('?AddFM3VersionBtn') ('')
 WHEN  ('?AddOptionBtn') ('')
 WHEN  ('?Cancel') ('')
 WHEN  ('?DeleteCommentBtn') ('')
 WHEN  ('?EditCommentBtn') ('')
 WHEN  ('?Insert') ('')
+WHEN  ('?LookupDestination') ('')
+WHEN  ('?LookupSource') ('')
 WHEN  ('?OK') ('')
 
-%ButtonRequest DEPEND %Control DEFAULT TIMES 16
+%ButtonRequest DEPEND %Control DEFAULT TIMES 22
 WHEN  ('') ('None')
 WHEN  ('?AddCommentBtn') ('None')
+WHEN  ('?AddFM3VersionBtn') ('None')
 WHEN  ('?AddOptionBtn') ('None')
 WHEN  ('?Cancel') ('None')
 WHEN  ('?Change') ('None')
@@ -268,9 +685,14 @@ WHEN  ('?DeleteOptionBtn') ('None')
 WHEN  ('?EditCommentBtn') ('None')
 WHEN  ('?EditOptionBtn') ('None')
 WHEN  ('?Insert') ('None')
+WHEN  ('?LIST1') ('None')
+WHEN  ('?LookupDestination') ('None')
+WHEN  ('?LookupSource') ('None')
 WHEN  ('?OK') ('None')
 WHEN  ('?OptionsList') ('None')
+WHEN  ('?OutQList1') ('None')
 WHEN  ('?SHEET1') ('None')
+WHEN  ('?SHEET2') ('None')
 WHEN  ('?VersionsList') ('None')
 
 %PreLookupKey DEPEND %Control KEY TIMES 0
@@ -497,9 +919,10 @@ WHEN  (3) ('BrowseBox(ABC)')
 
 %ExtUITabStyleOverrideGlobal DEPEND %Control LONG TIMES 0
 
-%ExtUITabStyle DEPEND %Control DEFAULT TIMES 13
+%ExtUITabStyle DEPEND %Control DEFAULT TIMES 19
 WHEN  ('') ('Default')
 WHEN  ('?AddCommentBtn') ('Default')
+WHEN  ('?AddFM3VersionBtn') ('Default')
 WHEN  ('?AddOptionBtn') ('Default')
 WHEN  ('?Cancel') ('Default')
 WHEN  ('?CommentsList') ('Default')
@@ -507,14 +930,20 @@ WHEN  ('?DeleteCommentBtn') ('Default')
 WHEN  ('?EditCommentBtn') ('Default')
 WHEN  ('?EditOptionBtn') ('Default')
 WHEN  ('?Insert') ('Default')
+WHEN  ('?LIST1') ('Default')
+WHEN  ('?LookupDestination') ('Default')
+WHEN  ('?LookupSource') ('Default')
 WHEN  ('?OK') ('Default')
 WHEN  ('?OptionsList') ('Default')
+WHEN  ('?OutQList1') ('Default')
 WHEN  ('?SHEET1') ('Default')
+WHEN  ('?SHEET2') ('Default')
 WHEN  ('?VersionsList') ('Default')
 
-%FieldGradientColorType DEPEND %Control DEFAULT TIMES 13
+%FieldGradientColorType DEPEND %Control DEFAULT TIMES 19
 WHEN  ('') ('Off')
 WHEN  ('?AddCommentBtn') ('Off')
+WHEN  ('?AddFM3VersionBtn') ('Off')
 WHEN  ('?AddOptionBtn') ('Off')
 WHEN  ('?Cancel') ('Off')
 WHEN  ('?CommentsList') ('Off')
@@ -522,14 +951,20 @@ WHEN  ('?DeleteCommentBtn') ('Off')
 WHEN  ('?EditCommentBtn') ('Off')
 WHEN  ('?EditOptionBtn') ('Off')
 WHEN  ('?Insert') ('Off')
+WHEN  ('?LIST1') ('Off')
+WHEN  ('?LookupDestination') ('Off')
+WHEN  ('?LookupSource') ('Off')
 WHEN  ('?OK') ('Off')
 WHEN  ('?OptionsList') ('Off')
+WHEN  ('?OutQList1') ('Off')
 WHEN  ('?SHEET1') ('Off')
+WHEN  ('?SHEET2') ('Off')
 WHEN  ('?VersionsList') ('Off')
 
-%FieldGradientColorTypeVariable DEPEND %Control DEFAULT TIMES 13
+%FieldGradientColorTypeVariable DEPEND %Control DEFAULT TIMES 19
 WHEN  ('') ('')
 WHEN  ('?AddCommentBtn') ('')
+WHEN  ('?AddFM3VersionBtn') ('')
 WHEN  ('?AddOptionBtn') ('')
 WHEN  ('?Cancel') ('')
 WHEN  ('?CommentsList') ('')
@@ -537,14 +972,20 @@ WHEN  ('?DeleteCommentBtn') ('')
 WHEN  ('?EditCommentBtn') ('')
 WHEN  ('?EditOptionBtn') ('')
 WHEN  ('?Insert') ('')
+WHEN  ('?LIST1') ('')
+WHEN  ('?LookupDestination') ('')
+WHEN  ('?LookupSource') ('')
 WHEN  ('?OK') ('')
 WHEN  ('?OptionsList') ('')
+WHEN  ('?OutQList1') ('')
 WHEN  ('?SHEET1') ('')
+WHEN  ('?SHEET2') ('')
 WHEN  ('?VersionsList') ('')
 
-%FieldGradientColorTypeIsVariable DEPEND %Control LONG TIMES 13
+%FieldGradientColorTypeIsVariable DEPEND %Control LONG TIMES 19
 WHEN  ('') (0)
 WHEN  ('?AddCommentBtn') (0)
+WHEN  ('?AddFM3VersionBtn') (0)
 WHEN  ('?AddOptionBtn') (0)
 WHEN  ('?Cancel') (0)
 WHEN  ('?CommentsList') (0)
@@ -552,14 +993,20 @@ WHEN  ('?DeleteCommentBtn') (0)
 WHEN  ('?EditCommentBtn') (0)
 WHEN  ('?EditOptionBtn') (0)
 WHEN  ('?Insert') (0)
+WHEN  ('?LIST1') (0)
+WHEN  ('?LookupDestination') (0)
+WHEN  ('?LookupSource') (0)
 WHEN  ('?OK') (0)
 WHEN  ('?OptionsList') (0)
+WHEN  ('?OutQList1') (0)
 WHEN  ('?SHEET1') (0)
+WHEN  ('?SHEET2') (0)
 WHEN  ('?VersionsList') (0)
 
-%FieldGradientColorFrom DEPEND %Control LONG TIMES 13
+%FieldGradientColorFrom DEPEND %Control LONG TIMES 19
 WHEN  ('') (-1)
 WHEN  ('?AddCommentBtn') (-1)
+WHEN  ('?AddFM3VersionBtn') (-1)
 WHEN  ('?AddOptionBtn') (-1)
 WHEN  ('?Cancel') (-1)
 WHEN  ('?CommentsList') (-1)
@@ -567,16 +1014,22 @@ WHEN  ('?DeleteCommentBtn') (-1)
 WHEN  ('?EditCommentBtn') (-1)
 WHEN  ('?EditOptionBtn') (-1)
 WHEN  ('?Insert') (-1)
+WHEN  ('?LIST1') (-1)
+WHEN  ('?LookupDestination') (-1)
+WHEN  ('?LookupSource') (-1)
 WHEN  ('?OK') (-1)
 WHEN  ('?OptionsList') (-1)
+WHEN  ('?OutQList1') (-1)
 WHEN  ('?SHEET1') (-1)
+WHEN  ('?SHEET2') (-1)
 WHEN  ('?VersionsList') (-1)
 
 %FieldGradientColorFromVariable DEPEND %Control DEFAULT TIMES 0
 
-%FieldGradientColorFromIsVariable DEPEND %Control LONG TIMES 13
+%FieldGradientColorFromIsVariable DEPEND %Control LONG TIMES 19
 WHEN  ('') (0)
 WHEN  ('?AddCommentBtn') (0)
+WHEN  ('?AddFM3VersionBtn') (0)
 WHEN  ('?AddOptionBtn') (0)
 WHEN  ('?Cancel') (0)
 WHEN  ('?CommentsList') (0)
@@ -584,14 +1037,20 @@ WHEN  ('?DeleteCommentBtn') (0)
 WHEN  ('?EditCommentBtn') (0)
 WHEN  ('?EditOptionBtn') (0)
 WHEN  ('?Insert') (0)
+WHEN  ('?LIST1') (0)
+WHEN  ('?LookupDestination') (0)
+WHEN  ('?LookupSource') (0)
 WHEN  ('?OK') (0)
 WHEN  ('?OptionsList') (0)
+WHEN  ('?OutQList1') (0)
 WHEN  ('?SHEET1') (0)
+WHEN  ('?SHEET2') (0)
 WHEN  ('?VersionsList') (0)
 
-%FieldGradientColorTo DEPEND %Control LONG TIMES 13
+%FieldGradientColorTo DEPEND %Control LONG TIMES 19
 WHEN  ('') (-1)
 WHEN  ('?AddCommentBtn') (-1)
+WHEN  ('?AddFM3VersionBtn') (-1)
 WHEN  ('?AddOptionBtn') (-1)
 WHEN  ('?Cancel') (-1)
 WHEN  ('?CommentsList') (-1)
@@ -599,16 +1058,22 @@ WHEN  ('?DeleteCommentBtn') (-1)
 WHEN  ('?EditCommentBtn') (-1)
 WHEN  ('?EditOptionBtn') (-1)
 WHEN  ('?Insert') (-1)
+WHEN  ('?LIST1') (-1)
+WHEN  ('?LookupDestination') (-1)
+WHEN  ('?LookupSource') (-1)
 WHEN  ('?OK') (-1)
 WHEN  ('?OptionsList') (-1)
+WHEN  ('?OutQList1') (-1)
 WHEN  ('?SHEET1') (-1)
+WHEN  ('?SHEET2') (-1)
 WHEN  ('?VersionsList') (-1)
 
 %FieldGradientColorToVariable DEPEND %Control DEFAULT TIMES 0
 
-%FieldGradientColorToIsVariable DEPEND %Control LONG TIMES 13
+%FieldGradientColorToIsVariable DEPEND %Control LONG TIMES 19
 WHEN  ('') (0)
 WHEN  ('?AddCommentBtn') (0)
+WHEN  ('?AddFM3VersionBtn') (0)
 WHEN  ('?AddOptionBtn') (0)
 WHEN  ('?Cancel') (0)
 WHEN  ('?CommentsList') (0)
@@ -616,54 +1081,72 @@ WHEN  ('?DeleteCommentBtn') (0)
 WHEN  ('?EditCommentBtn') (0)
 WHEN  ('?EditOptionBtn') (0)
 WHEN  ('?Insert') (0)
+WHEN  ('?LIST1') (0)
+WHEN  ('?LookupDestination') (0)
+WHEN  ('?LookupSource') (0)
 WHEN  ('?OK') (0)
 WHEN  ('?OptionsList') (0)
+WHEN  ('?OutQList1') (0)
 WHEN  ('?SHEET1') (0)
+WHEN  ('?SHEET2') (0)
 WHEN  ('?VersionsList') (0)
 
-%ButtonReturnValueAssignment DEPEND %Control FIELD TIMES 7
+%ButtonReturnValueAssignment DEPEND %Control FIELD TIMES 10
 WHEN  ('?AddCommentBtn') ()
+WHEN  ('?AddFM3VersionBtn') ()
 WHEN  ('?AddOptionBtn') ()
 WHEN  ('?Cancel') ()
 WHEN  ('?DeleteCommentBtn') ()
 WHEN  ('?EditCommentBtn') ()
 WHEN  ('?Insert') ()
+WHEN  ('?LookupDestination') ()
+WHEN  ('?LookupSource') ()
 WHEN  ('?OK') ()
 
-%ButtonReturnValueReferenceAssign DEPEND %Control LONG TIMES 7
+%ButtonReturnValueReferenceAssign DEPEND %Control LONG TIMES 10
 WHEN  ('?AddCommentBtn') (0)
+WHEN  ('?AddFM3VersionBtn') (0)
 WHEN  ('?AddOptionBtn') (0)
 WHEN  ('?Cancel') (0)
 WHEN  ('?DeleteCommentBtn') (0)
 WHEN  ('?EditCommentBtn') (0)
 WHEN  ('?Insert') (0)
+WHEN  ('?LookupDestination') (0)
+WHEN  ('?LookupSource') (0)
 WHEN  ('?OK') (0)
 
-%ButtonThreadParameters DEPEND %Control DEFAULT TIMES 7
+%ButtonThreadParameters DEPEND %Control DEFAULT TIMES 10
 WHEN  ('?AddCommentBtn') ('')
+WHEN  ('?AddFM3VersionBtn') ('')
 WHEN  ('?AddOptionBtn') ('')
 WHEN  ('?Cancel') ('')
 WHEN  ('?DeleteCommentBtn') ('')
 WHEN  ('?EditCommentBtn') ('')
 WHEN  ('?Insert') ('')
+WHEN  ('?LookupDestination') ('')
+WHEN  ('?LookupSource') ('')
 WHEN  ('?OK') ('')
 
-%ButtonThreadReturnValueAssignment DEPEND %Control FIELD TIMES 7
+%ButtonThreadReturnValueAssignment DEPEND %Control FIELD TIMES 10
 WHEN  ('?AddCommentBtn') ()
+WHEN  ('?AddFM3VersionBtn') ()
 WHEN  ('?AddOptionBtn') ()
 WHEN  ('?Cancel') ()
 WHEN  ('?DeleteCommentBtn') ()
 WHEN  ('?EditCommentBtn') ()
 WHEN  ('?Insert') ()
+WHEN  ('?LookupDestination') ()
+WHEN  ('?LookupSource') ()
 WHEN  ('?OK') ()
 
 %PreLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
 
 %PostLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
 
-%PostLookupDuringValidate DEPEND %Control LONG TIMES 17
+%PostLookupDuringValidate DEPEND %Control LONG TIMES 23
 WHEN  ('') (1)
 WHEN  ('?AddCommentBtn') (1)
+WHEN  ('?AddFM3VersionBtn') (1)
 WHEN  ('?AddOptionBtn') (1)
 WHEN  ('?Cancel') (1)
 WHEN  ('?CommentsList') (1)
@@ -675,9 +1158,14 @@ WHEN  ('?DeleteCommentBtn') (1)
 WHEN  ('?EditCommentBtn') (1)
 WHEN  ('?EditOptionBtn') (1)
 WHEN  ('?Insert') (1)
+WHEN  ('?LIST1') (1)
+WHEN  ('?LookupDestination') (1)
+WHEN  ('?LookupSource') (1)
 WHEN  ('?OK') (1)
 WHEN  ('?OptionsList') (1)
+WHEN  ('?OutQList1') (1)
 WHEN  ('?SHEET1') (1)
+WHEN  ('?SHEET2') (1)
 WHEN  ('?VersionsList') (1)
 
 %LookupAssign DEPEND %Control MULTI LONG TIMES 0
@@ -696,9 +1184,10 @@ WHEN  ('?VersionsList') (1)
 
 %CheckedControl DEPEND %CheckedHides DEFAULT TIMES 0
 
-%CheckedControlAction DEPEND %CheckedHides DEFAULT TIMES 13
+%CheckedControlAction DEPEND %CheckedHides DEFAULT TIMES 19
 WHEN  ('')TIMES 0
 WHEN  ('?AddCommentBtn')TIMES 0
+WHEN  ('?AddFM3VersionBtn')TIMES 0
 WHEN  ('?AddOptionBtn')TIMES 0
 WHEN  ('?Cancel')TIMES 0
 WHEN  ('?CommentsList')TIMES 0
@@ -706,18 +1195,24 @@ WHEN  ('?DeleteCommentBtn')TIMES 0
 WHEN  ('?EditCommentBtn')TIMES 0
 WHEN  ('?EditOptionBtn')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LIST1')TIMES 0
+WHEN  ('?LookupDestination')TIMES 0
+WHEN  ('?LookupSource')TIMES 0
 WHEN  ('?OK')TIMES 0
 WHEN  ('?OptionsList')TIMES 0
+WHEN  ('?OutQList1')TIMES 0
 WHEN  ('?SHEET1')TIMES 0
+WHEN  ('?SHEET2')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
 %CheckedEnables DEPEND %Control MULTI LONG TIMES 0
 
 %CheckedControl1 DEPEND %CheckedEnables DEFAULT TIMES 0
 
-%CheckedControl1Action DEPEND %CheckedEnables DEFAULT TIMES 13
+%CheckedControl1Action DEPEND %CheckedEnables DEFAULT TIMES 19
 WHEN  ('')TIMES 0
 WHEN  ('?AddCommentBtn')TIMES 0
+WHEN  ('?AddFM3VersionBtn')TIMES 0
 WHEN  ('?AddOptionBtn')TIMES 0
 WHEN  ('?Cancel')TIMES 0
 WHEN  ('?CommentsList')TIMES 0
@@ -725,9 +1220,14 @@ WHEN  ('?DeleteCommentBtn')TIMES 0
 WHEN  ('?EditCommentBtn')TIMES 0
 WHEN  ('?EditOptionBtn')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LIST1')TIMES 0
+WHEN  ('?LookupDestination')TIMES 0
+WHEN  ('?LookupSource')TIMES 0
 WHEN  ('?OK')TIMES 0
 WHEN  ('?OptionsList')TIMES 0
+WHEN  ('?OutQList1')TIMES 0
 WHEN  ('?SHEET1')TIMES 0
+WHEN  ('?SHEET2')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
 %UncheckedAssigns DEPEND %Control MULTI LONG TIMES 0
@@ -740,9 +1240,10 @@ WHEN  ('?VersionsList')TIMES 0
 
 %UnCheckedControl DEPEND %UnCheckedHides DEFAULT TIMES 0
 
-%UnCheckedControlAction DEPEND %UnCheckedHides DEFAULT TIMES 13
+%UnCheckedControlAction DEPEND %UnCheckedHides DEFAULT TIMES 19
 WHEN  ('')TIMES 0
 WHEN  ('?AddCommentBtn')TIMES 0
+WHEN  ('?AddFM3VersionBtn')TIMES 0
 WHEN  ('?AddOptionBtn')TIMES 0
 WHEN  ('?Cancel')TIMES 0
 WHEN  ('?CommentsList')TIMES 0
@@ -750,18 +1251,24 @@ WHEN  ('?DeleteCommentBtn')TIMES 0
 WHEN  ('?EditCommentBtn')TIMES 0
 WHEN  ('?EditOptionBtn')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LIST1')TIMES 0
+WHEN  ('?LookupDestination')TIMES 0
+WHEN  ('?LookupSource')TIMES 0
 WHEN  ('?OK')TIMES 0
 WHEN  ('?OptionsList')TIMES 0
+WHEN  ('?OutQList1')TIMES 0
 WHEN  ('?SHEET1')TIMES 0
+WHEN  ('?SHEET2')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
 %UnCheckedEnables DEPEND %Control MULTI LONG TIMES 0
 
 %UnCheckedControl1 DEPEND %UnCheckedEnables DEFAULT TIMES 0
 
-%UnCheckedControl1Action DEPEND %UnCheckedEnables DEFAULT TIMES 13
+%UnCheckedControl1Action DEPEND %UnCheckedEnables DEFAULT TIMES 19
 WHEN  ('')TIMES 0
 WHEN  ('?AddCommentBtn')TIMES 0
+WHEN  ('?AddFM3VersionBtn')TIMES 0
 WHEN  ('?AddOptionBtn')TIMES 0
 WHEN  ('?Cancel')TIMES 0
 WHEN  ('?CommentsList')TIMES 0
@@ -769,18 +1276,24 @@ WHEN  ('?DeleteCommentBtn')TIMES 0
 WHEN  ('?EditCommentBtn')TIMES 0
 WHEN  ('?EditOptionBtn')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LIST1')TIMES 0
+WHEN  ('?LookupDestination')TIMES 0
+WHEN  ('?LookupSource')TIMES 0
 WHEN  ('?OK')TIMES 0
 WHEN  ('?OptionsList')TIMES 0
+WHEN  ('?OutQList1')TIMES 0
 WHEN  ('?SHEET1')TIMES 0
+WHEN  ('?SHEET2')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
 %CheckedDisables DEPEND %Control MULTI LONG TIMES 0
 
 %CheckedDisableControl DEPEND %CheckedDisables DEFAULT TIMES 0
 
-%CheckedDisableControlAction DEPEND %CheckedDisables DEFAULT TIMES 13
+%CheckedDisableControlAction DEPEND %CheckedDisables DEFAULT TIMES 19
 WHEN  ('')TIMES 0
 WHEN  ('?AddCommentBtn')TIMES 0
+WHEN  ('?AddFM3VersionBtn')TIMES 0
 WHEN  ('?AddOptionBtn')TIMES 0
 WHEN  ('?Cancel')TIMES 0
 WHEN  ('?CommentsList')TIMES 0
@@ -788,18 +1301,24 @@ WHEN  ('?DeleteCommentBtn')TIMES 0
 WHEN  ('?EditCommentBtn')TIMES 0
 WHEN  ('?EditOptionBtn')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LIST1')TIMES 0
+WHEN  ('?LookupDestination')TIMES 0
+WHEN  ('?LookupSource')TIMES 0
 WHEN  ('?OK')TIMES 0
 WHEN  ('?OptionsList')TIMES 0
+WHEN  ('?OutQList1')TIMES 0
 WHEN  ('?SHEET1')TIMES 0
+WHEN  ('?SHEET2')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
 %UnCheckedDisables DEPEND %Control MULTI LONG TIMES 0
 
 %UnCheckedDisableControl DEPEND %UnCheckedDisables DEFAULT TIMES 0
 
-%UnCheckedDisableControlAction DEPEND %UnCheckedDisables DEFAULT TIMES 13
+%UnCheckedDisableControlAction DEPEND %UnCheckedDisables DEFAULT TIMES 19
 WHEN  ('')TIMES 0
 WHEN  ('?AddCommentBtn')TIMES 0
+WHEN  ('?AddFM3VersionBtn')TIMES 0
 WHEN  ('?AddOptionBtn')TIMES 0
 WHEN  ('?Cancel')TIMES 0
 WHEN  ('?CommentsList')TIMES 0
@@ -807,16 +1326,22 @@ WHEN  ('?DeleteCommentBtn')TIMES 0
 WHEN  ('?EditCommentBtn')TIMES 0
 WHEN  ('?EditOptionBtn')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LIST1')TIMES 0
+WHEN  ('?LookupDestination')TIMES 0
+WHEN  ('?LookupSource')TIMES 0
 WHEN  ('?OK')TIMES 0
 WHEN  ('?OptionsList')TIMES 0
+WHEN  ('?OutQList1')TIMES 0
 WHEN  ('?SHEET1')TIMES 0
+WHEN  ('?SHEET2')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
 %ActiveImageEnable DEPEND %Control LONG TIMES 0
 
-%AIObjectName DEPEND %Control DEFAULT TIMES 13
+%AIObjectName DEPEND %Control DEFAULT TIMES 19
 WHEN  ('') ('AIBtn0')
 WHEN  ('?AddCommentBtn') ('AIBtn15')
+WHEN  ('?AddFM3VersionBtn') ('AIBtn30')
 WHEN  ('?AddOptionBtn') ('AIBtn22')
 WHEN  ('?Cancel') ('AIBtn2')
 WHEN  ('?CommentsList') ('AIBtn14')
@@ -824,14 +1349,20 @@ WHEN  ('?DeleteCommentBtn') ('AIBtn17')
 WHEN  ('?EditCommentBtn') ('AIBtn16')
 WHEN  ('?EditOptionBtn') ('AIBtn23')
 WHEN  ('?Insert') ('AIBtn20')
+WHEN  ('?LIST1') ('AIBtn36')
+WHEN  ('?LookupDestination') ('AIBtn36')
+WHEN  ('?LookupSource') ('AIBtn35')
 WHEN  ('?OK') ('AIBtn1')
 WHEN  ('?OptionsList') ('AIBtn27')
+WHEN  ('?OutQList1') ('AIBtn37')
 WHEN  ('?SHEET1') ('AIBtn3')
+WHEN  ('?SHEET2') ('AIBtn31')
 WHEN  ('?VersionsList') ('AIBtn19')
 
-%AIEnableMimicControl DEPEND %Control LONG TIMES 13
+%AIEnableMimicControl DEPEND %Control LONG TIMES 19
 WHEN  ('') (1)
 WHEN  ('?AddCommentBtn') (1)
+WHEN  ('?AddFM3VersionBtn') (1)
 WHEN  ('?AddOptionBtn') (1)
 WHEN  ('?Cancel') (1)
 WHEN  ('?CommentsList') (1)
@@ -839,14 +1370,20 @@ WHEN  ('?DeleteCommentBtn') (1)
 WHEN  ('?EditCommentBtn') (1)
 WHEN  ('?EditOptionBtn') (1)
 WHEN  ('?Insert') (1)
+WHEN  ('?LIST1') (1)
+WHEN  ('?LookupDestination') (1)
+WHEN  ('?LookupSource') (1)
 WHEN  ('?OK') (1)
 WHEN  ('?OptionsList') (1)
+WHEN  ('?OutQList1') (1)
 WHEN  ('?SHEET1') (1)
+WHEN  ('?SHEET2') (1)
 WHEN  ('?VersionsList') (1)
 
-%AIMimicControl DEPEND %Control DEFAULT TIMES 13
+%AIMimicControl DEPEND %Control DEFAULT TIMES 19
 WHEN  ('') ('?OK')
 WHEN  ('?AddCommentBtn') ('?OK')
+WHEN  ('?AddFM3VersionBtn') ('?OK')
 WHEN  ('?AddOptionBtn') ('?OK')
 WHEN  ('?Cancel') ('?OK')
 WHEN  ('?CommentsList') ('?OK')
@@ -854,9 +1391,14 @@ WHEN  ('?DeleteCommentBtn') ('?OK')
 WHEN  ('?EditCommentBtn') ('?OK')
 WHEN  ('?EditOptionBtn') ('?OK')
 WHEN  ('?Insert') ('?OK')
+WHEN  ('?LIST1') ('?OK')
+WHEN  ('?LookupDestination') ('?OK')
+WHEN  ('?LookupSource') ('?OK')
 WHEN  ('?OK') ('?OK')
 WHEN  ('?OptionsList') ('?OK')
+WHEN  ('?OutQList1') ('?OK')
 WHEN  ('?SHEET1') ('?OK')
+WHEN  ('?SHEET2') ('?OK')
 WHEN  ('?VersionsList') ('?OK')
 
 %AIImgRound DEPEND %Control LONG TIMES 0
@@ -865,9 +1407,10 @@ WHEN  ('?VersionsList') ('?OK')
 
 %AIOverrideImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIOverrideImgIsVariable DEPEND %Control LONG TIMES 13
+%AIOverrideImgIsVariable DEPEND %Control LONG TIMES 19
 WHEN  ('') (0)
 WHEN  ('?AddCommentBtn') (0)
+WHEN  ('?AddFM3VersionBtn') (0)
 WHEN  ('?AddOptionBtn') (0)
 WHEN  ('?Cancel') (0)
 WHEN  ('?CommentsList') (0)
@@ -875,18 +1418,24 @@ WHEN  ('?DeleteCommentBtn') (0)
 WHEN  ('?EditCommentBtn') (0)
 WHEN  ('?EditOptionBtn') (0)
 WHEN  ('?Insert') (0)
+WHEN  ('?LIST1') (0)
+WHEN  ('?LookupDestination') (0)
+WHEN  ('?LookupSource') (0)
 WHEN  ('?OK') (0)
 WHEN  ('?OptionsList') (0)
+WHEN  ('?OutQList1') (0)
 WHEN  ('?SHEET1') (0)
+WHEN  ('?SHEET2') (0)
 WHEN  ('?VersionsList') (0)
 
 %AIDisableImg DEPEND %Control DEFAULT TIMES 0
 
 %AIDisableImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIDisableImgIsVariable DEPEND %Control LONG TIMES 13
+%AIDisableImgIsVariable DEPEND %Control LONG TIMES 19
 WHEN  ('') (0)
 WHEN  ('?AddCommentBtn') (0)
+WHEN  ('?AddFM3VersionBtn') (0)
 WHEN  ('?AddOptionBtn') (0)
 WHEN  ('?Cancel') (0)
 WHEN  ('?CommentsList') (0)
@@ -894,18 +1443,24 @@ WHEN  ('?DeleteCommentBtn') (0)
 WHEN  ('?EditCommentBtn') (0)
 WHEN  ('?EditOptionBtn') (0)
 WHEN  ('?Insert') (0)
+WHEN  ('?LIST1') (0)
+WHEN  ('?LookupDestination') (0)
+WHEN  ('?LookupSource') (0)
 WHEN  ('?OK') (0)
 WHEN  ('?OptionsList') (0)
+WHEN  ('?OutQList1') (0)
 WHEN  ('?SHEET1') (0)
+WHEN  ('?SHEET2') (0)
 WHEN  ('?VersionsList') (0)
 
 %AIHotImg DEPEND %Control DEFAULT TIMES 0
 
 %AIHotImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIHotImgIsVariable DEPEND %Control LONG TIMES 13
+%AIHotImgIsVariable DEPEND %Control LONG TIMES 19
 WHEN  ('') (0)
 WHEN  ('?AddCommentBtn') (0)
+WHEN  ('?AddFM3VersionBtn') (0)
 WHEN  ('?AddOptionBtn') (0)
 WHEN  ('?Cancel') (0)
 WHEN  ('?CommentsList') (0)
@@ -913,18 +1468,24 @@ WHEN  ('?DeleteCommentBtn') (0)
 WHEN  ('?EditCommentBtn') (0)
 WHEN  ('?EditOptionBtn') (0)
 WHEN  ('?Insert') (0)
+WHEN  ('?LIST1') (0)
+WHEN  ('?LookupDestination') (0)
+WHEN  ('?LookupSource') (0)
 WHEN  ('?OK') (0)
 WHEN  ('?OptionsList') (0)
+WHEN  ('?OutQList1') (0)
 WHEN  ('?SHEET1') (0)
+WHEN  ('?SHEET2') (0)
 WHEN  ('?VersionsList') (0)
 
 %AIPressedImg DEPEND %Control DEFAULT TIMES 0
 
 %AIPressedImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIPressedImgIsVariable DEPEND %Control LONG TIMES 13
+%AIPressedImgIsVariable DEPEND %Control LONG TIMES 19
 WHEN  ('') (0)
 WHEN  ('?AddCommentBtn') (0)
+WHEN  ('?AddFM3VersionBtn') (0)
 WHEN  ('?AddOptionBtn') (0)
 WHEN  ('?Cancel') (0)
 WHEN  ('?CommentsList') (0)
@@ -932,9 +1493,14 @@ WHEN  ('?DeleteCommentBtn') (0)
 WHEN  ('?EditCommentBtn') (0)
 WHEN  ('?EditOptionBtn') (0)
 WHEN  ('?Insert') (0)
+WHEN  ('?LIST1') (0)
+WHEN  ('?LookupDestination') (0)
+WHEN  ('?LookupSource') (0)
 WHEN  ('?OK') (0)
 WHEN  ('?OptionsList') (0)
+WHEN  ('?OutQList1') (0)
 WHEN  ('?SHEET1') (0)
+WHEN  ('?SHEET2') (0)
 WHEN  ('?VersionsList') (0)
 
 %ITHasDllTemplate DEFAULT  ('')
@@ -1116,6 +1682,10 @@ PROPERTY:END
       !Rec &= Dictionaries{PROP:Record}
       !self.Saved = Access:Dictionaries.SaveBuffer()
       Rec &= Dictionaries{PROP:Record}
+
+      If Dct:SourceDirectory
+          DIRECTORY(FilesQ,clip(Dct:SourceDirectory) & '\*.tps',ff_:NORMAL)
+      End
       !DctGrp = Rec
       !st.SetValue(DctOverStr)
       !MyCrypto.MakeHash(st)
@@ -1723,6 +2293,41 @@ If Keycode() = MouseLeft2
 End
 [END]
 [END]
+WHEN '?AddFM3VersionBtn'
+[INSTANCES]
+WHEN 'Accepted'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 7300
+PROPERTY:END
+  MyDct.SendNotifyJson(NotifyManager,'Main3','','AddFm3Version',OverStr)
+[END]
+[END]
+WHEN '?LookupSource'
+[INSTANCES]
+WHEN 'Accepted'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 8800
+PROPERTY:END
+Free(FilesQ)
+DIRECTORY(FilesQ,clip(Dct:SourceDirectory) & '\*.tps',ff_:NORMAL)
+[END]
+[END]
+WHEN '?LIST1'
+[INSTANCES]
+WHEN 'Accepted'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 7300
+PROPERTY:END
+Get(FilesQ,Choice(?LIST1))
+RunOdbc(OutQ,Clip(Dct:SourceDirectory) & '\','select * from ' & st.FileNameOnly(FQ:name,False),QuickWindow,?OutQList1{PROP:FEQ})   ! & Clip(FQ:name)
+[END]
+[END]
 [END]
 EMBED %BrowserMethodCodeSection
 [INSTANCES]
@@ -1776,13 +2381,15 @@ NAME MikeHansonABC mhResizeWindow
 
 %mhRszMimicControl DEPEND %Control DEFAULT TIMES 0
 
-%mhRszMoveXPos DEPEND %Control LONG TIMES 2
+%mhRszMoveXPos DEPEND %Control LONG TIMES 3
 WHEN  ('?Cancel') (1)
 WHEN  ('?OK') (1)
+WHEN  ('?OutQList1') (0)
 
-%mhRszMoveXPosRatio DEPEND %Control DEFAULT TIMES 24
+%mhRszMoveXPosRatio DEPEND %Control DEFAULT TIMES 34
 WHEN  ('') ('1')
 WHEN  ('?AddCommentBtn') ('1')
+WHEN  ('?AddFM3VersionBtn') ('1')
 WHEN  ('?AddOptionBtn') ('1')
 WHEN  ('?Cancel') ('1')
 WHEN  ('?Change') ('1')
@@ -1791,6 +2398,10 @@ WHEN  ('?Dct:DctName') ('1')
 WHEN  ('?Dct:DctName:Prompt') ('1')
 WHEN  ('?Dct:DctxFormat') ('1')
 WHEN  ('?Dct:DctxFormat:Prompt') ('1')
+WHEN  ('?Dct:DestinationDirectory') ('1')
+WHEN  ('?Dct:DestinationDirectory:Prompt') ('1')
+WHEN  ('?Dct:SourceDirectory') ('1')
+WHEN  ('?Dct:SourceDirectory:Prompt') ('1')
 WHEN  ('?Dct:StructureChecked') ('1')
 WHEN  ('?Dct:StructureChecked:Prompt') ('1')
 WHEN  ('?Dct:Version') ('1')
@@ -1801,19 +2412,26 @@ WHEN  ('?DeleteOptionBtn') ('1')
 WHEN  ('?EditCommentBtn') ('1')
 WHEN  ('?EditOptionBtn') ('1')
 WHEN  ('?Insert') ('1')
+WHEN  ('?LIST1') ('1')
+WHEN  ('?LookupDestination') ('1')
+WHEN  ('?LookupSource') ('1')
 WHEN  ('?OK') ('1')
 WHEN  ('?OptionsList') ('1')
+WHEN  ('?OutQList1') ('1')
 WHEN  ('?SHEET1') ('1')
+WHEN  ('?SHEET2') ('1')
 WHEN  ('?VersionsList') ('1')
 
-%mhRszMoveYPos DEPEND %Control LONG TIMES 3
+%mhRszMoveYPos DEPEND %Control LONG TIMES 4
 WHEN  ('?AddCommentBtn') (0)
+WHEN  ('?AddFM3VersionBtn') (1)
 WHEN  ('?DeleteCommentBtn') (0)
 WHEN  ('?EditCommentBtn') (0)
 
-%mhRszMoveYPosRatio DEPEND %Control DEFAULT TIMES 24
+%mhRszMoveYPosRatio DEPEND %Control DEFAULT TIMES 34
 WHEN  ('') ('1')
 WHEN  ('?AddCommentBtn') ('1')
+WHEN  ('?AddFM3VersionBtn') ('1')
 WHEN  ('?AddOptionBtn') ('1')
 WHEN  ('?Cancel') ('1')
 WHEN  ('?Change') ('1')
@@ -1822,6 +2440,10 @@ WHEN  ('?Dct:DctName') ('1')
 WHEN  ('?Dct:DctName:Prompt') ('1')
 WHEN  ('?Dct:DctxFormat') ('1')
 WHEN  ('?Dct:DctxFormat:Prompt') ('1')
+WHEN  ('?Dct:DestinationDirectory') ('1')
+WHEN  ('?Dct:DestinationDirectory:Prompt') ('1')
+WHEN  ('?Dct:SourceDirectory') ('1')
+WHEN  ('?Dct:SourceDirectory:Prompt') ('1')
 WHEN  ('?Dct:StructureChecked') ('1')
 WHEN  ('?Dct:StructureChecked:Prompt') ('1')
 WHEN  ('?Dct:Version') ('1')
@@ -1832,20 +2454,29 @@ WHEN  ('?DeleteOptionBtn') ('1')
 WHEN  ('?EditCommentBtn') ('1')
 WHEN  ('?EditOptionBtn') ('1')
 WHEN  ('?Insert') ('1')
+WHEN  ('?LIST1') ('1')
+WHEN  ('?LookupDestination') ('1')
+WHEN  ('?LookupSource') ('1')
 WHEN  ('?OK') ('1')
 WHEN  ('?OptionsList') ('1')
+WHEN  ('?OutQList1') ('1')
 WHEN  ('?SHEET1') ('1')
+WHEN  ('?SHEET2') ('1')
 WHEN  ('?VersionsList') ('1')
 
-%mhRszChangeWidth DEPEND %Control LONG TIMES 4
+%mhRszChangeWidth DEPEND %Control LONG TIMES 7
 WHEN  ('?CommentsList') (1)
+WHEN  ('?LIST1') (0)
 WHEN  ('?OptionsList') (1)
+WHEN  ('?OutQList1') (1)
 WHEN  ('?SHEET1') (1)
+WHEN  ('?SHEET2') (1)
 WHEN  ('?VersionsList') (1)
 
-%mhRszChangeWidthRatio DEPEND %Control DEFAULT TIMES 24
+%mhRszChangeWidthRatio DEPEND %Control DEFAULT TIMES 34
 WHEN  ('') ('1')
 WHEN  ('?AddCommentBtn') ('1')
+WHEN  ('?AddFM3VersionBtn') ('1')
 WHEN  ('?AddOptionBtn') ('1')
 WHEN  ('?Cancel') ('1')
 WHEN  ('?Change') ('1')
@@ -1854,6 +2485,10 @@ WHEN  ('?Dct:DctName') ('1')
 WHEN  ('?Dct:DctName:Prompt') ('1')
 WHEN  ('?Dct:DctxFormat') ('1')
 WHEN  ('?Dct:DctxFormat:Prompt') ('1')
+WHEN  ('?Dct:DestinationDirectory') ('1')
+WHEN  ('?Dct:DestinationDirectory:Prompt') ('1')
+WHEN  ('?Dct:SourceDirectory') ('1')
+WHEN  ('?Dct:SourceDirectory:Prompt') ('1')
 WHEN  ('?Dct:StructureChecked') ('1')
 WHEN  ('?Dct:StructureChecked:Prompt') ('1')
 WHEN  ('?Dct:Version') ('1')
@@ -1864,20 +2499,29 @@ WHEN  ('?DeleteOptionBtn') ('1')
 WHEN  ('?EditCommentBtn') ('1')
 WHEN  ('?EditOptionBtn') ('1')
 WHEN  ('?Insert') ('1')
+WHEN  ('?LIST1') ('1')
+WHEN  ('?LookupDestination') ('1')
+WHEN  ('?LookupSource') ('1')
 WHEN  ('?OK') ('1')
 WHEN  ('?OptionsList') ('1')
+WHEN  ('?OutQList1') ('1')
 WHEN  ('?SHEET1') ('1')
+WHEN  ('?SHEET2') ('1')
 WHEN  ('?VersionsList') ('1')
 
-%mhRszChangeHeight DEPEND %Control LONG TIMES 4
+%mhRszChangeHeight DEPEND %Control LONG TIMES 7
 WHEN  ('?CommentsList') (1)
+WHEN  ('?LIST1') (1)
 WHEN  ('?OptionsList') (1)
+WHEN  ('?OutQList1') (1)
 WHEN  ('?SHEET1') (1)
+WHEN  ('?SHEET2') (1)
 WHEN  ('?VersionsList') (1)
 
-%mhRszChangeHeightRatio DEPEND %Control DEFAULT TIMES 24
+%mhRszChangeHeightRatio DEPEND %Control DEFAULT TIMES 34
 WHEN  ('') ('1')
 WHEN  ('?AddCommentBtn') ('1')
+WHEN  ('?AddFM3VersionBtn') ('1')
 WHEN  ('?AddOptionBtn') ('1')
 WHEN  ('?Cancel') ('1')
 WHEN  ('?Change') ('1')
@@ -1886,6 +2530,10 @@ WHEN  ('?Dct:DctName') ('1')
 WHEN  ('?Dct:DctName:Prompt') ('1')
 WHEN  ('?Dct:DctxFormat') ('1')
 WHEN  ('?Dct:DctxFormat:Prompt') ('1')
+WHEN  ('?Dct:DestinationDirectory') ('1')
+WHEN  ('?Dct:DestinationDirectory:Prompt') ('1')
+WHEN  ('?Dct:SourceDirectory') ('1')
+WHEN  ('?Dct:SourceDirectory:Prompt') ('1')
 WHEN  ('?Dct:StructureChecked') ('1')
 WHEN  ('?Dct:StructureChecked:Prompt') ('1')
 WHEN  ('?Dct:Version') ('1')
@@ -1896,9 +2544,14 @@ WHEN  ('?DeleteOptionBtn') ('1')
 WHEN  ('?EditCommentBtn') ('1')
 WHEN  ('?EditOptionBtn') ('1')
 WHEN  ('?Insert') ('1')
+WHEN  ('?LIST1') ('1')
+WHEN  ('?LookupDestination') ('1')
+WHEN  ('?LookupSource') ('1')
 WHEN  ('?OK') ('1')
 WHEN  ('?OptionsList') ('1')
+WHEN  ('?OutQList1') ('1')
 WHEN  ('?SHEET1') ('1')
+WHEN  ('?SHEET2') ('1')
 WHEN  ('?VersionsList') ('1')
 
 [INSTANCE]
@@ -1945,9 +2598,10 @@ WHEN  ('Default') ('AfterResize {12}PROCEDURE(),DERIVED', 'Init {19}PROCEDURE()'
 
 %MoveXPos DEPEND %Control LONG TIMES 0
 
-%MoveXPosRatio DEPEND %Control DEFAULT TIMES 30
+%MoveXPosRatio DEPEND %Control DEFAULT TIMES 42
 WHEN  ('') ('1')
 WHEN  ('?AddCommentBtn') ('1')
+WHEN  ('?AddFM3VersionBtn') ('1')
 WHEN  ('?AddOptionBtn') ('1')
 WHEN  ('?BulkToolsTab') ('1')
 WHEN  ('?Cancel') ('1')
@@ -1958,6 +2612,10 @@ WHEN  ('?Dct:DctName') ('1')
 WHEN  ('?Dct:DctName:Prompt') ('1')
 WHEN  ('?Dct:DctxFormat') ('1')
 WHEN  ('?Dct:DctxFormat:Prompt') ('1')
+WHEN  ('?Dct:DestinationDirectory') ('1')
+WHEN  ('?Dct:DestinationDirectory:Prompt') ('1')
+WHEN  ('?Dct:SourceDirectory') ('1')
+WHEN  ('?Dct:SourceDirectory:Prompt') ('1')
 WHEN  ('?Dct:StructureChecked') ('1')
 WHEN  ('?Dct:StructureChecked:Prompt') ('1')
 WHEN  ('?Dct:Version') ('1')
@@ -1965,13 +2623,20 @@ WHEN  ('?Dct:Version:Prompt') ('1')
 WHEN  ('?Delete') ('1')
 WHEN  ('?DeleteCommentBtn') ('1')
 WHEN  ('?DeleteOptionBtn') ('1')
+WHEN  ('?DestinationTab') ('1')
 WHEN  ('?EditCommentBtn') ('1')
 WHEN  ('?EditOptionBtn') ('1')
 WHEN  ('?Insert') ('1')
+WHEN  ('?LIST1') ('1')
+WHEN  ('?LookupDestination') ('1')
+WHEN  ('?LookupSource') ('1')
 WHEN  ('?OK') ('1')
 WHEN  ('?OptionsList') ('1')
 WHEN  ('?OptionsTab') ('1')
+WHEN  ('?OutQList1') ('1')
 WHEN  ('?SHEET1') ('1')
+WHEN  ('?SHEET2') ('1')
+WHEN  ('?SourceTab') ('1')
 WHEN  ('?StatisticsTab') ('1')
 WHEN  ('?TAB1') ('1')
 WHEN  ('?VersionsList') ('1')
@@ -1979,9 +2644,10 @@ WHEN  ('?VersionsTab') ('1')
 
 %MoveYPos DEPEND %Control LONG TIMES 0
 
-%MoveYPosRatio DEPEND %Control DEFAULT TIMES 30
+%MoveYPosRatio DEPEND %Control DEFAULT TIMES 42
 WHEN  ('') ('1')
 WHEN  ('?AddCommentBtn') ('1')
+WHEN  ('?AddFM3VersionBtn') ('1')
 WHEN  ('?AddOptionBtn') ('1')
 WHEN  ('?BulkToolsTab') ('1')
 WHEN  ('?Cancel') ('1')
@@ -1992,6 +2658,10 @@ WHEN  ('?Dct:DctName') ('1')
 WHEN  ('?Dct:DctName:Prompt') ('1')
 WHEN  ('?Dct:DctxFormat') ('1')
 WHEN  ('?Dct:DctxFormat:Prompt') ('1')
+WHEN  ('?Dct:DestinationDirectory') ('1')
+WHEN  ('?Dct:DestinationDirectory:Prompt') ('1')
+WHEN  ('?Dct:SourceDirectory') ('1')
+WHEN  ('?Dct:SourceDirectory:Prompt') ('1')
 WHEN  ('?Dct:StructureChecked') ('1')
 WHEN  ('?Dct:StructureChecked:Prompt') ('1')
 WHEN  ('?Dct:Version') ('1')
@@ -1999,13 +2669,20 @@ WHEN  ('?Dct:Version:Prompt') ('1')
 WHEN  ('?Delete') ('1')
 WHEN  ('?DeleteCommentBtn') ('1')
 WHEN  ('?DeleteOptionBtn') ('1')
+WHEN  ('?DestinationTab') ('1')
 WHEN  ('?EditCommentBtn') ('1')
 WHEN  ('?EditOptionBtn') ('1')
 WHEN  ('?Insert') ('1')
+WHEN  ('?LIST1') ('1')
+WHEN  ('?LookupDestination') ('1')
+WHEN  ('?LookupSource') ('1')
 WHEN  ('?OK') ('1')
 WHEN  ('?OptionsList') ('1')
 WHEN  ('?OptionsTab') ('1')
+WHEN  ('?OutQList1') ('1')
 WHEN  ('?SHEET1') ('1')
+WHEN  ('?SHEET2') ('1')
+WHEN  ('?SourceTab') ('1')
 WHEN  ('?StatisticsTab') ('1')
 WHEN  ('?TAB1') ('1')
 WHEN  ('?VersionsList') ('1')
@@ -2013,9 +2690,10 @@ WHEN  ('?VersionsTab') ('1')
 
 %ChangeWidth DEPEND %Control LONG TIMES 0
 
-%ChangeWidthRatio DEPEND %Control DEFAULT TIMES 30
+%ChangeWidthRatio DEPEND %Control DEFAULT TIMES 42
 WHEN  ('') ('1')
 WHEN  ('?AddCommentBtn') ('1')
+WHEN  ('?AddFM3VersionBtn') ('1')
 WHEN  ('?AddOptionBtn') ('1')
 WHEN  ('?BulkToolsTab') ('1')
 WHEN  ('?Cancel') ('1')
@@ -2026,6 +2704,10 @@ WHEN  ('?Dct:DctName') ('1')
 WHEN  ('?Dct:DctName:Prompt') ('1')
 WHEN  ('?Dct:DctxFormat') ('1')
 WHEN  ('?Dct:DctxFormat:Prompt') ('1')
+WHEN  ('?Dct:DestinationDirectory') ('1')
+WHEN  ('?Dct:DestinationDirectory:Prompt') ('1')
+WHEN  ('?Dct:SourceDirectory') ('1')
+WHEN  ('?Dct:SourceDirectory:Prompt') ('1')
 WHEN  ('?Dct:StructureChecked') ('1')
 WHEN  ('?Dct:StructureChecked:Prompt') ('1')
 WHEN  ('?Dct:Version') ('1')
@@ -2033,13 +2715,20 @@ WHEN  ('?Dct:Version:Prompt') ('1')
 WHEN  ('?Delete') ('1')
 WHEN  ('?DeleteCommentBtn') ('1')
 WHEN  ('?DeleteOptionBtn') ('1')
+WHEN  ('?DestinationTab') ('1')
 WHEN  ('?EditCommentBtn') ('1')
 WHEN  ('?EditOptionBtn') ('1')
 WHEN  ('?Insert') ('1')
+WHEN  ('?LIST1') ('1')
+WHEN  ('?LookupDestination') ('1')
+WHEN  ('?LookupSource') ('1')
 WHEN  ('?OK') ('1')
 WHEN  ('?OptionsList') ('1')
 WHEN  ('?OptionsTab') ('1')
+WHEN  ('?OutQList1') ('1')
 WHEN  ('?SHEET1') ('1')
+WHEN  ('?SHEET2') ('1')
+WHEN  ('?SourceTab') ('1')
 WHEN  ('?StatisticsTab') ('1')
 WHEN  ('?TAB1') ('1')
 WHEN  ('?VersionsList') ('1')
@@ -2047,9 +2736,10 @@ WHEN  ('?VersionsTab') ('1')
 
 %ChangeHeight DEPEND %Control LONG TIMES 0
 
-%ChangeHeightRatio DEPEND %Control DEFAULT TIMES 30
+%ChangeHeightRatio DEPEND %Control DEFAULT TIMES 42
 WHEN  ('') ('1')
 WHEN  ('?AddCommentBtn') ('1')
+WHEN  ('?AddFM3VersionBtn') ('1')
 WHEN  ('?AddOptionBtn') ('1')
 WHEN  ('?BulkToolsTab') ('1')
 WHEN  ('?Cancel') ('1')
@@ -2060,6 +2750,10 @@ WHEN  ('?Dct:DctName') ('1')
 WHEN  ('?Dct:DctName:Prompt') ('1')
 WHEN  ('?Dct:DctxFormat') ('1')
 WHEN  ('?Dct:DctxFormat:Prompt') ('1')
+WHEN  ('?Dct:DestinationDirectory') ('1')
+WHEN  ('?Dct:DestinationDirectory:Prompt') ('1')
+WHEN  ('?Dct:SourceDirectory') ('1')
+WHEN  ('?Dct:SourceDirectory:Prompt') ('1')
 WHEN  ('?Dct:StructureChecked') ('1')
 WHEN  ('?Dct:StructureChecked:Prompt') ('1')
 WHEN  ('?Dct:Version') ('1')
@@ -2067,13 +2761,20 @@ WHEN  ('?Dct:Version:Prompt') ('1')
 WHEN  ('?Delete') ('1')
 WHEN  ('?DeleteCommentBtn') ('1')
 WHEN  ('?DeleteOptionBtn') ('1')
+WHEN  ('?DestinationTab') ('1')
 WHEN  ('?EditCommentBtn') ('1')
 WHEN  ('?EditOptionBtn') ('1')
 WHEN  ('?Insert') ('1')
+WHEN  ('?LIST1') ('1')
+WHEN  ('?LookupDestination') ('1')
+WHEN  ('?LookupSource') ('1')
 WHEN  ('?OK') ('1')
 WHEN  ('?OptionsList') ('1')
 WHEN  ('?OptionsTab') ('1')
+WHEN  ('?OutQList1') ('1')
 WHEN  ('?SHEET1') ('1')
+WHEN  ('?SHEET2') ('1')
+WHEN  ('?SourceTab') ('1')
 WHEN  ('?StatisticsTab') ('1')
 WHEN  ('?TAB1') ('1')
 WHEN  ('?VersionsList') ('1')
@@ -2352,8 +3053,9 @@ NAME ABC ViewFormActions
 INSTANCE 5
 [PROMPTS]
 %ForceViewOnly LONG  (0)
-%ViewAction DEPEND %Control DEFAULT TIMES 29
+%ViewAction DEPEND %Control DEFAULT TIMES 41
 WHEN  ('?AddCommentBtn') ('Disable')
+WHEN  ('?AddFM3VersionBtn') ('Disable')
 WHEN  ('?AddOptionBtn') ('Disable')
 WHEN  ('?BulkToolsTab') ('None')
 WHEN  ('?Cancel') ('None')
@@ -2364,6 +3066,10 @@ WHEN  ('?Dct:DctName') ('ReadOnly')
 WHEN  ('?Dct:DctName:Prompt') ('None')
 WHEN  ('?Dct:DctxFormat') ('ReadOnly')
 WHEN  ('?Dct:DctxFormat:Prompt') ('None')
+WHEN  ('?Dct:DestinationDirectory') ('None')
+WHEN  ('?Dct:DestinationDirectory:Prompt') ('None')
+WHEN  ('?Dct:SourceDirectory') ('None')
+WHEN  ('?Dct:SourceDirectory:Prompt') ('None')
 WHEN  ('?Dct:StructureChecked') ('ReadOnly')
 WHEN  ('?Dct:StructureChecked:Prompt') ('None')
 WHEN  ('?Dct:Version') ('ReadOnly')
@@ -2371,13 +3077,20 @@ WHEN  ('?Dct:Version:Prompt') ('None')
 WHEN  ('?Delete') ('Disable')
 WHEN  ('?DeleteCommentBtn') ('Disable')
 WHEN  ('?DeleteOptionBtn') ('Disable')
+WHEN  ('?DestinationTab') ('None')
 WHEN  ('?EditCommentBtn') ('Disable')
 WHEN  ('?EditOptionBtn') ('Disable')
 WHEN  ('?Insert') ('Disable')
+WHEN  ('?LIST1') ('None')
+WHEN  ('?LookupDestination') ('Disable')
+WHEN  ('?LookupSource') ('Disable')
 WHEN  ('?OK') ('None')
 WHEN  ('?OptionsList') ('None')
 WHEN  ('?OptionsTab') ('None')
+WHEN  ('?OutQList1') ('None')
 WHEN  ('?SHEET1') ('None')
+WHEN  ('?SHEET2') ('None')
+WHEN  ('?SourceTab') ('None')
 WHEN  ('?StatisticsTab') ('None')
 WHEN  ('?TAB1') ('None')
 WHEN  ('?VersionsList') ('None')
@@ -2641,40 +3354,50 @@ WHEN  ('Default')TIMES 0
 %HotFieldBindOnly DEPEND %HotFields LONG TIMES 0
 
 %UseSameColorForAll LONG  (0)
-%ControlGreenBarColor DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlGreenBarColor DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%ControlFieldForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlFieldForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%ControlFieldBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlFieldBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%ControlFieldForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlFieldForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%ControlFieldBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlFieldBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
@@ -2685,88 +3408,112 @@ WHEN  ('Ver:Description') (-1)
 
 %ColorCondition DEPEND %ConditionalColors DEFAULT TIMES 0
 
-%ConditionalControlFieldForegroundNormal DEPEND %ConditionalColors LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ConditionalControlFieldForegroundNormal DEPEND %ConditionalColors LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
-%ConditionalControlFieldBackgroundNormal DEPEND %ConditionalColors LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ConditionalControlFieldBackgroundNormal DEPEND %ConditionalColors LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
-%ConditionalControlFieldForegroundSelected DEPEND %ConditionalColors LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ConditionalControlFieldForegroundSelected DEPEND %ConditionalColors LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
-%ConditionalControlFieldBackgroundSelected DEPEND %ConditionalColors LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ConditionalControlFieldBackgroundSelected DEPEND %ConditionalColors LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
-%GreenBarOnForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOnForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%GreenBarOnBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOnBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%GreenBarOnForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOnForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%GreenBarOnBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOnBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%GreenBarOffForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOffForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%GreenBarOffBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOffBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%GreenBarOffForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOffForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%GreenBarOffBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOffBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
@@ -2811,24 +3558,30 @@ WHEN  ('Ver:Description') (-1)
 %ConditionalControlFieldIconIsNumber DEPEND %ConditionalIcons LONG TIMES 0
 
 %UseSameStyleForAll LONG  (0)
-%ControlGreenBarStyle DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlGreenBarStyle DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%GreenBarOnStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOnStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') ('Local List')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('Local List')
 WHEN  ('Ver:Description') ('Local List')
 
-%GreenBarOnStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOnStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') ('')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
@@ -2837,16 +3590,20 @@ WHEN  ('Ver:Description') ('')
 
 %GreenBarOnStyle DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
 
-%GreenBarOffStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOffStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') ('Local List')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('Local List')
 WHEN  ('Ver:Description') ('Local List')
 
-%GreenBarOffStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%GreenBarOffStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') ('')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
@@ -2855,16 +3612,20 @@ WHEN  ('Ver:Description') ('')
 
 %GreenBarOffStyle DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
 
-%ControlFieldStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlFieldStyleType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') ('Local List')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('Local List')
 WHEN  ('Ver:Description') ('Local List')
 
-%ControlFieldStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlFieldStyleLocalList DEPEND %Control DEPEND %ControlField DEFAULT TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') ('')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
@@ -2877,14 +3638,18 @@ WHEN  ('Ver:Description') ('')
 
 %StyleCondition DEPEND %ConditionalStyles DEFAULT TIMES 0
 
-%ConditionalControlFieldStyleType DEPEND %ConditionalStyles DEFAULT TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ConditionalControlFieldStyleType DEPEND %ConditionalStyles DEFAULT TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
-%ConditionalControlFieldStyleLocalList DEPEND %ConditionalStyles DEFAULT TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ConditionalControlFieldStyleLocalList DEPEND %ConditionalStyles DEFAULT TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
@@ -2931,24 +3696,30 @@ WHEN  ('?VersionsList')TIMES 0
 %EnableSortHeader LONG  (0)
 %ControlFieldSortHeaderSave LONG  (0)
 %ControlFieldSortHeaderMulti LONG  (1)
-%ControlFieldSortHeaderOnlyAsc DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlFieldSortHeaderOnlyAsc DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%ControlFieldSortHeaderOverride DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlFieldSortHeaderOverride DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%ControlFieldSortHeaderDisableColumn DEPEND %Control DEPEND %ControlField LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlFieldSortHeaderDisableColumn DEPEND %Control DEPEND %ControlField LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
@@ -2959,14 +3730,18 @@ WHEN  ('Ver:Description') (0)
 
 %ControlFieldSortHeaderField DEPEND %ControlFieldSortHeaderFields FIELD TIMES 0
 
-%ControlFieldSortHeaderFieldOrder DEPEND %ControlFieldSortHeaderFields DEFAULT TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlFieldSortHeaderFieldOrder DEPEND %ControlFieldSortHeaderFields DEFAULT TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
 
-%ControlFieldSortHeaderFieldCase DEPEND %ControlFieldSortHeaderFields LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
+%ControlFieldSortHeaderFieldCase DEPEND %ControlFieldSortHeaderFields LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 0
@@ -3142,19 +3917,23 @@ WHEN  ('EIP_Ver:Description')TIMES 0
 
 %PrimedValue DEPEND %PrimingFields DEFAULT TIMES 0
 
-%AllowEIPExt DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (1)
+%AllowEIPExt DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (1)
 WHEN  ('Ver:Description') (1)
 
-%EditInPlaceTypeExt DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('Entry')
+%EditInPlaceTypeExt DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('Entry')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('Entry')
@@ -3162,55 +3941,67 @@ WHEN  ('Ver:Description') ('Entry')
 
 %EditInPlaceFEQTitle DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
 
-%EditInPlaceFEQJust DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('Default')
+%EditInPlaceFEQJust DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('Default')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('Default')
 WHEN  ('Ver:Description') ('Default')
 
-%EditInPlaceFEQOffset DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('0')
+%EditInPlaceFEQOffset DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('0')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('0')
 WHEN  ('Ver:Description') ('0')
 
-%EditInPlaceFEQTransparent DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (0)
+%EditInPlaceFEQTransparent DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%EditInPlaceFEQReadOnly DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (0)
+%EditInPlaceFEQReadOnly DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%EditInPlaceFEQRequired DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (0)
+%EditInPlaceFEQRequired DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%EditInPlaceFEQDataSource DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
+%EditInPlaceFEQDataSource DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') ('Fixed')
-WHEN  ('?Insert')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('Fixed')
@@ -3220,10 +4011,12 @@ WHEN  ('Ver:Description') ('Fixed')
 
 %EditInPlaceFEQFixedDataSourceValue DEPEND %EditInPlaceFEQFixedDataSource DEFAULT TIMES 0
 
-%EditInPlaceFEQFixedDataSourceSelected DEPEND %EditInPlaceFEQFixedDataSource LONG TIMES 3
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('')TIMES 0
+%EditInPlaceFEQFixedDataSourceSelected DEPEND %EditInPlaceFEQFixedDataSource LONG TIMES 5
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 
 %EditInPlaceFEQQueueDataSourceQN DEPEND %Control DEPEND %ControlField FIELD TIMES 0
@@ -3232,10 +4025,12 @@ WHEN  ('?StatisticsTab')TIMES 0
 
 %EditInPlaceFEQQueueDataSourceS DEPEND %Control DEPEND %ControlField FIELD TIMES 0
 
-%EditInPlaceFEQAutoSerializeField DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (0)
+%EditInPlaceFEQAutoSerializeField DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
@@ -3245,28 +4040,34 @@ WHEN  ('Ver:Description') (0)
 
 %ReturnToOriginalDir DEPEND %Control DEPEND %ControlField LONG TIMES 0
 
-%AllowLongFilenames DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (1)
+%AllowLongFilenames DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (1)
 WHEN  ('Ver:Description') (1)
 
-%DOSFileDialogType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('Open')
+%DOSFileDialogType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('Open')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('Open')
 WHEN  ('Ver:Description') ('Open')
 
-%AllowNoError DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (0)
+%AllowNoError DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
@@ -3274,19 +4075,23 @@ WHEN  ('Ver:Description') (0)
 
 %AllowMultiSelect DEPEND %Control DEPEND %ControlField LONG TIMES 0
 
-%DOSMaskDesc DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('All Files')
+%DOSMaskDesc DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('All Files')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('All Files')
 WHEN  ('Ver:Description') ('All Files')
 
-%DOSMask DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('*.*')
+%DOSMask DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('*.*')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('*.*')
@@ -3298,37 +4103,45 @@ WHEN  ('Ver:Description') ('*.*')
 
 %DOSMoreMask DEPEND %DOSMoreMasks DEFAULT TIMES 0
 
-%EditInPlaceFEQForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (-1)
+%EditInPlaceFEQForegroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%EditInPlaceFEQBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (-1)
+%EditInPlaceFEQBackgroundNormal DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%EditInPlaceFEQForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (-1)
+%EditInPlaceFEQForegroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
 WHEN  ('Ver:Description') (-1)
 
-%EditInPlaceFEQBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (-1)
+%EditInPlaceFEQBackgroundSelected DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (-1)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (-1)
@@ -3342,73 +4155,89 @@ WHEN  ('Ver:Description') (-1)
 
 %EditInPlaceFEQListFormat DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
 
-%EditInPlaceFEQDrop DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('0')
+%EditInPlaceFEQDrop DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('0')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('0')
 WHEN  ('Ver:Description') ('0')
 
-%EditInPlaceFEQWidth DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('0')
+%EditInPlaceFEQWidth DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('0')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('0')
 WHEN  ('Ver:Description') ('0')
 
-%EditInPlaceFEQCase DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
+%EditInPlaceFEQCase DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') ('Default')
-WHEN  ('?Insert')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('Default')
 WHEN  ('Ver:Description') ('Default')
 
-%EditInPlaceFEQFlat DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (0)
+%EditInPlaceFEQFlat DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%EditInPlaceFEQHorizontal DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (0)
+%EditInPlaceFEQHorizontal DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%EditInPlaceFEQVertical DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (0)
+%EditInPlaceFEQVertical DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%EditInPlaceFEQImmediate DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (0)
+%EditInPlaceFEQImmediate DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%EditInPlaceFEQEntryCompletion DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') (0)
+%EditInPlaceFEQEntryCompletion DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') (0)
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
@@ -3422,10 +4251,12 @@ WHEN  ('Ver:Description') (0)
 
 %EditInPlaceFEQFixedDataSourceText DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
 
-%EditInPlaceFEQCheckJust DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('Default')
+%EditInPlaceFEQCheckJust DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('Default')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('Default')
@@ -3439,55 +4270,67 @@ WHEN  ('Ver:Description') ('Default')
 
 %EditInPlaceFEQFalseLabel DEPEND %Control DEPEND %ControlField DEFAULT TIMES 0
 
-%EditInPlaceFEQEntryMode DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('Default')
+%EditInPlaceFEQEntryMode DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('Default')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('Default')
 WHEN  ('Ver:Description') ('Default')
 
-%EditInPlaceFEQLower DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('0')
+%EditInPlaceFEQLower DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('0')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('0')
 WHEN  ('Ver:Description') ('0')
 
-%EditInPlaceFEQUpper DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('0')
+%EditInPlaceFEQUpper DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('0')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('0')
 WHEN  ('Ver:Description') ('0')
 
-%EditInPlaceFEQStep DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('0')
+%EditInPlaceFEQStep DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('0')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('0')
 WHEN  ('Ver:Description') ('0')
 
-%EditInPlaceFEQPassword DEPEND %Control DEPEND %ControlField LONG TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
+%EditInPlaceFEQPassword DEPEND %Control DEPEND %ControlField LONG TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
+WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
 WHEN  ('') (0)
-WHEN  ('?Insert')TIMES 0
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') (0)
 WHEN  ('Ver:Description') (0)
 
-%LookupType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 4
-WHEN  ('?BulkToolsTab')TIMES 1
-WHEN  ('') ('Related Field')
+%LookupType DEPEND %Control DEPEND %ControlField DEFAULT TIMES 6
+WHEN  ('?AddFM3VersionBtn')TIMES 0
+WHEN  ('?BulkToolsTab')TIMES 0
 WHEN  ('?Insert')TIMES 0
+WHEN  ('?LookupDestination')TIMES 1
+WHEN  ('') ('Related Field')
 WHEN  ('?StatisticsTab')TIMES 0
 WHEN  ('?VersionsList')TIMES 2
 WHEN  ('Ver:DctVersion') ('Related Field')
@@ -3518,11 +4361,243 @@ WHEN  ('Ver:Description') ('')
 %UpdateProcedure PROCEDURE  (UpdateDctVersions)
 %UpdateProcedureParameters DEFAULT  ('OverStr,Thread()')
 %EditViaPopup LONG  (1)
+[ADDITION]
+NAME ABC DOSFileLookup
+[INSTANCE]
+INSTANCE 13
+[PROMPTS]
+%ClassItem UNIQUE DEFAULT  ('Default')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('SelectFileClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
+
+%DOSFileDialogHeader DEFAULT  ('Select Source Directory')
+%DOSFileField FIELD  (Dct:SourceDirectory)
+%DOSInitialDirectory DEFAULT  ('Dct:SourceDirectory')
+%DOSInitialFilename DEFAULT  ('')
+%ReturnToOriginalDir LONG  (1)
+%AllowLongFilenames LONG  (1)
+%DOSFileDialogType DEFAULT  ('Directory')
+%AllowNoError LONG  (0)
+%DefaultOnCancel LONG  (0)
+%AllowMultiSelect LONG  (0)
+%ActionsToTake DEFAULT  ('')
+%AssignToImageControl LONG  (0)
+%ImageControl DEFAULT  ('')
+%ImageResize LONG  (1)
+%DOSVariableMask LONG  (0)
+%DOSMaskVariable DEFAULT  ('')
+%DOSMaskDesc DEFAULT  ('All Files')
+%DOSMask DEFAULT  ('*.*')
+%DOSMoreMasks MULTI LONG  ()
+%DOSMoreMaskDesc DEPEND %DOSMoreMasks DEFAULT TIMES 0
+
+%DOSMoreMask DEPEND %DOSMoreMasks DEFAULT TIMES 0
+
+%RedisplayWindow LONG  (1)
+%UpdateFields MULTI LONG  ()
+%UpdateFeq DEPEND %UpdateFields DEFAULT TIMES 0
+
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('FileLookup13')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('ADOBlob')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+[INSTANCE]
+INSTANCE 14
+[PROMPTS]
+%ClassItem UNIQUE DEFAULT  ('Default')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('SelectFileClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
+
+%DOSFileDialogHeader DEFAULT  ('Select Destination Directory')
+%DOSFileField FIELD  (Dct:DestinationDirectory)
+%DOSInitialDirectory DEFAULT  ('Dct:DestinationDirectory')
+%DOSInitialFilename DEFAULT  ('')
+%ReturnToOriginalDir LONG  (1)
+%AllowLongFilenames LONG  (1)
+%DOSFileDialogType DEFAULT  ('Directory')
+%AllowNoError LONG  (0)
+%DefaultOnCancel LONG  (0)
+%AllowMultiSelect LONG  (0)
+%ActionsToTake DEFAULT  ('')
+%AssignToImageControl LONG  (0)
+%ImageControl DEFAULT  ('')
+%ImageResize LONG  (1)
+%DOSVariableMask LONG  (0)
+%DOSMaskVariable DEFAULT  ('')
+%DOSMaskDesc DEFAULT  ('All Files')
+%DOSMask DEFAULT  ('*.*')
+%DOSMoreMasks MULTI LONG  ()
+%DOSMoreMaskDesc DEPEND %DOSMoreMasks DEFAULT TIMES 0
+
+%DOSMoreMask DEPEND %DOSMoreMasks DEFAULT TIMES 0
+
+%RedisplayWindow LONG  (1)
+%UpdateFields MULTI LONG  ()
+%UpdateFeq DEPEND %UpdateFields DEFAULT TIMES 0
+
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('FileLookup14')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 1
+WHEN  ('Default') ('ADOBlob')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 1
+WHEN  ('Default') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
 [CALLS]
 UpdateComment
 UpdateOption
 [WINDOW]
-QuickWindow WINDOW('Caption'),AT(,,449,183),FONT('Segoe UI',10,,FONT:regular,CHARSET:ANSI), |
+QuickWindow WINDOW('Caption'),AT(,,449,182),FONT('Segoe UI',10,,FONT:regular,CHARSET:ANSI), |
           RESIZE,AUTO,CENTER,GRAY,IMM,MAX,HLP('UpdateDictionary'),SYSTEM,WALLPAPER('Background1.png')
           BUTTON,AT(397,1,23,12),USE(?OK),LEFT,ICON('SaveLarge1.ico'),DEFAULT,DISABLE,FLAT, |
             HIDE,MSG('Accept data and close the window'),TIP('Accept data and close the window'), |
@@ -3579,6 +4654,38 @@ QuickWindow WINDOW('Caption'),AT(,,449,183),FONT('Segoe UI',10,,FONT:regular,CHA
             TAB('Statistics'),USE(?StatisticsTab),#ORDINAL(28)
             END
             TAB('Bulk Dictionary Tools'),USE(?BulkToolsTab),#ORDINAL(29)
+              BUTTON('Add FM3 Version Option to Tables'),AT(10,156,134,14),USE(?AddFM3VersionBtn), |
+                FLAT,TIP('The FM3 Version iption will be added to all tables.  Excludes' & |
+                ' MEMORY tables and tables that already have the option.'),#ORDINAL(30)
+              SHEET,AT(7,16,423,137),USE(?SHEET2),#ORDINAL(31)
+                TAB('Source'),USE(?SourceTab),#ORDINAL(32)
+                  PROMPT('Source Directory:'),AT(13,32,41,18),USE(?Dct:SourceDirectory:Prompt), |
+                    TRN,#ORDINAL(33)
+                  TEXT,AT(58,32,179,17),USE(Dct:SourceDirectory),#ORDINAL(34)
+                  BUTTON,AT(241,32,12,12),USE(?LookupSource),ICON('Search1.ico'),FLAT,#ORIG(?LookupFile), |
+                    #SEQ(13),#ORDINAL(35)
+                  LIST,AT(14,53,99,92),USE(?LIST1),VSCROLL,FORMAT('1020L(2)M~Tables~@s255@'), |
+                    FROM(FilesQ),#FIELDS(FQ:name),#ORDINAL(36)
+                  LIST,AT(117,53,302,92),USE(?OutQList1),HVSCROLL,FORMAT('100L(2)M@s255' & |
+                    '@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@' & |
+                    's255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(' & |
+                    '2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@1' & |
+                    '00L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s2' & |
+                    '55@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)' & |
+                    'M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100' & |
+                    'L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255' & |
+                    '@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@' & |
+                    's255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(' & |
+                    '2)M@s255@100L(2)M@s255@100L(2)M@s255@100L(2)M@s255@'),FROM(OutQ),#ORDINAL(37)
+                END
+                TAB('Destination'),USE(?DestinationTab),#ORDINAL(38)
+                  PROMPT('Destination Directory:'),AT(13,32,41,18),USE(?Dct:DestinationDirectory:Prompt), |
+                    TRN,#ORDINAL(39)
+                  TEXT,AT(58,32,179,17),USE(Dct:DestinationDirectory),#ORDINAL(40)
+                  BUTTON,AT(241,32,12,12),USE(?LookupDestination),ICON('Search1.ico'),FLAT, |
+                    #ORIG(?LookupFile),#SEQ(14),#ORDINAL(41)
+                END
+              END
             END
           END
         END
